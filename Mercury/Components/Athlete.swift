@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Athlete: Identifiable {
-    let id: UUID = UUID()
+struct Athlete: Identifiable, Codable {
+    let id: UUID
     let firstName: String
     let lastName: String
     let country: String

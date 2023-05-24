@@ -8,32 +8,46 @@
 import SwiftUI
 
 struct ManageFavouritesView: View {
-    @StateObject private var favs = Favourites()
+    @StateObject private var items = Favourites()
+    @State private var userFavourites: [Athlete] = []
     
     var body: some View {
         List {
-            Section {
-                Text("Favourite")
-            } header: {
-                Text("Favourites")
-            }
-            
-            Section {
-                ForEach(favs.athletes, id: \.id) { athlete in
+            ForEach(items.athletes, id: \.id) { athlete in
+                HStack {
                     Text("\(athlete.firstName) \(athlete.lastName)")
+                    Text(athlete.country)
+                        .foregroundStyle(.secondary)
+                    Spacer()
+                    Button {
+                        // add to favourites
+                    } label: {
+                        Image(systemName: "heart")
+                    }
                 }
-            } header: {
-                Text("Popular athletes")
             }
         }
         .task {
             do {
-                try await favs.getFavourites()
+                try await items.getFavourites()
             } catch {
                 print(error)
             }
         }
         .navigationTitle("Favourites")
+        .toolbar {
+            ToolbarItem(placement: .bottomBar) {
+                Button {
+                    // open sheet to add more favourites
+                } label: {
+                    Label {
+                        Text("Add to favourites")
+                    } icon: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
+        }
     }
 }
 

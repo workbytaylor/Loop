@@ -21,6 +21,7 @@ struct NewsView: View {
                 //.padding(.top, 6)
             ScrollView {
                 ForEach(feed.stories, id: \.link) { story in
+                    // sort by date, newest first
                     Button {
                         isPresented.toggle()
                         selectedStory = story.link
