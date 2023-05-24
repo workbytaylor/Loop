@@ -13,7 +13,7 @@ class Favourites: ObservableObject {
     
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
-    func getAthletes() async throws {
+    func getFavourites() async throws {
         let athletes: [Athlete] = try await client.database
             .from("athletes")
             .select()
@@ -22,7 +22,7 @@ class Favourites: ObservableObject {
         DispatchQueue.main.async {
             self.athletes = athletes
         }
-            
         
     }
 }
+

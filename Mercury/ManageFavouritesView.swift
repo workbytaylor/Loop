@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ManageFavouritesView: View {
-    @ObservedObject private var favourites = Favourites()
+    @StateObject private var favs = Favourites()
     
     var body: some View {
         List {
@@ -19,18 +19,18 @@ struct ManageFavouritesView: View {
             }
             
             Section {
-                ForEach(favourites.athletes, id: \.id) { athlete in
+                ForEach(favs.athletes, id: \.id) { athlete in
                     Text("\(athlete.firstName) \(athlete.lastName)")
                 }
             } header: {
                 Text("Popular athletes")
             }
-            .task {
-                do {
-                    try await favourites.getAthletes()
-                } catch {
-                    print(error)
-                }
+        }
+        .task {
+            do {
+                try await favs.getFavourites()
+            } catch {
+                print(error)
             }
         }
         .navigationTitle("Favourites")

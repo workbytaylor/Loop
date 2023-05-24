@@ -14,6 +14,8 @@ struct AthleteView: View {
     let initials: String
     
     var body: some View {
+        Text("")
+        /*
         VStack {
             if let image = image {
                 Image(image)
@@ -37,6 +39,7 @@ struct AthleteView: View {
                 
         }
         .frame(width: 60)
+    */
     }
 }
 
