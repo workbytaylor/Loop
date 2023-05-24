@@ -13,5 +13,5 @@ struct Story: Identifiable, Codable {
     let link: String
     let displayLink: String
     let image: String
-    let date: String  //TODO: unsure if this should be date, or string?
+    let date: String  //date does not work currently
 }

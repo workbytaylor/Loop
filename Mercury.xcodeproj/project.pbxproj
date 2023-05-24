@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		957DE13A2A1C6D040058F639 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957DE1392A1C6D040058F639 /* Constants.swift */; };
+		958B51302A1DA04700F7779D /* Favourites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958B512F2A1DA04700F7779D /* Favourites.swift */; };
 		958C9DD82A1B7D3E00BCAB96 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */; };
 		958C9DDA2A1B7D5E00BCAB96 /* WebCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */; };
 		958C9DDE2A1B7DB900BCAB96 /* NewsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		957DE1392A1C6D040058F639 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		958B512F2A1DA04700F7779D /* Favourites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourites.swift; sourceTree = "<group>"; };
 		958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoverView.swift; sourceTree = "<group>"; };
 		958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsCardView.swift; path = Mercury/Components/NewsCardView.swift; sourceTree = SOURCE_ROOT; };
@@ -67,10 +69,11 @@
 		958C9DDC2A1B7D8000BCAB96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				958C9DE12A1B7E4700BCAB96 /* Athlete.swift */,
-				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
-				958C9DEE2A1B88BA00BCAB96 /* Feed.swift */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
+				958C9DEE2A1B88BA00BCAB96 /* Feed.swift */,
+				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
+				958B512F2A1DA04700F7779D /* Favourites.swift */,
+				958C9DE12A1B7E4700BCAB96 /* Athlete.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -196,6 +199,7 @@
 				958C9DD82A1B7D3E00BCAB96 /* SettingsView.swift in Sources */,
 				958C9DE02A1B7E1700BCAB96 /* FavouritesHScrollView.swift in Sources */,
 				958C9DDA2A1B7D5E00BCAB96 /* WebCoverView.swift in Sources */,
+				958B51302A1DA04700F7779D /* Favourites.swift in Sources */,
 				95C0EDA32A1AF70B006F1703 /* NewsView.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
 				95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */,

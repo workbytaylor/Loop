@@ -30,7 +30,7 @@ struct NewsView: View {
                     .padding()
                 }
                 
-                Text("You're all caught up!")
+                Text("You're all caught up")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -42,8 +42,13 @@ struct NewsView: View {
                 }
             }
             .refreshable {
-                //try await loadData()
+                // might need to update this, works for now
                 print("Refresh")
+                do {
+                    try await feed.getStories()
+                } catch {
+                    print(error)
+                }
             }
             //.navigationTitle("Mercury")
             .navigationBarTitleDisplayMode(.inline)
@@ -62,7 +67,7 @@ struct NewsView: View {
                 WebCoverView(link: $selectedStory)
             }
         }
-        .searchable(text: $searchText, placement: .toolbar, prompt: "Search Athletes")
+        //.searchable(text: $searchText, placement: .toolbar, prompt: "Search Athletes")
     }
 }
 

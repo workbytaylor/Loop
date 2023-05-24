@@ -14,7 +14,6 @@ class Feed: ObservableObject {
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
     func getStories() async throws {
-        
         let stories: [Story] = try await client.database
             .from("stories")
             .select()
