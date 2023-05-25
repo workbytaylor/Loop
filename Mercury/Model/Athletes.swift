@@ -1,5 +1,5 @@
 //
-//  Favourites.swift
+//  Athletes.swift
 //  Mercury
 //
 //  Created by Nilakshi Roy on 2023-05-23.
@@ -8,12 +8,12 @@
 import Foundation
 import Supabase
 
-class Favourites: ObservableObject {
+class Athletes: ObservableObject {
     @Published var athletes: [Athlete] = []
     
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
-    func getFavourites() async throws {
+    func getAthletes() async throws {
         let athletes: [Athlete] = try await client.database
             .from("athletes")
             .select()

@@ -8,45 +8,41 @@
 import SwiftUI
 
 struct ManageFavouritesView: View {
-    @StateObject private var items = Favourites()
-    @State private var userFavourites: [Athlete] = []
+    @StateObject var items = Athletes()
+    @State private var searchText: String = ""
     
     var body: some View {
         List {
-            ForEach(items.athletes, id: \.id) { athlete in
-                HStack {
-                    Text("\(athlete.firstName) \(athlete.lastName)")
-                    Text(athlete.country)
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Button {
-                        // add to favourites
-                    } label: {
-                        Image(systemName: "heart")
-                    }
-                }
+            ForEach($items.athletes, id: \.id) { $athlete in
+                FavouritesListRowView(athlete: $athlete)
             }
         }
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .task {
             do {
-                try await items.getFavourites()
+                try await items.getAthletes()
             } catch {
                 print(error)
             }
         }
-        .navigationTitle("Favourites")
+        .navigationTitle("Manage Favourites")
         .toolbar {
-            ToolbarItem(placement: .bottomBar) {
-                Button {
-                    // open sheet to add more favourites
-                } label: {
-                    Label {
-                        Text("Add to favourites")
-                    } icon: {
-                        Image(systemName: "plus")
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Menu {
+                    Button {
+                        // sort by favourites
+                    } label: {
+                        Text("sort by favourites")
                     }
+                } label: {
+                    Image(systemName: "line.3.horizontal.decrease")
                 }
+                
+                
+                
             }
+            
+            
         }
     }
 }

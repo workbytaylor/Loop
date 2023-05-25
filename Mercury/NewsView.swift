@@ -9,7 +9,6 @@ import SwiftUI
 import WebKit
 
 struct NewsView: View {
-    @State private var searchText: String = ""
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
     
@@ -17,8 +16,8 @@ struct NewsView: View {
     
     var body: some View {
         NavigationStack {
-            //FavouritesHScrollView()
-                //.padding(.top, 6)
+            FavouritesHScrollView()
+                .padding(.top, 6)
             ScrollView {
                 ForEach(feed.stories, id: \.link) { story in
                     // sort by date, newest first
@@ -68,7 +67,6 @@ struct NewsView: View {
                 WebCoverView(link: $selectedStory)
             }
         }
-        //.searchable(text: $searchText, placement: .toolbar, prompt: "Search Athletes")
     }
 }
 
