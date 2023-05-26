@@ -12,9 +12,10 @@ struct FavouritesListRowView: View {
     @State private var isFavourite: Bool = false
     
     var body: some View {
-        HStack {
+        HStack(alignment: .firstTextBaseline) {
             Text("\(athlete.firstName) \(athlete.lastName)")
             Text(athlete.country)
+                .font(.subheadline)
                 .foregroundStyle(.secondary)
             Spacer()
             Button {

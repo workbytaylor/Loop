@@ -16,9 +16,10 @@ struct NewsView: View {
     
     var body: some View {
         NavigationStack {
-            FavouritesHScrollView()
-                .padding(.top, 6)
             ScrollView {
+                FavouritesHScrollView()
+                    .padding(.top, 4)
+                    .padding(.bottom, 6)
                 ForEach(feed.stories, id: \.link) { story in
                     // sort by date, newest first
                     Button {
@@ -27,7 +28,8 @@ struct NewsView: View {
                     } label: {
                         NewsCardView(story: story)
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.bottom).padding(.bottom)
                 }
                 
                 Text("You're all caught up")
@@ -50,7 +52,7 @@ struct NewsView: View {
                     print(error)
                 }
             }
-            //.navigationTitle("Mercury")
+            .navigationTitle("News")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

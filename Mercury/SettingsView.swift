@@ -12,7 +12,7 @@ struct SettingsView: View {
         List {
             Section {
                 NavigationLink {
-                    ManageFavouritesView()
+                    FavouritesListView()
                 } label: {
                     Label {
                         Text("Manage Favourites")

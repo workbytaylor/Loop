@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NewsCardView: View {
     let story: Story
-    @State var bookmark: Bool = false
+    //@State var bookmark: Bool = false
     
     var body: some View {
         LazyVStack(alignment: .leading) {

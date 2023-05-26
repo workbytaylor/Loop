@@ -25,7 +25,7 @@ struct FavouritesHScrollView: View {
                 
                 VStack {
                     NavigationLink {
-                        ManageFavouritesView()
+                        FavouritesListView()
                     } label: {
                         Image(systemName: "plus")
                         .foregroundColor(.white)
