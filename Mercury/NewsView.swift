@@ -20,7 +20,7 @@ struct NewsView: View {
                 FavouritesHScrollView()
                     .padding(.top, 4)
                     .padding(.bottom, 6)
-                ForEach(feed.stories, id: \.link) { story in
+                ForEach(feed.sortedStories, id: \.link) { story in
                     // sort by date, newest first
                     Button {
                         isPresented.toggle()

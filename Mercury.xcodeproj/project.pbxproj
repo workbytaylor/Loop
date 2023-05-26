@@ -101,10 +101,10 @@
 			children = (
 				95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */,
 				95C0EDA22A1AF70B006F1703 /* NewsView.swift */,
+				958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */,
 				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
 				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
 				9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */,
-				958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */,
 				958C9DDB2A1B7D7500BCAB96 /* Components */,
 				958C9DDC2A1B7D8000BCAB96 /* Model */,
 				95C0EDA42A1AF70D006F1703 /* Assets.xcassets */,

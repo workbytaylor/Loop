@@ -9,7 +9,7 @@ import Foundation
 import Supabase
 
 class Feed: ObservableObject {
-    @Published var stories: [Story] = []
+    @Published var sortedStories: [Story] = []
     
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
@@ -19,8 +19,13 @@ class Feed: ObservableObject {
             .select()
             .execute().value as [Story]
         
+        //sort by date, newest first
+        let sortedStories = stories.sorted {
+            $0.date > $1.date
+        }
+        
         DispatchQueue.main.async {
-            self.stories = stories
+            self.sortedStories = sortedStories
         }
     }
 }
