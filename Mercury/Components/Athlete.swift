@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 struct Athlete: Identifiable, Codable, Hashable {
     let id: UUID
@@ -26,8 +25,6 @@ struct Athlete: Identifiable, Codable, Hashable {
         return "\(first). \(lastName)"
     }
     
-    
-    
-    
+    var isFavourite: Bool?
     
 }

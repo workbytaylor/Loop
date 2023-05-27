@@ -20,7 +20,6 @@ public class CachedAthlete: NSManagedObject, Identifiable {
     // TODO: Add index to keep display order the same
 }
 
-
 //FETCH REQUEST
 extension CachedAthlete {
     
@@ -38,9 +37,5 @@ extension CachedAthlete {
         return request
     }
     
-    //TODO: Write a function to fetch a specific athlete
-    // return only true or false if the athlete is fetched
-    
-    //static func isFavourite() -> 
     
 }

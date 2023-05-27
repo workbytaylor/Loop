@@ -10,10 +10,7 @@ import CoreData
 
 struct FavouritesListRowView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(fetchRequest: CachedAthlete.all()) private var favouriteAthletes
-    
-    @Binding var athlete: Athlete
-    @State private var isFavourite: Bool = false
+    @State var athlete: Athlete
     
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
@@ -23,21 +20,34 @@ struct FavouritesListRowView: View {
                 .foregroundStyle(.secondary)
             Spacer()
             Button {
-                isFavourite.toggle()
-                //toggle add/delete to/from coredata
+                athlete.isFavourite?.toggle()
+                print(athlete)
+                
+                
+                if isAthleteFavourited(withID: athlete.id) == true {
+                    // remove from favourites
+                } else {
+                    addToFavourites()
+                }
+                
             } label: {
-                //try? moc.existingObject(with: athlete.id)
-                
-                
-                
-                /*
-                switch isFavourite {
+                switch athlete.isFavourite {
                 case true:
                     Image(systemName: "heart.fill")
                 case false:
                     Image(systemName: "heart")
+                default:
+                    Image(systemName: "circle")
                 }
-                */
+                
+            }
+        }
+        .task {
+            // check if athlete is present here
+            // assign appropriate value
+            if isAthleteFavourited(withID: athlete.id) == true {
+                
+            } else {
                 
             }
         }
@@ -51,3 +61,34 @@ struct FavouritesListRowView_Previews: PreviewProvider {
     }
 }
 */
+
+
+extension FavouritesListRowView {
+    
+    // check if athlete is saved in CoreData
+    private func isAthleteFavourited(withID id: UUID) -> Bool {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = CachedAthlete.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        
+        do {
+            let count = try moc.count(for: fetchRequest)
+            return count > 0
+        } catch {
+            print("Error executing fetch request: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    // save new athlete to Coredata
+    private func addToFavourites() {
+        let newFavourite = CachedAthlete(context: moc)
+        newFavourite.id = athlete.id
+        newFavourite.firstName = athlete.firstName
+        newFavourite.lastName = athlete.lastName
+        newFavourite.country = athlete.country
+        newFavourite.gender = athlete.gender
+        try? moc.save()
+    }
+    
+    
+}

@@ -26,8 +26,8 @@ struct FavouritesListView: View {
              */
             
             Section {
-                ForEach($items.athletes, id: \.id) { $athlete in
-                    FavouritesListRowView(athlete: $athlete)
+                ForEach(items.athletes, id: \.id) { athlete in
+                    FavouritesListRowView(athlete: athlete)
                 }
             }
             

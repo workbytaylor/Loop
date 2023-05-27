@@ -22,7 +22,6 @@ class Athletes: ObservableObject {
         DispatchQueue.main.async {
             self.athletes = athletes
         }
-        
     }
 }
 
