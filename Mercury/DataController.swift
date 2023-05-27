@@ -10,9 +10,6 @@ import CoreData
 import SwiftUI
 
 class DataController: ObservableObject {
-    
-    //static let shared = DataController()
-    
     let container = NSPersistentContainer(name: "cachedFavourites")
     
     init() {

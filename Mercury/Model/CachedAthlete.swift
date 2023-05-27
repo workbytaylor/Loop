@@ -38,6 +38,9 @@ extension CachedAthlete {
         return request
     }
     
+    //TODO: Write a function to fetch a specific athlete
+    // return only true or false if the athlete is fetched
     
+    //static func isFavourite() -> 
     
 }

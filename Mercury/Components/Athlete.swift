@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import CoreData
 
-struct Athlete: Identifiable, Codable {
+struct Athlete: Identifiable, Codable, Hashable {
     let id: UUID
     let firstName: String
     let lastName: String
@@ -24,4 +25,9 @@ struct Athlete: Identifiable, Codable {
         let first = String(firstName.prefix(1))
         return "\(first). \(lastName)"
     }
+    
+    
+    
+    
+    
 }

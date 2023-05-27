@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct FavouritesListRowView: View {
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(fetchRequest: CachedAthlete.all()) private var favouriteAthletes
+    
     @Binding var athlete: Athlete
     @State private var isFavourite: Bool = false
     
@@ -20,14 +24,20 @@ struct FavouritesListRowView: View {
             Spacer()
             Button {
                 isFavourite.toggle()
+                //toggle add/delete to/from coredata
             } label: {
+                //try? moc.existingObject(with: athlete.id)
+                
+                
+                
+                /*
                 switch isFavourite {
                 case true:
                     Image(systemName: "heart.fill")
                 case false:
                     Image(systemName: "heart")
                 }
-                
+                */
                 
             }
         }
