@@ -12,6 +12,7 @@ struct Athlete: Identifiable, Codable {
     let firstName: String
     let lastName: String
     let country: String
+    let gender: String
     
     var initials: String {
         let first = String(firstName.prefix(1))

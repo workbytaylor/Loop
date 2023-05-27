@@ -20,6 +20,8 @@
 		958C9DEB2A1B84AA00BCAB96 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 958C9DEA2A1B84AA00BCAB96 /* Supabase */; };
 		958C9DED2A1B85FA00BCAB96 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DEC2A1B85FA00BCAB96 /* Story.swift */; };
 		958C9DEF2A1B88BA00BCAB96 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DEE2A1B88BA00BCAB96 /* Feed.swift */; };
+		95AAD61F2A225473006B8136 /* CachedAthlete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAD61D2A225473006B8136 /* CachedAthlete.swift */; };
+		95AAD6222A2255A8006B8136 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AAD6212A2255A8006B8136 /* DataController.swift */; };
 		95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */; };
 		95C0EDA32A1AF70B006F1703 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA22A1AF70B006F1703 /* NewsView.swift */; };
 		95C0EDA52A1AF70D006F1703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA42A1AF70D006F1703 /* Assets.xcassets */; };
@@ -33,13 +35,15 @@
 		958B512F2A1DA04700F7779D /* Athletes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athletes.swift; sourceTree = "<group>"; };
 		958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebCoverView.swift; sourceTree = "<group>"; };
-		958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsCardView.swift; path = Mercury/Components/NewsCardView.swift; sourceTree = SOURCE_ROOT; };
+		958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsCardView.swift; path = Mercury/Views/NewsCardView.swift; sourceTree = SOURCE_ROOT; };
 		958C9DDF2A1B7E1700BCAB96 /* FavouritesHScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesHScrollView.swift; sourceTree = "<group>"; };
 		958C9DE12A1B7E4700BCAB96 /* Athlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Athlete.swift; path = Mercury/Components/Athlete.swift; sourceTree = SOURCE_ROOT; };
 		958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AthleteView.swift; sourceTree = "<group>"; };
 		958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListView.swift; sourceTree = "<group>"; };
 		958C9DEC2A1B85FA00BCAB96 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		958C9DEE2A1B88BA00BCAB96 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		95AAD61D2A225473006B8136 /* CachedAthlete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAthlete.swift; sourceTree = "<group>"; };
+		95AAD6212A2255A8006B8136 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		95C0ED9D2A1AF70B006F1703 /* Mercury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mercury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryApp.swift; sourceTree = "<group>"; };
 		95C0EDA22A1AF70B006F1703 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
@@ -60,27 +64,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		958C9DDB2A1B7D7500BCAB96 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */,
-				958C9DDF2A1B7E1700BCAB96 /* FavouritesHScrollView.swift */,
-				958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		958C9DDC2A1B7D8000BCAB96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95E451412A22301300814323 /* cachedFavourites.xcdatamodeld */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
+				95AAD61D2A225473006B8136 /* CachedAthlete.swift */,
 				958C9DEE2A1B88BA00BCAB96 /* Feed.swift */,
 				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
 				958B512F2A1DA04700F7779D /* Athletes.swift */,
 				958C9DE12A1B7E4700BCAB96 /* Athlete.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		95AAD6232A2255B3006B8136 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				95C0EDA22A1AF70B006F1703 /* NewsView.swift */,
+				958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */,
+				958C9DDF2A1B7E1700BCAB96 /* FavouritesHScrollView.swift */,
+				958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */,
+				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
+				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
+				9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */,
+				958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		95C0ED942A1AF70B006F1703 = {
@@ -102,13 +111,10 @@
 		95C0ED9F2A1AF70B006F1703 /* Mercury */ = {
 			isa = PBXGroup;
 			children = (
+				95E451412A22301300814323 /* cachedFavourites.xcdatamodeld */,
+				95AAD6212A2255A8006B8136 /* DataController.swift */,
 				95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */,
-				95C0EDA22A1AF70B006F1703 /* NewsView.swift */,
-				958C9DD92A1B7D5E00BCAB96 /* WebCoverView.swift */,
-				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
-				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
-				9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */,
-				958C9DDB2A1B7D7500BCAB96 /* Components */,
+				95AAD6232A2255B3006B8136 /* Views */,
 				958C9DDC2A1B7D8000BCAB96 /* Model */,
 				95C0EDA42A1AF70D006F1703 /* Assets.xcassets */,
 				95C0EDA62A1AF70D006F1703 /* Preview Content */,
@@ -207,12 +213,14 @@
 				958C9DDA2A1B7D5E00BCAB96 /* WebCoverView.swift in Sources */,
 				958B51302A1DA04700F7779D /* Athletes.swift in Sources */,
 				95C0EDA32A1AF70B006F1703 /* NewsView.swift in Sources */,
+				95AAD6222A2255A8006B8136 /* DataController.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
 				95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */,
 				95E451432A22301300814323 /* cachedFavourites.xcdatamodeld in Sources */,
 				9520C6022A1F6BA90059009A /* FavouritesListRowView.swift in Sources */,
 				958C9DE22A1B7E4700BCAB96 /* Athlete.swift in Sources */,
 				958C9DE62A1B7E9A00BCAB96 /* AthleteView.swift in Sources */,
+				95AAD61F2A225473006B8136 /* CachedAthlete.swift in Sources */,
 				958C9DE82A1B7F1000BCAB96 /* FavouritesListView.swift in Sources */,
 				958C9DED2A1B85FA00BCAB96 /* Story.swift in Sources */,
 			);

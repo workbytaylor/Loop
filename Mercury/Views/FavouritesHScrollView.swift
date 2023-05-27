@@ -6,22 +6,19 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct FavouritesHScrollView: View {
-    //let athletes = Athlete.sampleData
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(fetchRequest: CachedAthlete.all()) private var favouriteAthletes
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                /*
-                ForEach(athletes) { athlete in
-                    NavigationLink {
-                        AthleteView(shortName: athlete.shortName, image: athlete.image, initials: athlete.initials)
-                    } label: {
-                        AthleteView(shortName: athlete.shortName, image: athlete.image, initials: athlete.initials)
-                    }
+                
+                ForEach(favouriteAthletes) { athlete in
+                    Text(athlete.firstName)
                 }
-                 */
                 
                 VStack {
                     NavigationLink {

@@ -9,10 +9,15 @@ import SwiftUI
 
 @main
 struct MercuryApp: App {
+    
+    @StateObject var dataController = DataController()
+    
     var body: some Scene {
         WindowGroup {
             //TabView(selection: $selection) {
                 NewsView()
+                //.environment injects coreData into the app, adjust when adding ResultsView()
+                .environment(\.managedObjectContext, dataController.container.viewContext)
                 .preferredColorScheme(.light)
                     .tabItem {
                         Text("News")
