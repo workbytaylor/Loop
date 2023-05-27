@@ -13,7 +13,7 @@ struct FavouritesListView: View {
     
     var body: some View {
         List {
-            
+            /*
             if searchText != "" {
                 Section {
                     NavigationLink {
@@ -23,6 +23,7 @@ struct FavouritesListView: View {
                     }
                 }
             }
+             */
             
             Section {
                 ForEach($items.athletes, id: \.id) { $athlete in
