@@ -50,11 +50,9 @@ struct SettingsView: View {
             }
             
         }
-        .listStyle(.insetGrouped)
         .navigationTitle("Settings")
+        .navigationBarTitleDisplayMode(.inline)
     }
-    
-    
 }
 
 struct SettingsView_Previews: PreviewProvider {
