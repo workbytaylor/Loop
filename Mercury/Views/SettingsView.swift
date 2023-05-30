@@ -15,7 +15,7 @@ struct SettingsView: View {
                     FavouritesListView()
                 } label: {
                     Label {
-                        Text("Manage Favourites")
+                        Text("Favourites")
                     } icon: {
                         Image(systemName: "heart")
                     }

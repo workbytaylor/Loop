@@ -11,7 +11,6 @@ import WebKit
 struct NewsView: View {
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
-    
     @StateObject private var feed = Feed()
     
     var body: some View {

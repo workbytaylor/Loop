@@ -9,35 +9,55 @@ import SwiftUI
 import CoreData
 
 struct FavouritesHScrollView: View {
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(fetchRequest: CachedAthlete.all()) private var favouriteAthletes
+    
+    @StateObject var items = Athletes()
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 
-                ForEach(favouriteAthletes) { athlete in
-                    Text(athlete.firstName)
+                ForEach(items.userFavourites) { athlete in
+                    NavigationLink {
+                        AthleteView(athlete: athlete)
+                    } label: {
+                        VStack {
+                            Text(athlete.initials)
+                                .foregroundColor(.white)
+                                .font(.headline)
+                                .frame(width: 50, height: 50)
+                                .background(Color.gray)
+                                .clipShape(Circle())
+                            Text(athlete.shortName)
+                                .font(.caption2)
+                                .foregroundColor(.primary)
+                        }
+                    }
                 }
                 
-                VStack {
-                    NavigationLink {
-                        FavouritesListView()
-                    } label: {
+                NavigationLink {
+                    FavouritesListView()
+                } label: {
+                    VStack {
                         Image(systemName: "plus")
                         .foregroundColor(.white)
                         .font(.headline)
-                    }
-                    .frame(width: 50, height: 50)
-                    .background(Color.gray)
-                    .clipShape(Circle())
-                    
+                        .frame(width: 50, height: 50)
+                        .background(Color.gray)
+                        .clipShape(Circle())
                     Text("Favourites")
                         .font(.caption2)
                         .foregroundColor(.primary)
+                    }
                 }
             }
             .padding(.horizontal)
+        }
+        .task {
+            do {
+                try await items.getFavourites()
+            } catch {
+                print(error)
+            }
         }
     }
 }

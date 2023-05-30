@@ -25,6 +25,10 @@ struct Athlete: Identifiable, Codable, Hashable {
         return "\(first). \(lastName)"
     }
     
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
+    
     var isFavourite: Bool?
     
 }

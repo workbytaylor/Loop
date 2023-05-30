@@ -10,10 +10,11 @@ import Supabase
 
 class Athletes: ObservableObject {
     @Published var athletes: [Athlete] = []
+    @Published var userFavourites: [Athlete] = []
     
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
-    func getAthletes() async throws {
+    func getAll() async throws {
         let athletes: [Athlete] = try await client.database
             .from("athletes")
             .select()
@@ -23,5 +24,18 @@ class Athletes: ObservableObject {
             self.athletes = athletes
         }
     }
+    
+    func getFavourites() async throws {
+        let favourites: [Athlete] = try await client.database
+            .from("userFavourites")
+            .select()
+            .execute().value as [Athlete]
+        
+        DispatchQueue.main.async {
+            self.userFavourites = favourites
+        }
+    }
+    
+    
 }
 
