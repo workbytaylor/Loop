@@ -9,7 +9,7 @@ import Foundation
 import Supabase
 
 class Athletes: ObservableObject {
-    @Published var athletes: [Athlete] = []
+    @Published var all: [Athlete] = []
     @Published var userFavourites: [Athlete] = []
     
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
@@ -21,7 +21,7 @@ class Athletes: ObservableObject {
             .execute().value as [Athlete]
         
         DispatchQueue.main.async {
-            self.athletes = athletes
+            self.all = athletes
         }
     }
     

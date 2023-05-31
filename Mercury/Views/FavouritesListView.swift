@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavouritesListView: View {
-    @StateObject private var items = Athletes()
+    @StateObject private var athletes = Athletes()
     @State private var searchText: String = ""
     
     var body: some View {
@@ -26,15 +26,16 @@ struct FavouritesListView: View {
             */
             
             Section {
-                ForEach(items.athletes, id: \.id) { athlete in
+                ForEach(athletes.all, id: \.id) { athlete in
                     FavouritesListRowView(athlete: athlete)
                 }
             }
         }
-        //.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .task {
             do {
-                try await items.getAll()
+                try await athletes.getAll()
+                //try await athletes.getFavourites()
             } catch {
                 print(error)
             }
