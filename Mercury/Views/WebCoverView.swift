@@ -22,8 +22,7 @@ struct WebCoverView: View {
                 ProgressView()
             }
         }
-        //.navigationTitle("Web View")
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {

@@ -15,11 +15,20 @@ struct SettingsView: View {
                     UIApplication.shared.open(URL(string: "https://bento.me/workbytaylor")!)
                 } label: {
                     Label {
-                        Text("Created by Taylor Schaefer ")+Text("↗").bold()
+                        HStack {
+                            Text("Created by Taylor Schaefer ")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .font(.footnote)
+                                .foregroundStyle(.tertiary)
+                                .bold()
+                        }
+                        
                     } icon: {
                         Image(systemName: "wrench.and.screwdriver")
                     }
                 }
+            
                 
                 Button {
                     //send email

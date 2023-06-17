@@ -20,8 +20,13 @@ class Athletes: ObservableObject {
             .select()
             .execute().value as [Athlete]
         
+        //sort by lastName, alphabetical
+        let all = athletes.sorted {
+            $1.lastName > $0.lastName
+        }
+        
         DispatchQueue.main.async {
-            self.all = athletes
+            self.all = all
         }
     }
     

@@ -31,7 +31,7 @@ struct FavouritesListView: View {
                 }
             }
         }
-        //.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .task {
             do {
                 try await athletes.getAll()
@@ -42,19 +42,28 @@ struct FavouritesListView: View {
         }
         .navigationTitle("Favourites")
         .navigationBarTitleDisplayMode(.inline)
-        /*.toolbar {
+        .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
+                    //TODO: Sort by
+                        //name, alphabetical
+                        //country, alphabetical
+                        //popularity
+                    //TODO: Filter by
+                        //all
+                        //favourites only
+                    
+                    
                     Button {
                         // sort by favourites at top, otherwise alphabetical
                     } label: {
-                        Text("sort by favourites")
+                        Text("sort & filter")
                     }
                 } label: {
                     Image(systemName: "line.3.horizontal.decrease")
                 }
             }
-        }*/
+        }
     }
 }
 
