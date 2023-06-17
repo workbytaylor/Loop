@@ -18,15 +18,15 @@ struct NewsCardView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity, maxHeight: 220)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                     .padding(.bottom, 4)
             } placeholder: {
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .frame(height: 220)
                     .padding(.bottom, 4)
                     .foregroundStyle(.secondary)
             }
-            //TODO: placeholder if image does not load / exist
+            //TODO: placeholder if image does not load or exist
             
             Text(story.title)
                 .multilineTextAlignment(.leading)

@@ -31,18 +31,18 @@ struct FavouritesListView: View {
                 }
             }
         }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+        //.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .task {
             do {
                 try await athletes.getAll()
-                //try await athletes.getFavourites()
+                //try await athletes.getFavourites()    // why is this here?
             } catch {
                 print(error)
             }
         }
         .navigationTitle("Favourites")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
+        /*.toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
                     Button {
@@ -54,7 +54,7 @@ struct FavouritesListView: View {
                     Image(systemName: "line.3.horizontal.decrease")
                 }
             }
-        }
+        }*/
     }
 }
 

@@ -10,6 +10,10 @@ import SwiftUI
 struct AthleteView: View {
     let athlete: Athlete
     
+    @State private var isPresented: Bool = false
+    @State private var selectedStory: String = ""
+    @ObservedObject private var feed = Feed()
+    
     var body: some View {
         VStack {
             Text(athlete.initials)
@@ -18,21 +22,47 @@ struct AthleteView: View {
                 .frame(width: 50, height: 50)
                 .background(Color.gray)
                 .clipShape(Circle())
-            
             Text(athlete.fullName)
                 .font(.headline)
-                //.foregroundColor(.primary)
-            Spacer()
+            
+            ScrollView {
+                ForEach(feed.sortedStories, id: \.link) { story in
+                    Button {
+                        isPresented.toggle()
+                        selectedStory = story.link
+                    } label: {
+                        NewsCardView(story: story)
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom).padding(.bottom)
+                }
+            }
+            /*
+            .task {
+                do {
+                    try await feed.getStories()
+                } catch {
+                    print(error)
+                }
+            }
+            .fullScreenCover(isPresented: $isPresented) {
+                NavigationStack {
+                    WebCoverView(link: $selectedStory)
+                }
+            }
+             */
         }
     }
 }
 
-/*
+
 struct AthleteThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
-        AthleteView(athlete: <#Athlete#>)
+        NavigationStack {
+            AthleteView(athlete: Athlete(id: UUID(), firstName: "Taylor", lastName: "Schaefer", country: "Caanda", gender: "male"))
+        }
     }
 }
 
 
-*/
+

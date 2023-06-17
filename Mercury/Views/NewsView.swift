@@ -29,10 +29,6 @@ struct NewsView: View {
                     .padding(.horizontal)
                     .padding(.bottom).padding(.bottom)
                 }
-                
-                Text("You're all caught up")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
             }
             .task {
                 do {
@@ -43,7 +39,7 @@ struct NewsView: View {
             }
             .refreshable {
                 // might need to update this, works for now
-                print("Refresh")
+                //print("Refresh")
                 do {
                     try await feed.getStories()
                 } catch {

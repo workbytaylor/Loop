@@ -30,7 +30,7 @@ struct FavouritesListRowView: View {
         .task {
             do {
                 try await items.getFavourites()
-                //move this to listview for faster processing
+                //TODO: move this to listview for faster processing
                 //determines if an athlete is a favourite or not
                 if items.userFavourites.contains(where: {$0.id == athlete.id}) {
                     isFavourite = true

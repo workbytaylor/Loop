@@ -11,20 +11,19 @@ struct SettingsView: View {
     var body: some View {
         List {
             Section {
-                NavigationLink {
-                    FavouritesListView()
+                Button {
+                    UIApplication.shared.open(URL(string: "https://bento.me/workbytaylor")!)
                 } label: {
                     Label {
-                        Text("Favourites")
+                        Text("Created by Taylor Schaefer ")+Text("↗").bold()
                     } icon: {
-                        Image(systemName: "heart")
+                        Image(systemName: "wrench.and.screwdriver")
                     }
                 }
                 
-                ShareLink("Share Mercury", item: URL(string: "https://www.tracksmith.com")!)
-                
                 Button {
                     //send email
+                    // TODO: Replace with sneding text to table in supabase
                     if let url = URL(string: "mailto:workbytaylor@gmail.com") {
                       if #available(iOS 10.0, *) {
                         UIApplication.shared.open(url)
@@ -34,19 +33,21 @@ struct SettingsView: View {
                     }
                 } label: {
                     Label {
-                        Text("Feedback")
+                        Text("Share feedback")
                     } icon: {
-                        Image(systemName: "message")
+                        Image(systemName: "paperplane")
                     }
                 }
+            } header: {
+                Text("About")
             }
             
-            Section(header: Text("About")) {
-                Label {
-                    Text("Made by Taylor in Ottawa")
-                } icon: {
-                    Image(systemName: "info.circle")
-                }
+            Section {
+                //TODO: replace tracksmith with app store link
+                ShareLink("Send to a friend", item: URL(string: "https://www.tracksmith.com")!)
+                
+            } header: {
+                Text("Spread the love")
             }
             
         }
