@@ -9,14 +9,13 @@ import SwiftUI
 import CoreData
 
 struct FavouritesHScrollView: View {
-    
-    @StateObject var items = Athletes()
+    @StateObject private var vm = Athletes()
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
                 
-                ForEach(items.userFavourites) { athlete in
+                ForEach(vm.userFavourites) { athlete in
                     NavigationLink {
                         AthleteView(athlete: athlete)
                     } label: {
@@ -54,7 +53,7 @@ struct FavouritesHScrollView: View {
         }
         .task {
             do {
-                try await items.getFavourites()
+                try await vm.getFavourites()
             } catch {
                 print(error)
             }

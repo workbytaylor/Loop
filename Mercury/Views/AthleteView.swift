@@ -9,7 +9,6 @@ import SwiftUI
 
 struct AthleteView: View {
     let athlete: Athlete
-    
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
     @ObservedObject private var feed = Feed()
@@ -38,6 +37,7 @@ struct AthleteView: View {
                 }
             }
             /*
+             // get stories tagged with this athlete
             .task {
                 do {
                     try await feed.getStories()

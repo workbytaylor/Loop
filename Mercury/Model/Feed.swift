@@ -13,19 +13,27 @@ class Feed: ObservableObject {
     
     lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
+    @MainActor
     func getStories() async throws {
-        let stories: [Story] = try await client.database
-            .from("stories")
-            .select()
-            .execute().value as [Story]
-        
-        //sort by date, newest first
-        let sortedStories = stories.sorted {
-            $0.date > $1.date
-        }
-        
-        DispatchQueue.main.async {
+        do {
+            //get stories from supabase
+            let stories: [Story] = try await client.database
+                .from("stories")
+                .select()
+                .execute().value as [Story]
+            
+            //sort by date, newest first
+            let sortedStories = stories.sorted {
+                $0.date > $1.date
+            }
+            
+            //update list of sorted
             self.sortedStories = sortedStories
+            
+        } catch {
+            throw error
         }
+        
+        
     }
 }

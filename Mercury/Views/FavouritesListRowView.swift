@@ -15,18 +15,27 @@ struct FavouritesListRowView: View {
     
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
-            Text("\(athlete.firstName) \(athlete.lastName)")
-            Text(athlete.country)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-            Spacer()
             Button {
                 isFavourite.toggle()
                 //TODO: Add or remove from userFavourites table as required
+                
+                
+                
+                
+                
             } label: {
                 Image(systemName: isFavourite == true ? "heart.fill" : "heart")
+                    .font(.headline)
             }
+            
+            Text("\(athlete.firstName) \(athlete.lastName)")
+                //.font(.headline)
+            Text(athlete.country)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            //Spacer()
         }
+        /*
         .task {
             do {
                 try await items.getFavourites()
@@ -39,13 +48,20 @@ struct FavouritesListRowView: View {
                 print(error)
             }
         }
+         */
     }
 }
 
-/*
 struct FavouritesListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        FavouritesListRowView(athlete: Athlete()
+        FavouritesListRowView(athlete: Athlete(
+            id: UUID(),
+            firstName: "Taylor",
+            lastName: "Schaefer",
+            country: "Canada",
+            gender: "male"
+        ))
+        .padding()
     }
 }
-*/
+

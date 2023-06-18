@@ -8,7 +8,7 @@
 import SwiftUI
 import WebKit
 
-struct WebCoverView: View {
+struct StoryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isLoading = true
     @State private var bookmark: Bool = false
@@ -54,7 +54,7 @@ struct WebCoverView: View {
 struct WebCoverView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            WebCoverView(link: .constant("https://www.tracksmith.com"))
+            StoryView(link: .constant("https://www.tracksmith.com"))
         }
     }
 }

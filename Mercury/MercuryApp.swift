@@ -13,7 +13,7 @@ struct MercuryApp: App {
     var body: some Scene {
         WindowGroup {
             //TabView(selection: $selection) {
-                NewsView()
+                HomeView()
                 .preferredColorScheme(.light)
                     .tabItem {
                         Text("News")

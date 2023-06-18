@@ -8,10 +8,10 @@
 import SwiftUI
 import WebKit
 
-struct NewsView: View {
+struct HomeView: View {
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
-    @StateObject private var feed = Feed()
+    @StateObject private var vm = Feed()
     
     var body: some View {
         NavigationStack {
@@ -19,7 +19,7 @@ struct NewsView: View {
                 FavouritesHScrollView()
                     .padding(.top, 4)
                     .padding(.bottom, 6)
-                ForEach(feed.sortedStories, id: \.link) { story in
+                ForEach(vm.sortedStories, id: \.link) { story in
                     Button {
                         isPresented.toggle()
                         selectedStory = story.link
@@ -32,7 +32,7 @@ struct NewsView: View {
             }
             .task {
                 do {
-                    try await feed.getStories()
+                    try await vm.getStories()
                 } catch {
                     print(error)
                 }
@@ -41,7 +41,7 @@ struct NewsView: View {
                 // might need to update this, works for now
                 //print("Refresh")
                 do {
-                    try await feed.getStories()
+                    try await vm.getStories()
                 } catch {
                     print(error)
                 }
@@ -60,7 +60,7 @@ struct NewsView: View {
         }
         .fullScreenCover(isPresented: $isPresented) {
             NavigationStack {
-                WebCoverView(link: $selectedStory)
+                StoryView(link: $selectedStory)
             }
         }
     }
@@ -68,7 +68,7 @@ struct NewsView: View {
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsView()
+        HomeView()
     }
 }
 
