@@ -46,7 +46,6 @@ struct FavouritesListView: View {
                         Text("Help us add them to our database")
                             .foregroundStyle(.secondary)
                     }
-                    
                 }
             }
         }

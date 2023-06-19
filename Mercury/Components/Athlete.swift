@@ -29,14 +29,3 @@ struct Athlete: Identifiable, Codable, Hashable {
         return "\(firstName) \(lastName)"
     }
 }
-
-// is this really necessary to add a favourite?
-struct FavouriteAthlete: Identifiable, Codable, Hashable {
-    let userId: UUID
-    let id: UUID
-    let firstName: String
-    let lastName: String
-}
-
-
-// TODO: Favourites and Athletes should match exactly??? Otherwise how do I get athletes to show in favourites?

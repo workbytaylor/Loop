@@ -14,7 +14,6 @@ struct FavouritesHScrollView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                
                 ForEach(vm.userFavourites) { athlete in
                     NavigationLink {
                         AthleteView(athlete: athlete)
@@ -32,22 +31,7 @@ struct FavouritesHScrollView: View {
                         }
                     }
                 }
-                
-                NavigationLink {
-                    FavouritesListView()
-                } label: {
-                    VStack {
-                        Image(systemName: "plus")
-                        .foregroundColor(.white)
-                        .font(.headline)
-                        .frame(width: 50, height: 50)
-                        .background(Color.gray)
-                        .clipShape(Circle())
-                    Text("Favourites")
-                        .font(.caption2)
-                        .foregroundColor(.primary)
-                    }
-                }
+                FavouritesListButtonView()
             }
             .padding(.horizontal)
         }

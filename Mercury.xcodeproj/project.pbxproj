@@ -20,6 +20,7 @@
 		958C9DEB2A1B84AA00BCAB96 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 958C9DEA2A1B84AA00BCAB96 /* Supabase */; };
 		958C9DED2A1B85FA00BCAB96 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DEC2A1B85FA00BCAB96 /* Story.swift */; };
 		958C9DEF2A1B88BA00BCAB96 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DEE2A1B88BA00BCAB96 /* Feed.swift */; };
+		95A1C1532A4000F500D5D183 /* FavouritesListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */; };
 		95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */; };
 		95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA22A1AF70B006F1703 /* HomeView.swift */; };
 		95C0EDA52A1AF70D006F1703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA42A1AF70D006F1703 /* Assets.xcassets */; };
@@ -39,6 +40,7 @@
 		958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListView.swift; sourceTree = "<group>"; };
 		958C9DEC2A1B85FA00BCAB96 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		958C9DEE2A1B88BA00BCAB96 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListButtonView.swift; sourceTree = "<group>"; };
 		95C0ED9D2A1AF70B006F1703 /* Mercury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mercury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryApp.swift; sourceTree = "<group>"; };
 		95C0EDA22A1AF70B006F1703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				95C0EDA22A1AF70B006F1703 /* HomeView.swift */,
 				958C9DD92A1B7D5E00BCAB96 /* StoryView.swift */,
 				958C9DDF2A1B7E1700BCAB96 /* FavouritesHScrollView.swift */,
+				95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */,
 				958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */,
 				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
 				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
@@ -203,6 +206,7 @@
 				958C9DE02A1B7E1700BCAB96 /* FavouritesHScrollView.swift in Sources */,
 				958C9DDA2A1B7D5E00BCAB96 /* StoryView.swift in Sources */,
 				958B51302A1DA04700F7779D /* Athletes.swift in Sources */,
+				95A1C1532A4000F500D5D183 /* FavouritesListButtonView.swift in Sources */,
 				95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
 				95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */,

@@ -10,14 +10,14 @@ import Supabase
 
 class Athletes: ObservableObject {
     @Published var athletes: [Athlete] = []
-    @Published var userFavourites: [FavouriteAthlete] = []
+    @Published var userFavourites: [Athlete] = []
     @Published var searchText: String = ""
     
     var searchedAthletes: [Athlete] {
         if searchText.isEmpty {
             return athletes
         } else {
-            return athletes.filter { "\($0.firstName) \($0.lastName)".contains(searchText) }
+            return athletes.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
         }
     }
     
@@ -49,10 +49,10 @@ class Athletes: ObservableObject {
     func getFavourites() async throws {
         do {
             // get favourited athletes from supabase
-            let favourites: [FavouriteAthlete] = try await client.database
+            let favourites: [Athlete] = try await client.database
                 .from("userFavourites")
                 .select()
-                .execute().value as [FavouriteAthlete]
+                .execute().value as [Athlete]
             
             // add to list of userFavourites
             self.userFavourites = favourites
@@ -66,8 +66,7 @@ class Athletes: ObservableObject {
     func addUserFavourite(athlete: Athlete) async throws {
         do {
             //TODO: code to add favourite
-            // change to favouriteAthlete?
-            // get athlete, convert to favourite, insert() to supabase
+            // what kind of relationship am I creating between users and athletes? many to many? one to many?
             let selectedAthlete = Athlete(id: athlete.id,
                                         firstName: athlete.firstName,
                                         lastName: athlete.lastName,
@@ -75,11 +74,6 @@ class Athletes: ObservableObject {
                                         gender: athlete.gender)
             
             let userId = Constants.testUserId
-            let newAthleteToFavourite = FavouriteAthlete(userId: userId,
-                                                         id: athlete.id,
-                                                         firstName: athlete.firstName,
-                                                         lastName: athlete.lastName)
-            
             
         } catch {
             throw error
