@@ -38,7 +38,7 @@ struct FavouritesListView: View {
                 NavigationLink {
                     // TODO: Suggestion form connected to supabase
                     // TODO: Change to button below text
-                    Text("Suggestions")
+                    SuggestionView()
                 } label: {
                     VStack {
                         Text("Can't find \"\(vm.searchText)\"?")
