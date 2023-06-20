@@ -11,6 +11,7 @@ struct AthleteView: View {
     let athlete: Athlete
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
+    @State private var isFavourite: Bool = false
     @ObservedObject private var feed = Feed()
     
     var body: some View {
@@ -25,6 +26,7 @@ struct AthleteView: View {
                 .font(.headline)
             
             ScrollView {
+                Text("placeholder to test scrolling")
                 ForEach(feed.sortedStories, id: \.link) { story in
                     Button {
                         isPresented.toggle()
@@ -51,6 +53,17 @@ struct AthleteView: View {
                 }
             }
              */
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    isFavourite.toggle()
+                    //TODO: Add or remove from userFavourites table as required
+                } label: {
+                    Image(systemName: isFavourite == true ? "heart.fill" : "heart")
+                        //.font(.title3)
+                }
+            }
         }
     }
 }

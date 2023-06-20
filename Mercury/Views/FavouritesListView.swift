@@ -35,18 +35,28 @@ struct FavouritesListView: View {
         .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .overlay {
             if vm.searchedAthletes.isEmpty, !vm.searchText.isEmpty {
-                NavigationLink {
-                    // TODO: Suggestion form connected to supabase
-                    // TODO: Change to button below text
-                    SuggestionView()
-                } label: {
+                
                     VStack {
-                        Text("Can't find \"\(vm.searchText)\"?")
-                            .font(.headline)
-                        Text("Help us add them to our database")
+                        Text("Are we really missing \(vm.searchText)?")
+                            .font(.title3).bold()
+                        Text("Let us know so we can add them to our list.")
                             .foregroundStyle(.secondary)
+                            .padding(.horizontal)
+                        
+                        
+                        
+                        NavigationLink {
+                            // TODO: Suggestion form connected to supabase
+                            // TODO: Change to button below text
+                            SuggestionView()
+                        } label: {
+                            Text("Suggest an athlete")
+                        }
+                        .padding()
+                        
+                        
                     }
-                }
+                
             }
         }
         .task {

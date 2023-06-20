@@ -9,28 +9,39 @@ import SwiftUI
 
 struct SuggestionView: View {
     @State private var firstName = ""
-    @State private var lastName = ""
-    @State private var country = ""
-    @State private var gender = ""
+    @State private var lastName: String = ""
+    @State private var country: String = ""
+    //@State private var gender: String? = ""
+    //@State private var dateOfBirth: Date = Date()
     
     var body: some View {
         VStack {
             Form {
-                // TODO: Make each row its own section?
-                
-                
                 Section {
                     TextField("First name", text: $firstName)
                     TextField("Last name", text: $lastName)
-                    TextField("Country", text: $country)
-                    Picker(selection: $gender, label: Text("Gender")) {
-                        Text("male")
-                        Text("female")
-                        Text("non-binary")
-                    }
-                } header: {
-                    Text("Athlete info")
                 }
+                
+                Section {
+                    TextField("Country", text: $country)
+                }
+                /*
+                Section {
+                    Picker(selection: $gender, label: Text("Gender")) {
+                        Text("--").tag("")
+                        Text("Female").tag("female")
+                        Text("Male").tag("male")
+                        Text("Non-Binary").tag("non-binary")
+                    }
+                }
+                
+                Section {
+                    DatePicker("Date of Birth",
+                               selection: $dateOfBirth,
+                               displayedComponents: [.date])
+
+                }
+                */
             }
         }
         .toolbar {
@@ -42,8 +53,8 @@ struct SuggestionView: View {
                 }
             }
         }
-        .navigationTitle("Suggest an athlete")
-        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Athlete Info")
+        //.navigationBarTitleDisplayMode(.inline)
     }
 }
 
