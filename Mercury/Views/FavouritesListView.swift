@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavouritesListView: View {
     @StateObject private var vm = Athletes()
+    @State private var isPresented: Bool = false
     //private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
     var body: some View {
@@ -35,7 +36,6 @@ struct FavouritesListView: View {
         .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .overlay {
             if vm.searchedAthletes.isEmpty, !vm.searchText.isEmpty {
-                
                     VStack {
                         Text("Are we really missing \(vm.searchText)?")
                             .font(.title3).bold()
@@ -43,20 +43,20 @@ struct FavouritesListView: View {
                             .foregroundStyle(.secondary)
                             .padding(.horizontal)
                         
-                        
-                        
-                        NavigationLink {
-                            // TODO: Suggestion form connected to supabase
-                            // TODO: Change to button below text
-                            SuggestionView()
+                        Button {
+                            isPresented.toggle()
                         } label: {
                             Text("Suggest an athlete")
                         }
+                        .buttonStyle(.borderedProminent)
+                        .controlSize(.large)
                         .padding()
-                        
-                        
                     }
-                
+            }
+        }
+        .sheet(isPresented: $isPresented) {
+            NavigationStack {
+                SuggestionView()
             }
         }
         .task {

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SuggestionView: View {
+    @Environment(\.dismiss) var dismiss
     @State private var firstName = ""
     @State private var lastName: String = ""
     @State private var country: String = ""
@@ -48,12 +49,13 @@ struct SuggestionView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     // submit to supabase
+                    dismiss()
                 } label: {
-                    Text("Submit")
+                    Image(systemName: "paperplane.circle.fill")
                 }
             }
         }
-        .navigationTitle("Athlete Info")
+        .navigationTitle("New athlete")
         //.navigationBarTitleDisplayMode(.inline)
     }
 }
