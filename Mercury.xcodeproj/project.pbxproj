@@ -43,6 +43,7 @@
 		958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListView.swift; sourceTree = "<group>"; };
 		958C9DEC2A1B85FA00BCAB96 /* Story.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Story.swift; sourceTree = "<group>"; };
 		958C9DEE2A1B88BA00BCAB96 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		95A008E42A444E6800CDEB6E /* Mercury.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mercury.entitlements; sourceTree = "<group>"; };
 		95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListButtonView.swift; sourceTree = "<group>"; };
 		95C0ED9D2A1AF70B006F1703 /* Mercury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mercury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryApp.swift; sourceTree = "<group>"; };
@@ -113,6 +114,7 @@
 		95C0ED9F2A1AF70B006F1703 /* Mercury */ = {
 			isa = PBXGroup;
 			children = (
+				95A008E42A444E6800CDEB6E /* Mercury.entitlements */,
 				95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */,
 				95AAD6232A2255B3006B8136 /* Views */,
 				958C9DDC2A1B7D8000BCAB96 /* Model */,
@@ -348,6 +350,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mercury/Mercury.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mercury/Preview Content\"";
@@ -377,6 +380,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Mercury/Mercury.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Mercury/Preview Content\"";
