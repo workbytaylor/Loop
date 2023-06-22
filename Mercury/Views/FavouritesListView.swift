@@ -10,6 +10,8 @@ import SwiftUI
 struct FavouritesListView: View {
     @StateObject private var vm = Athletes()
     @State private var isPresented: Bool = false
+    @State private var sort: Int = 0
+    @State private var filter: Int = 0
     //private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
     var body: some View {
@@ -37,16 +39,20 @@ struct FavouritesListView: View {
         .overlay {
             if vm.searchedAthletes.isEmpty, !vm.searchText.isEmpty {
                     VStack {
-                        Text("Are we really missing \(vm.searchText)?")
+                        Text("Can't find \(vm.searchText)?")
                             .font(.title3).bold()
-                        Text("Let us know so we can add them to our list.")
+                        Text("Let us know so we can add them to the list.")
                             .foregroundStyle(.secondary)
                             .padding(.horizontal)
                         
                         Button {
                             isPresented.toggle()
                         } label: {
-                            Text("Suggest an athlete")
+                            Label {
+                                Text("Suggest an athlete")
+                            } icon: {
+                                Image(systemName: "plus")
+                            }
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)
@@ -55,9 +61,8 @@ struct FavouritesListView: View {
             }
         }
         .sheet(isPresented: $isPresented) {
-            NavigationStack {
-                SuggestionView()
-            }
+            SuggestionView()
+                .presentationDragIndicator(.visible)
         }
         .task {
             do {
@@ -72,18 +77,18 @@ struct FavouritesListView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
-                    //TODO: Sort by
-                        //name, alphabetical
-                        //country, alphabetical
-                        //popularity
-                    //TODO: Filter by
-                        //all
-                        //favourites only
+                    // sort
+                    Section {
+                        Picker(selection: $sort, label: Text("Sorting options")) {
+                            Text("Favourites").tag(0)
+                            Text("Alphabetical").tag(1)
+                        }
+                        // name alphabetical
+                    }
                     
-                    Button {
-                        // sort by favourites at top, otherwise alphabetical
-                    } label: {
-                        Text("sort & filter")
+                    // filter
+                    Section {
+                        // Filter all, favourites, popular
                     }
                 } label: {
                     Image(systemName: "line.3.horizontal.decrease")

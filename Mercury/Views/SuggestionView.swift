@@ -16,47 +16,49 @@ struct SuggestionView: View {
     //@State private var dateOfBirth: Date = Date()
     
     var body: some View {
-        VStack {
-            Form {
-                Section {
-                    TextField("First name", text: $firstName)
-                    TextField("Last name", text: $lastName)
+        NavigationStack {
+            VStack {
+                Form {
+                    Section {
+                        TextField("First name", text: $firstName)
+                        TextField("Last name", text: $lastName)
+                    }
+                    
+                    Section {
+                        TextField("Country", text: $country)
+                    }
+                    /*
+                    Section {
+                        Picker(selection: $gender, label: Text("Gender")) {
+                            Text("--").tag("")
+                            Text("Female").tag("female")
+                            Text("Male").tag("male")
+                            Text("Non-Binary").tag("non-binary")
+                        }
+                    }
+                    
+                    Section {
+                        DatePicker("Date of Birth",
+                                   selection: $dateOfBirth,
+                                   displayedComponents: [.date])
+
+                    }
+                    */
                 }
-                
-                Section {
-                    TextField("Country", text: $country)
-                }
-                /*
-                Section {
-                    Picker(selection: $gender, label: Text("Gender")) {
-                        Text("--").tag("")
-                        Text("Female").tag("female")
-                        Text("Male").tag("male")
-                        Text("Non-Binary").tag("non-binary")
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        // submit to supabase
+                        dismiss()
+                    } label: {
+                        Image(systemName: "paperplane.circle.fill")
                     }
                 }
-                
-                Section {
-                    DatePicker("Date of Birth",
-                               selection: $dateOfBirth,
-                               displayedComponents: [.date])
-
-                }
-                */
             }
+            .navigationTitle("New athlete")
+            //.navigationBarTitleDisplayMode(.inline)
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    // submit to supabase
-                    dismiss()
-                } label: {
-                    Image(systemName: "paperplane.circle.fill")
-                }
-            }
-        }
-        .navigationTitle("New athlete")
-        //.navigationBarTitleDisplayMode(.inline)
     }
 }
 
