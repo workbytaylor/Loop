@@ -25,6 +25,7 @@ struct FavouritesListView: View {
                     }
                 }
             }
+            .scrollIndicators(.never)
         /*
             VStack {
                 ForEach(letters, id: \.self) { letter in

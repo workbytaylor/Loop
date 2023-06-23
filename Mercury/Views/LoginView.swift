@@ -6,36 +6,52 @@
 //
 
 import SwiftUI
-import AuthenticationServices
 
 struct LoginView: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            Spacer()
-            Text("Loop")
-                .font(.title).bold()
-            Text("The latest track and field news from around the world.")
-                .font(.headline)
-            Spacer()
-            
-            
-            
-            
-            SignInWithAppleButton(
-                onRequest: { request in
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
-                },
-                onCompletion: { result in
-                    /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Code@*/ /*@END_MENU_TOKEN@*/
+        NavigationStack {
+            VStack(spacing: 50) {
+                VStack(alignment: .leading) {
+                    Text("Loop")
+                        .font(.title)
+                        .bold()
+                    Text("The latest track & field news from around the world.")
+                        .font(.headline)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-            )
-            .signInWithAppleButtonStyle(.black)
-            .frame(width: .infinity, height: 50)
-            
-            Spacer()
-            
+                
+                Button {
+                    // sign in
+                } label: {
+                    Text("Continue with Apple")
+                        .frame(maxWidth: .infinity)
+                        .bold()
+                        .overlay {
+                            HStack {
+                                Image(systemName: "applelogo")
+                                Spacer()
+                            }
+                        }
+                }
+                .buttonStyle(.borderedProminent)
+                .controlSize(.large)
+            }
+            .padding()
+            .navigationTitle("Login or sign up")
+            .navigationBarTitleDisplayMode(.inline)
+            .presentationDragIndicator(.visible)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+                }
+            }
         }
-        .padding()
     }
 }
 

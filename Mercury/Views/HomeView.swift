@@ -9,7 +9,8 @@ import SwiftUI
 import WebKit
 
 struct HomeView: View {
-    @State private var isPresented: Bool = false
+    @State private var isLoggedIn: Bool = true
+    @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
     @StateObject private var vm = Feed()
     
@@ -21,7 +22,7 @@ struct HomeView: View {
                     .padding(.bottom, 6)
                 ForEach(vm.sortedStories, id: \.link) { story in
                     Button {
-                        isPresented.toggle()
+                        showStory.toggle()
                         selectedStory = story.link
                     } label: {
                         NewsCardView(story: story)
@@ -57,8 +58,11 @@ struct HomeView: View {
                     }
                 }
             }
+            .sheet(isPresented: $isLoggedIn) {
+                LoginView()
+            }
         }
-        .fullScreenCover(isPresented: $isPresented) {
+        .fullScreenCover(isPresented: $showStory) {
             NavigationStack {
                 StoryView(link: $selectedStory)
             }
