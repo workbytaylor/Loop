@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct MercuryApp: App {
+    @StateObject var user = User()
     
     var body: some Scene {
         WindowGroup {
             //TabView(selection: $selection) {
                 HomeView()
+                .environmentObject(user)
                 .preferredColorScheme(.light)
                     .tabItem {
                         Text("News")

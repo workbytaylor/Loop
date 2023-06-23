@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9508D7442A45ACFA005CECDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508D7432A45ACFA005CECDE /* User.swift */; };
 		9520C6022A1F6BA90059009A /* FavouritesListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */; };
 		953580E52A406186008D3579 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953580E42A406186008D3579 /* SuggestionView.swift */; };
 		957DE13A2A1C6D040058F639 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957DE1392A1C6D040058F639 /* Constants.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9508D7432A45ACFA005CECDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListRowView.swift; sourceTree = "<group>"; };
 		953580E42A406186008D3579 /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
 		957DE1392A1C6D040058F639 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 		958C9DDC2A1B7D8000BCAB96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9508D7432A45ACFA005CECDE /* User.swift */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
 				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
 				958C9DEE2A1B88BA00BCAB96 /* Feed.swift */,
@@ -222,6 +225,7 @@
 				95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */,
 				9520C6022A1F6BA90059009A /* FavouritesListRowView.swift in Sources */,
 				958C9DE22A1B7E4700BCAB96 /* Athlete.swift in Sources */,
+				9508D7442A45ACFA005CECDE /* User.swift in Sources */,
 				958C9DE62A1B7E9A00BCAB96 /* AthleteView.swift in Sources */,
 				958C9DE82A1B7F1000BCAB96 /* FavouritesListView.swift in Sources */,
 				958C9DED2A1B85FA00BCAB96 /* Story.swift in Sources */,

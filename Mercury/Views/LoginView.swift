@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var user: User
     
     var body: some View {
         NavigationStack {
@@ -45,6 +46,7 @@ struct LoginView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
+                        user.logIn = false  // is this necessary?
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")

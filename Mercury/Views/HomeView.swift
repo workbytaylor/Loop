@@ -9,10 +9,10 @@ import SwiftUI
 import WebKit
 
 struct HomeView: View {
-    @State private var isLoggedIn: Bool = true
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
     @StateObject private var vm = Feed()
+    @EnvironmentObject var user: User
     
     var body: some View {
         NavigationStack {
@@ -58,7 +58,7 @@ struct HomeView: View {
                     }
                 }
             }
-            .sheet(isPresented: $isLoggedIn) {
+            .sheet(isPresented: $user.logIn) {
                 LoginView()
             }
         }

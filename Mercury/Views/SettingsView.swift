@@ -5,9 +5,13 @@
 //  Created by Nilakshi Roy on 2023-05-22.
 //
 
+// TODO: Change style from list to VStack
+
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var user: User
+    
     var body: some View {
         List {
             Section {
@@ -28,17 +32,16 @@ struct SettingsView: View {
                         Image(systemName: "wrench.and.screwdriver")
                     }
                 }
-            
                 
                 Button {
                     //send email
                     // TODO: Replace with sneding text to table in supabase
                     if let url = URL(string: "mailto:workbytaylor@gmail.com") {
-                      if #available(iOS 10.0, *) {
-                        UIApplication.shared.open(url)
-                      } else {
-                        UIApplication.shared.openURL(url)
-                      }
+                        if #available(iOS 10.0, *) {
+                            UIApplication.shared.open(url)
+                        } else {
+                            UIApplication.shared.openURL(url)
+                        }
                     }
                 } label: {
                     Label {
@@ -59,9 +62,26 @@ struct SettingsView: View {
                 Text("Spread the love")
             }
             
+            Section {
+                Button {
+                    user.logIn.toggle()
+                } label: {
+                    Label {
+                        Text("Login")
+                    } icon: {
+                        Image(systemName: "person")
+                    }
+                }
+            } header: {
+                Text("Account")
+            }
+            
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(isPresented: $user.logIn) {
+            LoginView()
+        }
     }
 }
 
