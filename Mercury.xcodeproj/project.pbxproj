@@ -10,6 +10,7 @@
 		9508D7442A45ACFA005CECDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9508D7432A45ACFA005CECDE /* User.swift */; };
 		9520C6022A1F6BA90059009A /* FavouritesListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */; };
 		953580E52A406186008D3579 /* SuggestionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953580E42A406186008D3579 /* SuggestionView.swift */; };
+		957533AC2A490C70003E64FE /* AltSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957533AB2A490C70003E64FE /* AltSettingsView.swift */; };
 		957DE13A2A1C6D040058F639 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957DE1392A1C6D040058F639 /* Constants.swift */; };
 		958B51302A1DA04700F7779D /* Athletes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958B512F2A1DA04700F7779D /* Athletes.swift */; };
 		958C9DD82A1B7D3E00BCAB96 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */; };
@@ -34,6 +35,7 @@
 		9508D7432A45ACFA005CECDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListRowView.swift; sourceTree = "<group>"; };
 		953580E42A406186008D3579 /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
+		957533AB2A490C70003E64FE /* AltSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSettingsView.swift; sourceTree = "<group>"; };
 		957DE1392A1C6D040058F639 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958B512F2A1DA04700F7779D /* Athletes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athletes.swift; sourceTree = "<group>"; };
 		958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */,
 				958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */,
 				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
+				957533AB2A490C70003E64FE /* AltSettingsView.swift */,
 				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
 				953580E42A406186008D3579 /* SuggestionView.swift */,
 				95EA6DC22A4304E400F077E5 /* LoginView.swift */,
@@ -222,6 +225,7 @@
 				95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
 				95EA6DC32A4304E400F077E5 /* LoginView.swift in Sources */,
+				957533AC2A490C70003E64FE /* AltSettingsView.swift in Sources */,
 				95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */,
 				9520C6022A1F6BA90059009A /* FavouritesListRowView.swift in Sources */,
 				958C9DE22A1B7E4700BCAB96 /* Athlete.swift in Sources */,

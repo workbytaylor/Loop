@@ -18,7 +18,7 @@ struct LoginView: View {
                     Text("Loop")
                         .font(.title)
                         .bold()
-                    Text("The latest track & field news from around the world.")
+                    Text("Track & field news from around the world.")
                         .font(.headline)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }

@@ -47,8 +47,8 @@ struct HomeView: View {
                     print(error)
                 }
             }
-            .navigationTitle("News")
-            .navigationBarTitleDisplayMode(.inline)
+            //.navigationTitle("News")
+            //.navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink {

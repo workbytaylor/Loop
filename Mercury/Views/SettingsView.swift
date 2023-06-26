@@ -67,7 +67,7 @@ struct SettingsView: View {
                     user.logIn.toggle()
                 } label: {
                     Label {
-                        Text("Login")
+                        Text("Log in")
                     } icon: {
                         Image(systemName: "person")
                     }
