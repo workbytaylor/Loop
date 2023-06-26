@@ -19,7 +19,7 @@ struct HomeView: View {
             ScrollView {
                 FavouritesHScrollView()
                     .padding(.vertical)
-                //.padding(.top, 4)
+                    //.padding(.top, 4)
                     //.padding(.bottom, 6)
                 ForEach(vm.sortedStories, id: \.link) { story in
                     Button {
@@ -50,15 +50,6 @@ struct HomeView: View {
             }
             //.navigationTitle("News")
             //.navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink {
-                        AltSettingsView()
-                    } label: {
-                        Image(systemName: "person")
-                    }
-                }
-            }
             .sheet(isPresented: $user.logIn) {
                 LoginView()
             }
@@ -72,6 +63,8 @@ struct HomeView: View {
 }
 
 struct NewsView_Previews: PreviewProvider {
+    @StateObject var user = User()
+    
     static var previews: some View {
         HomeView()
     }

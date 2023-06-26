@@ -86,6 +86,8 @@ struct SettingsView: View {
 }
 
 struct SettingsView_Previews: PreviewProvider {
+    @StateObject var user = User()
+    
     static var previews: some View {
         NavigationStack {
             SettingsView()

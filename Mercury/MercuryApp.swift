@@ -10,18 +10,28 @@ import SwiftUI
 @main
 struct MercuryApp: App {
     @StateObject var user = User()
+    @State private var selection: Int = 1
     
     var body: some Scene {
         WindowGroup {
-            //TabView(selection: $selection) {
+            TabView(selection: $selection) {
                 HomeView()
-                .environmentObject(user)
-                .preferredColorScheme(.light)
+                    //.toolbarBackground(Color.white, for: .tabBar)
+                    .environmentObject(user)
+                    .preferredColorScheme(.light)
                     .tabItem {
                         Text("News")
                         Image(systemName: "newspaper")
                     }
                     .tag(1)
+                AltSettingsView()
+                    .environmentObject(user)
+                    .preferredColorScheme(.light)
+                    .tabItem {
+                        Text("Log in")
+                        Image(systemName: "person.crop.circle")
+                    }
+                    .tag(2)
                 /*
                 ResultsView()
                     .tabItem {
@@ -30,7 +40,7 @@ struct MercuryApp: App {
                     }
                     .tag(2)
                 */
-            //}
+            }
         }
     }
 }
