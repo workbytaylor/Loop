@@ -18,8 +18,9 @@ struct HomeView: View {
         NavigationStack {
             ScrollView {
                 FavouritesHScrollView()
-                    .padding(.top, 4)
-                    .padding(.bottom, 6)
+                    .padding(.vertical)
+                //.padding(.top, 4)
+                    //.padding(.bottom, 6)
                 ForEach(vm.sortedStories, id: \.link) { story in
                     Button {
                         showStory.toggle()
@@ -52,7 +53,7 @@ struct HomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationLink {
-                        SettingsView()
+                        AltSettingsView()
                     } label: {
                         Image(systemName: "person")
                     }
@@ -76,6 +77,6 @@ struct NewsView_Previews: PreviewProvider {
     }
 }
 
-
+//TODO: Add environmentobject to preview
 
 

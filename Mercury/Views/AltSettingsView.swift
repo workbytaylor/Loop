@@ -11,7 +11,7 @@ struct AltSettingsView: View {
     @EnvironmentObject var user: User
     
     var body: some View {
-        VStack  {
+        VStack(alignment: .leading) {
             Button {
                 user.logIn.toggle()
             } label: {
@@ -21,6 +21,7 @@ struct AltSettingsView: View {
                     Image(systemName: "person")
                 }
             }
+            Spacer()
         }
         .sheet(isPresented: $user.logIn) {
             LoginView()
