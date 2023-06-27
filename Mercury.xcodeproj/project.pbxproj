@@ -24,6 +24,7 @@
 		958C9DED2A1B85FA00BCAB96 /* Story.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DEC2A1B85FA00BCAB96 /* Story.swift */; };
 		958C9DEF2A1B88BA00BCAB96 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958C9DEE2A1B88BA00BCAB96 /* Feed.swift */; };
 		95A1C1532A4000F500D5D183 /* FavouritesListButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */; };
+		95BCEC7E2A4A9E5B00556B84 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95BCEC7D2A4A9E5B00556B84 /* AuthManager.swift */; };
 		95C0EDA12A1AF70B006F1703 /* MercuryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */; };
 		95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA22A1AF70B006F1703 /* HomeView.swift */; };
 		95C0EDA52A1AF70D006F1703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA42A1AF70D006F1703 /* Assets.xcassets */; };
@@ -49,6 +50,7 @@
 		958C9DEE2A1B88BA00BCAB96 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		95A008E42A444E6800CDEB6E /* Mercury.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Mercury.entitlements; sourceTree = "<group>"; };
 		95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListButtonView.swift; sourceTree = "<group>"; };
+		95BCEC7D2A4A9E5B00556B84 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		95C0ED9D2A1AF70B006F1703 /* Mercury.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mercury.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MercuryApp.swift; sourceTree = "<group>"; };
 		95C0EDA22A1AF70B006F1703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 		958C9DDC2A1B7D8000BCAB96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				95BCEC7D2A4A9E5B00556B84 /* AuthManager.swift */,
 				9508D7432A45ACFA005CECDE /* User.swift */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
 				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
@@ -90,7 +93,6 @@
 				958C9DDF2A1B7E1700BCAB96 /* FavouritesHScrollView.swift */,
 				95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */,
 				958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */,
-				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
 				957533AB2A490C70003E64FE /* AltSettingsView.swift */,
 				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
 				953580E42A406186008D3579 /* SuggestionView.swift */,
@@ -99,6 +101,14 @@
 				958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		95AC11002A4A974F004967CA /* Not used */ = {
+			isa = PBXGroup;
+			children = (
+				958C9DD72A1B7D3E00BCAB96 /* SettingsView.swift */,
+			);
+			path = "Not used";
 			sourceTree = "<group>";
 		};
 		95C0ED942A1AF70B006F1703 = {
@@ -124,6 +134,7 @@
 				95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */,
 				95AAD6232A2255B3006B8136 /* Views */,
 				958C9DDC2A1B7D8000BCAB96 /* Model */,
+				95AC11002A4A974F004967CA /* Not used */,
 				95C0EDA42A1AF70D006F1703 /* Assets.xcassets */,
 				95C0EDA62A1AF70D006F1703 /* Preview Content */,
 			);
@@ -223,6 +234,7 @@
 				958B51302A1DA04700F7779D /* Athletes.swift in Sources */,
 				95A1C1532A4000F500D5D183 /* FavouritesListButtonView.swift in Sources */,
 				95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */,
+				95BCEC7E2A4A9E5B00556B84 /* AuthManager.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
 				95EA6DC32A4304E400F077E5 /* LoginView.swift in Sources */,
 				957533AC2A490C70003E64FE /* AltSettingsView.swift in Sources */,

@@ -50,7 +50,9 @@ struct HomeView: View {
             }
             //.navigationTitle("News")
             //.navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $user.logIn) {
+            .sheet(isPresented: $user.isLoggedOut/*, onDismiss: {
+                user.showLogInSheet = false
+            }*/) {
                 LoginView()
             }
         }

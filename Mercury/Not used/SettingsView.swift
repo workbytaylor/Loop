@@ -64,7 +64,7 @@ struct SettingsView: View {
             
             Section {
                 Button {
-                    user.logIn.toggle()
+                    user.isLoggedOut.toggle()
                 } label: {
                     Label {
                         Text("Log in")
@@ -79,7 +79,7 @@ struct SettingsView: View {
         }
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $user.logIn) {
+        .sheet(isPresented: $user.isLoggedOut) {
             LoginView()
         }
     }

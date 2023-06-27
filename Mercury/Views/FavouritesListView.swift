@@ -75,6 +75,7 @@ struct FavouritesListView: View {
         }
         .navigationTitle("Favourites")
         .navigationBarTitleDisplayMode(.inline)
+        /*
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Menu {
@@ -96,6 +97,7 @@ struct FavouritesListView: View {
                 }
             }
         }
+         */
     }
 }
 

@@ -8,5 +8,5 @@
 import Foundation
 
 @MainActor class User: ObservableObject {
-    @Published var logIn: Bool = true
+    @Published var isLoggedOut: Bool = true
 }

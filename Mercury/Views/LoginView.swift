@@ -46,7 +46,7 @@ struct LoginView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        user.logIn = false  // is this necessary?
+                        user.isLoggedOut = false
                         dismiss()
                     } label: {
                         Image(systemName: "xmark")

@@ -9,45 +9,63 @@ import SwiftUI
 
 struct AltSettingsView: View {
     @EnvironmentObject var user: User
+    @State private var showSheet: Bool = false
+    @State private var loggedOut: Bool?
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 50) {
-                    //VStack(alignment: .leading) {
-                        Text("Log in to track your favourite athletes.")
-                    //}
+                    Text("Log in to track your favourite athletes.")
                     
-                    Button {
-                        user.logIn.toggle()
-                    } label: {
-                        Label {
-                            Text("Log in")
+                    if loggedOut == false {
+                        Button {
+                            //Log user out
+                            loggedOut = true
+                        } label: {
+                            Text("Log out")
                                 .frame(maxWidth: .infinity)
                                 .bold()
-                        } icon: {
-                            Image(systemName: "person")
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.large)
+                        //.tint(Color.red)
+                        
+                    } else {
+                        VStack {
+                            Button {
+                                //user.isLoggedOut.toggle()
+                                showSheet.toggle()
+                            } label: {
+                                Text("Log in")
+                                    .frame(maxWidth: .infinity)
+                                    .bold()
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .controlSize(.large)
+                            
+                            Button("Sign up") {
+                                //user.showLogInSheet.toggle()
+                                showSheet.toggle()
+                            }
+                            .controlSize(.large)
                         }
                     }
-                    .buttonStyle(.borderedProminent)
-                    .controlSize(.large)
+                    
+                    
+                    
                     
                     Spacer()
-                    
                 }
-                
                 .padding()
-                
-                
             }
             .navigationTitle("Profile")
-            .sheet(isPresented: $user.logIn) {
+            .sheet(isPresented: $showSheet, onDismiss: {
+                loggedOut = false
+            }) {
                 LoginView()
             }
         }
-        
-        
-        
     }
 }
 
