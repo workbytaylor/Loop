@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: User
+    let signInApple = SignInApple()
     
     var body: some View {
         NavigationStack {
@@ -25,6 +26,16 @@ struct LoginView: View {
                 
                 Button {
                     // sign in
+                    signInApple.startSignInWithAppleFlow { result in
+                        switch result {
+                        case .success(let appleResult):
+                            Task {
+                                try await AuthManager.shared.signInWithApple(idToken: appleResult.idToken, nonce: appleResult.nonce)
+                            }
+                        case .failure(_):
+                            print("error")
+                        }
+                    }
                 } label: {
                     Text("Continue with Apple")
                         .frame(maxWidth: .infinity)

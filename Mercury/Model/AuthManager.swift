@@ -18,6 +18,8 @@ class AuthManager {
     
     func signInWithApple(idToken: String, nonce: String) async throws {
         let session = try await client.auth.signInWithIdToken(credentials: .init(provider: .apple, idToken: idToken, nonce: nonce))
+        print(session)
+        print(session.user)
     }
     
 }

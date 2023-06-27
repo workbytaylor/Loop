@@ -29,6 +29,7 @@
 		95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA22A1AF70B006F1703 /* HomeView.swift */; };
 		95C0EDA52A1AF70D006F1703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA42A1AF70D006F1703 /* Assets.xcassets */; };
 		95C0EDA82A1AF70D006F1703 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA72A1AF70D006F1703 /* Preview Assets.xcassets */; };
+		95C920422A4AECA3001E89A2 /* SignInApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C920412A4AECA3001E89A2 /* SignInApple.swift */; };
 		95EA6DC32A4304E400F077E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA6DC22A4304E400F077E5 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		95C0EDA22A1AF70B006F1703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		95C0EDA42A1AF70D006F1703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95C0EDA72A1AF70D006F1703 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		95C920412A4AECA3001E89A2 /* SignInApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApple.swift; sourceTree = "<group>"; };
 		95EA6DC22A4304E400F077E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				95BCEC7D2A4A9E5B00556B84 /* AuthManager.swift */,
+				95C920412A4AECA3001E89A2 /* SignInApple.swift */,
 				9508D7432A45ACFA005CECDE /* User.swift */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
 				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
@@ -233,6 +236,7 @@
 				958C9DDA2A1B7D5E00BCAB96 /* StoryView.swift in Sources */,
 				958B51302A1DA04700F7779D /* Athletes.swift in Sources */,
 				95A1C1532A4000F500D5D183 /* FavouritesListButtonView.swift in Sources */,
+				95C920422A4AECA3001E89A2 /* SignInApple.swift in Sources */,
 				95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */,
 				95BCEC7E2A4A9E5B00556B84 /* AuthManager.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
