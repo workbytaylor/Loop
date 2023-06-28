@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+//TODO: class LogInViewModel
+// start video at 27:07
+
+
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: User
@@ -26,15 +30,9 @@ struct LoginView: View {
                 
                 Button {
                     // sign in
-                    signInWithApple.startSignInWithAppleFlow { result in
-                        switch result {
-                        case .success(let appleResult):
-                            Task {
-                                try await AuthManager.shared.signInWithApple(idToken: appleResult.idToken, nonce: appleResult.nonce)
-                            }
-                        case .failure(_):
-                            print("error")
-                        }
+                    func signInWithApple() async throws {
+                        let appleResult = try await signInWithApple.startSignInWithAppleFlow()
+                        try await AuthManager.shared.signInWithApple(idToken: appleResult.idToken, nonce: appleResult.nonce)
                     }
                 } label: {
                     Text("Continue with Apple")
