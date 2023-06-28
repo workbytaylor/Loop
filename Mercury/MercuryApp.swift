@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct MercuryApp: App {
     @StateObject var user = User()
+    //@StateObject var session: 
     @State private var selection: Int = 1
     
     var body: some Scene {
@@ -24,6 +25,13 @@ struct MercuryApp: App {
                         Image(systemName: "newspaper")
                     }
                     .tag(1)
+                    .task {
+                        do {
+                            try await AuthManager.shared.getCurrentSession()
+                        } catch {
+                            print(error)
+                        }
+                    }
                 AltSettingsView()
                     .environmentObject(user)
                     .preferredColorScheme(.light)

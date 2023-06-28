@@ -30,6 +30,7 @@ struct HomeView: View {
                     .padding(.bottom).padding(.bottom)
                 }
             }
+            
             .task {
                 do {
                     try await vm.getStories()

@@ -20,6 +20,7 @@ class Feed: ObservableObject {
             let stories: [Story] = try await client.database
                 .from("stories")
                 .select()
+                // TODO: .order ... sort stories by date ascending? descending?
                 .execute().value as [Story]
             
             //sort by date, newest first
