@@ -10,19 +10,17 @@ import CryptoKit
 import AuthenticationServices
 
 
-struct SignInAppleResult {
+struct SignInWithAppleResult {
     let idToken: String
     let nonce: String
 }
 
-
-class SignInApple: NSObject {
-    
-    // Unhashed nonce.
+@MainActor
+class SignInWithApple: NSObject {
     private var currentNonce: String?
-    private var completionHandler: ((Result<SignInAppleResult, Error>) -> Void)?
+    private var completionHandler: ((Result<SignInWithAppleResult, Error>) -> Void)?
     
-    func startSignInWithAppleFlow(completion: @escaping (Result<SignInAppleResult, Error>) -> Void) {
+    func startSignInWithAppleFlow(completion: @escaping (Result<SignInWithAppleResult, Error>) -> Void) {
         guard let topVC = UIApplication.getTopViewController() else {
             completion(.failure(NSError()))
             return
@@ -41,7 +39,6 @@ class SignInApple: NSObject {
         authorizationController.presentationContextProvider = topVC
         authorizationController.performRequests()
     }
-    
     
     private func randomNonceString(length: Int = 32) -> String {
         precondition(length > 0)
@@ -73,12 +70,10 @@ class SignInApple: NSObject {
         
         return hashString
     }
-    
-    
 }
 
 
-extension SignInApple: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension SignInWithApple: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return ASPresentationAnchor(frame: .zero)
     }
@@ -98,8 +93,7 @@ extension SignInApple: ASAuthorizationControllerDelegate, ASAuthorizationControl
                 completion(.failure(NSError()))
                 return
             }
-            
-            let appleResult = SignInAppleResult(idToken: idTokenString, nonce: nonce)
+            let appleResult = SignInWithAppleResult(idToken: idTokenString, nonce: nonce)
             completion(.success(appleResult))
         }
     }
@@ -108,7 +102,6 @@ extension SignInApple: ASAuthorizationControllerDelegate, ASAuthorizationControl
         // Handle error.
         print("Sign in with Apple errored: \(error)")
     }
-    
 }
 
 extension UIViewController: ASAuthorizationControllerPresentationContextProviding {
@@ -117,15 +110,14 @@ extension UIViewController: ASAuthorizationControllerPresentationContextProvidin
     }
 }
 
-
-
 extension UIApplication {
-
+    // deprecated when multiple views were possible on ipad
+    // solved by restricting app to only use a single window at a time
+    // deprecation does not mean no longer available
     class func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
 
         if let nav = base as? UINavigationController {
             return getTopViewController(base: nav.visibleViewController)
-
         } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
             return getTopViewController(base: selected)
 
@@ -135,5 +127,3 @@ extension UIApplication {
         return base
     }
 }
-
-

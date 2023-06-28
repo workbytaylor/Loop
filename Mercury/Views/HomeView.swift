@@ -19,8 +19,6 @@ struct HomeView: View {
             ScrollView {
                 FavouritesHScrollView()
                     .padding(.vertical)
-                    //.padding(.top, 4)
-                    //.padding(.bottom, 6)
                 ForEach(vm.sortedStories, id: \.link) { story in
                     Button {
                         showStory.toggle()
@@ -71,7 +69,5 @@ struct NewsView_Previews: PreviewProvider {
         HomeView()
     }
 }
-
-//TODO: Add environmentobject to preview
 
 

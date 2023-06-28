@@ -41,7 +41,8 @@ struct FavouritesListView: View {
             if vm.searchedAthletes.isEmpty, !vm.searchText.isEmpty {
                     VStack {
                         Text("Can't find \(vm.searchText)?")
-                            .font(.title3).bold()
+                            .font(.title3)
+                            .bold()
                         Text("Let us know so we can add them to the list.")
                             .foregroundStyle(.secondary)
                             .padding(.horizontal)
@@ -49,11 +50,8 @@ struct FavouritesListView: View {
                         Button {
                             isPresented.toggle()
                         } label: {
-                            Label {
-                                Text("Suggest an athlete")
-                            } icon: {
-                                Image(systemName: "plus")
-                            }
+                            Text("Suggest an athlete")
+                                .bold()
                         }
                         .buttonStyle(.borderedProminent)
                         .controlSize(.large)

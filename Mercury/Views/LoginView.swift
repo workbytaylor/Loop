@@ -10,7 +10,7 @@ import SwiftUI
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: User
-    let signInApple = SignInApple()
+    let signInWithApple = SignInWithApple()
     
     var body: some View {
         NavigationStack {
@@ -26,7 +26,7 @@ struct LoginView: View {
                 
                 Button {
                     // sign in
-                    signInApple.startSignInWithAppleFlow { result in
+                    signInWithApple.startSignInWithAppleFlow { result in
                         switch result {
                         case .success(let appleResult):
                             Task {

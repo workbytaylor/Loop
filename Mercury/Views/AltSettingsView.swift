@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AltSettingsView: View {
-    @EnvironmentObject var user: User
+    //@EnvironmentObject var user: User
     @State private var showSheet: Bool = false
     @State private var loggedOut: Bool?
     
@@ -21,11 +21,20 @@ struct AltSettingsView: View {
                     if loggedOut == false {
                         Button {
                             //Log user out
+                            Task {
+                                do {
+                                    try await AuthManager.shared.signOut()
+                                } catch {
+                                    print("unable to sign out")
+                                }
+                            }
+                            
                             loggedOut = true
                         } label: {
                             Text("Log out")
                                 .frame(maxWidth: .infinity)
                                 .bold()
+                                .foregroundColor(.red)
                         }
                         .buttonStyle(.bordered)
                         .controlSize(.large)
@@ -49,10 +58,9 @@ struct AltSettingsView: View {
                                 showSheet.toggle()
                             }
                             .controlSize(.large)
+                            //.padding()
                         }
                     }
-                    
-                    
                     
                     
                     Spacer()
@@ -70,7 +78,7 @@ struct AltSettingsView: View {
 }
 
 struct AltSettingsView_Previews: PreviewProvider {
-    @StateObject var user = User()
+    //@StateObject var user = User()
     
     static var previews: some View {
         NavigationStack {

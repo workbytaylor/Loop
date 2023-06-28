@@ -21,7 +21,7 @@ class Athletes: ObservableObject {
         }
     }
     
-    lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
+    let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
     @MainActor
     func fetchData() async throws {
@@ -30,15 +30,10 @@ class Athletes: ObservableObject {
             let athletes: [Athlete] = try await client.database
                 .from("athletes")
                 .select()
+                .order(column: "lastName", ascending: true)
                 .execute().value as [Athlete]
             
-            //sort by lastName, alphabetical
-            let alphabeticalAthletes = athletes.sorted {
-                $1.lastName > $0.lastName
-            }
-            
-            //update list of athletes
-            self.athletes = alphabeticalAthletes
+            self.athletes = athletes
             
         } catch {
             throw error
@@ -55,6 +50,7 @@ class Athletes: ObservableObject {
                 .execute().value as [Athlete]
             
             // add to list of userFavourites
+            // TODO: Add way to sort favourites so users can rearrange them
             self.userFavourites = favourites
             
         } catch {

@@ -29,7 +29,7 @@
 		95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C0EDA22A1AF70B006F1703 /* HomeView.swift */; };
 		95C0EDA52A1AF70D006F1703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA42A1AF70D006F1703 /* Assets.xcassets */; };
 		95C0EDA82A1AF70D006F1703 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA72A1AF70D006F1703 /* Preview Assets.xcassets */; };
-		95C920422A4AECA3001E89A2 /* SignInApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C920412A4AECA3001E89A2 /* SignInApple.swift */; };
+		95C920422A4AECA3001E89A2 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C920412A4AECA3001E89A2 /* SignInWithApple.swift */; };
 		95EA6DC32A4304E400F077E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA6DC22A4304E400F077E5 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +37,7 @@
 		9508D7432A45ACFA005CECDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListRowView.swift; sourceTree = "<group>"; };
 		953580E42A406186008D3579 /* SuggestionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionView.swift; sourceTree = "<group>"; };
+		955404852A4BB99A00219811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		957533AB2A490C70003E64FE /* AltSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AltSettingsView.swift; sourceTree = "<group>"; };
 		957DE1392A1C6D040058F639 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		958B512F2A1DA04700F7779D /* Athletes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Athletes.swift; sourceTree = "<group>"; };
@@ -57,7 +58,7 @@
 		95C0EDA22A1AF70B006F1703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		95C0EDA42A1AF70D006F1703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95C0EDA72A1AF70D006F1703 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		95C920412A4AECA3001E89A2 /* SignInApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInApple.swift; sourceTree = "<group>"; };
+		95C920412A4AECA3001E89A2 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
 		95EA6DC22A4304E400F077E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -73,11 +74,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		958C9DDC2A1B7D8000BCAB96 /* Model */ = {
+		955404862A4BC83900219811 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
 				95BCEC7D2A4A9E5B00556B84 /* AuthManager.swift */,
-				95C920412A4AECA3001E89A2 /* SignInApple.swift */,
+				95C920412A4AECA3001E89A2 /* SignInWithApple.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		958C9DDC2A1B7D8000BCAB96 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				9508D7432A45ACFA005CECDE /* User.swift */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
 				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
@@ -96,9 +104,9 @@
 				958C9DDF2A1B7E1700BCAB96 /* FavouritesHScrollView.swift */,
 				95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */,
 				958C9DE52A1B7E9A00BCAB96 /* AthleteView.swift */,
-				957533AB2A490C70003E64FE /* AltSettingsView.swift */,
 				958C9DE72A1B7F1000BCAB96 /* FavouritesListView.swift */,
 				953580E42A406186008D3579 /* SuggestionView.swift */,
+				957533AB2A490C70003E64FE /* AltSettingsView.swift */,
 				95EA6DC22A4304E400F077E5 /* LoginView.swift */,
 				9520C6012A1F6BA90059009A /* FavouritesListRowView.swift */,
 				958C9DDD2A1B7DB900BCAB96 /* NewsCardView.swift */,
@@ -133,9 +141,11 @@
 		95C0ED9F2A1AF70B006F1703 /* Mercury */ = {
 			isa = PBXGroup;
 			children = (
+				955404852A4BB99A00219811 /* Info.plist */,
 				95A008E42A444E6800CDEB6E /* Mercury.entitlements */,
 				95C0EDA02A1AF70B006F1703 /* MercuryApp.swift */,
 				95AAD6232A2255B3006B8136 /* Views */,
+				955404862A4BC83900219811 /* Auth */,
 				958C9DDC2A1B7D8000BCAB96 /* Model */,
 				95AC11002A4A974F004967CA /* Not used */,
 				95C0EDA42A1AF70D006F1703 /* Assets.xcassets */,
@@ -236,7 +246,7 @@
 				958C9DDA2A1B7D5E00BCAB96 /* StoryView.swift in Sources */,
 				958B51302A1DA04700F7779D /* Athletes.swift in Sources */,
 				95A1C1532A4000F500D5D183 /* FavouritesListButtonView.swift in Sources */,
-				95C920422A4AECA3001E89A2 /* SignInApple.swift in Sources */,
+				95C920422A4AECA3001E89A2 /* SignInWithApple.swift in Sources */,
 				95C0EDA32A1AF70B006F1703 /* HomeView.swift in Sources */,
 				95BCEC7E2A4A9E5B00556B84 /* AuthManager.swift in Sources */,
 				957DE13A2A1C6D040058F639 /* Constants.swift in Sources */,
@@ -381,11 +391,11 @@
 				DEVELOPMENT_TEAM = 3P2T2GVKTG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Mercury/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -393,6 +403,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Taylor.Mercury;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -411,11 +424,11 @@
 				DEVELOPMENT_TEAM = 3P2T2GVKTG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_FILE = Mercury/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -423,6 +436,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Taylor.Mercury;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

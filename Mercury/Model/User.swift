@@ -7,6 +7,8 @@
 
 import Foundation
 
-@MainActor class User: ObservableObject {
+class User: ObservableObject {
     @Published var isLoggedOut: Bool = true
+    //let user_id: String
+    //let email: String?
 }
