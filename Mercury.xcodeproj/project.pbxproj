@@ -30,6 +30,7 @@
 		95C0EDA52A1AF70D006F1703 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA42A1AF70D006F1703 /* Assets.xcassets */; };
 		95C0EDA82A1AF70D006F1703 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95C0EDA72A1AF70D006F1703 /* Preview Assets.xcassets */; };
 		95C920422A4AECA3001E89A2 /* SignInWithApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C920412A4AECA3001E89A2 /* SignInWithApple.swift */; };
+		95E713A52A4E50210041BBC8 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E713A42A4E50210041BBC8 /* Session.swift */; };
 		95EA6DC32A4304E400F077E5 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EA6DC22A4304E400F077E5 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		95C0EDA42A1AF70D006F1703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		95C0EDA72A1AF70D006F1703 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		95C920412A4AECA3001E89A2 /* SignInWithApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithApple.swift; sourceTree = "<group>"; };
+		95E713A42A4E50210041BBC8 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		95EA6DC22A4304E400F077E5 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				9508D7432A45ACFA005CECDE /* User.swift */,
+				95E713A42A4E50210041BBC8 /* Session.swift */,
 				957DE1392A1C6D040058F639 /* Constants.swift */,
 				958C9DEC2A1B85FA00BCAB96 /* Story.swift */,
 				958C9DEE2A1B88BA00BCAB96 /* Feed.swift */,
@@ -256,6 +259,7 @@
 				9520C6022A1F6BA90059009A /* FavouritesListRowView.swift in Sources */,
 				958C9DE22A1B7E4700BCAB96 /* Athlete.swift in Sources */,
 				9508D7442A45ACFA005CECDE /* User.swift in Sources */,
+				95E713A52A4E50210041BBC8 /* Session.swift in Sources */,
 				958C9DE62A1B7E9A00BCAB96 /* AthleteView.swift in Sources */,
 				958C9DE82A1B7F1000BCAB96 /* FavouritesListView.swift in Sources */,
 				958C9DED2A1B85FA00BCAB96 /* Story.swift in Sources */,

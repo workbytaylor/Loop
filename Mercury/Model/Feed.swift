@@ -11,7 +11,7 @@ import Supabase
 class Feed: ObservableObject {
     @Published var sortedStories: [Story] = []
     
-    lazy var client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
+    let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
     @MainActor
     func getStories() async throws {

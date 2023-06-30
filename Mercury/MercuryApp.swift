@@ -26,11 +26,13 @@ struct MercuryApp: App {
                     }
                     .tag(1)
                     .task {
+                        /*
                         do {
                             try await AuthManager.shared.getCurrentSession()
                         } catch {
                             print(error)
                         }
+                         */
                     }
                 AltSettingsView()
                     .environmentObject(user)
@@ -40,14 +42,9 @@ struct MercuryApp: App {
                         Image(systemName: "person.crop.circle")
                     }
                     .tag(2)
-                /*
-                ResultsView()
-                    .tabItem {
-                        Text("Results")
-                        Image(systemName: "list.bullet.rectangle")
-                    }
-                    .tag(2)
-                */
+            }
+            .task {
+                
             }
         }
     }

@@ -57,7 +57,7 @@ class Athletes: ObservableObject {
             throw error
         }
     }
-    
+    /*
     @MainActor
     func addUserFavourite(athlete: Athlete) async throws {
         do {
@@ -75,5 +75,7 @@ class Athletes: ObservableObject {
             throw error
         }
     }
+    */
+    
 }
 

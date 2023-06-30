@@ -11,13 +11,11 @@ import WebKit
 struct StoryView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var isLoading = true
-    @State private var bookmark: Bool = false
     @Binding var link: String
     
     var body: some View {
         ZStack {
             WebView(url: URL(string: link)!, isLoading: $isLoading)
-            
             if isLoading {
                 ProgressView()
             }
@@ -32,15 +30,7 @@ struct StoryView: View {
                         .font(.subheadline)
                 }
             }
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                /*
-                Button {
-                    bookmark.toggle()
-                } label: {
-                    Image(systemName: bookmark == true ? "bookmark.fill" : "bookmark")
-                        .font(.subheadline)
-                }
-                 */
+            ToolbarItem(placement: .navigationBarTrailing) {
                 ShareLink(item: URL(string: "https://www.tracksmith.com")!) {
                     Image(systemName: "square.and.arrow.up")
                         .font(.subheadline)

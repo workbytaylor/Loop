@@ -16,7 +16,7 @@ struct SignInWithAppleResult {
 }
 
 @MainActor
-class SignInWithApple: NSObject {
+class SignInApple: NSObject {
     private var currentNonce: String?
     private var completionHandler: ((Result<SignInWithAppleResult, Error>) -> Void)?
     
@@ -28,8 +28,6 @@ class SignInWithApple: NSObject {
             }
         })
     }
-    
-    
     
     private func signInWithAppleFlow(completion: @escaping (Result<SignInWithAppleResult, Error>) -> Void) {
         guard let topVC = UIApplication.getTopViewController() else {
@@ -84,7 +82,7 @@ class SignInWithApple: NSObject {
 }
 
 
-extension SignInWithApple: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension SignInApple: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return ASPresentationAnchor(frame: .zero)
     }

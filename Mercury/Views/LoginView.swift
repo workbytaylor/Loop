@@ -10,11 +10,24 @@ import SwiftUI
 //TODO: class LogInViewModel
 // start video at 27:07
 
+@MainActor
+class SignInViewModel: ObservableObject {
+    let signInApple = SignInApple()
+    
+    func SignInWithApple() async throws {
+        let appleResult = try await signInApple.startSignInWithAppleFlow()
+        try await AuthManager.shared.signInWithApple(idToken: appleResult.idToken, nonce: appleResult.nonce
+        )
+    }
+    
+}
+
+
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var user: User
-    let signInWithApple = SignInWithApple()
+    @State var viewModel = SignInViewModel()
     
     var body: some View {
         NavigationStack {
@@ -29,10 +42,12 @@ struct LoginView: View {
                 }
                 
                 Button {
-                    // sign in
-                    func signInWithApple() async throws {
-                        let appleResult = try await signInWithApple.startSignInWithAppleFlow()
-                        try await AuthManager.shared.signInWithApple(idToken: appleResult.idToken, nonce: appleResult.nonce)
+                    Task {
+                        do {
+                            try await viewModel.SignInWithApple()
+                        } catch {
+                            print("error signing in")
+                        }
                     }
                 } label: {
                     Text("Continue with Apple")
