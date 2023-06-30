@@ -55,6 +55,13 @@ struct HomeView: View {
                 LoginView()
             }
         }
+        /*
+        .onAppear {
+            Task {
+                try await AuthManager.shared.getCurrentSession()
+            }
+        }
+         */
         .fullScreenCover(isPresented: $showStory) {
             NavigationStack {
                 StoryView(link: $selectedStory)

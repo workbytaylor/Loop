@@ -34,7 +34,7 @@ struct FavouritesHScrollView: View {
                 FavouritesListButtonView()
             }
             .padding(.horizontal)
-        }
+        }/*
         .task {
             do {
                 try await vm.getFavourites()
@@ -42,6 +42,7 @@ struct FavouritesHScrollView: View {
                 print(error)
             }
         }
+          */
     }
 }
 

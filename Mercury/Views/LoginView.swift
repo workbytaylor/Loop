@@ -19,9 +19,7 @@ class SignInViewModel: ObservableObject {
         try await AuthManager.shared.signInWithApple(idToken: appleResult.idToken, nonce: appleResult.nonce
         )
     }
-    
 }
-
 
 
 struct LoginView: View {

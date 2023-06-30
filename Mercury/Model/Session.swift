@@ -6,10 +6,11 @@
 //
 
 import Foundation
-import Supabase
 
-class Session: ObservableObject {
-    let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
+final class Session: ObservableObject {
+    @Published var session: Session? = nil
+    
+    
     
     
     

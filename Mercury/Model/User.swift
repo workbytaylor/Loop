@@ -8,7 +8,9 @@
 import Foundation
 
 class User: ObservableObject {
-    @Published var isLoggedOut: Bool = true
-    //let user_id: String
-    //let email: String?
+    @Published var isLoggedOut: Bool = false
+    @Published var user_id: String? = nil
+    @Published var email: String? = nil
+    
+    
 }
