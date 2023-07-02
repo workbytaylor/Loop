@@ -43,8 +43,12 @@ struct LoginView: View {
                     Task {
                         do {
                             try await viewModel.SignInWithApple()
+                            try await session.getSession()
+                            if session.userIsLoggedOut == false {
+                                dismiss()
+                            }
                         } catch {
-                            print("error signing in")
+                            print(error)
                         }
                     }
                 } label: {
@@ -68,8 +72,8 @@ struct LoginView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        session.userIsLoggedOut = false
-                        //dismiss()
+                        //session.userIsLoggedOut = false
+                        dismiss()
                     } label: {
                         Image(systemName: "xmark")
                     }
