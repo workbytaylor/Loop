@@ -9,16 +9,15 @@ import SwiftUI
 
 @main
 struct MercuryApp: App {
-    @StateObject var session = Session()
-    @StateObject var user = User()
+    @StateObject var session: Session = Session()
     @State private var selection: Int = 1
     
     var body: some Scene {
         WindowGroup {
             TabView(selection: $selection) {
                 HomeView()
+                    .environmentObject(session) // .environmentObject not shared between tabs if placed on parent group
                     //.toolbarBackground(Color.white, for: .tabBar)
-                    .environmentObject(user)
                     .preferredColorScheme(.light)
                     .tabItem {
                         Text("News")
@@ -26,8 +25,8 @@ struct MercuryApp: App {
                     }
                     .tag(1)
                 
-                AltSettingsView()
-                    .environmentObject(user)
+                SettingsView()
+                    .environmentObject(session)
                     .preferredColorScheme(.light)
                     .tabItem {
                         Text("Log in")
@@ -37,8 +36,7 @@ struct MercuryApp: App {
             }
             .task {
                 do {
-                    let session = try await AuthManager.shared.getCurrentSession()
-                    
+                    try await session.getSession()
                 } catch {
                     print(error)
                 }

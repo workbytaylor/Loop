@@ -7,10 +7,10 @@
 
 // TODO: Change style from list to VStack
 
+/*
 import SwiftUI
 
 struct SettingsView: View {
-    @EnvironmentObject var user: User
     
     var body: some View {
         List {
@@ -62,31 +62,13 @@ struct SettingsView: View {
                 Text("Spread the love")
             }
             
-            Section {
-                Button {
-                    user.isLoggedOut.toggle()
-                } label: {
-                    Label {
-                        Text("Log in")
-                    } icon: {
-                        Image(systemName: "person")
-                    }
-                }
-            } header: {
-                Text("Account")
-            }
             
-        }
-        .navigationTitle("Settings")
-        .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $user.isLoggedOut) {
-            LoginView()
-        }
+        } 
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
-    @StateObject var user = User()
+    @StateObject var session = Session()
     
     static var previews: some View {
         NavigationStack {
@@ -94,3 +76,5 @@ struct SettingsView_Previews: PreviewProvider {
         }
     }
 }
+
+*/

@@ -24,7 +24,7 @@ class SignInViewModel: ObservableObject {
 
 struct LoginView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var user: User
+    @EnvironmentObject var session: Session
     @State var viewModel = SignInViewModel()
     
     var body: some View {
@@ -68,8 +68,8 @@ struct LoginView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        user.isLoggedOut = false
-                        dismiss()
+                        session.userIsLoggedOut = false
+                        //dismiss()
                     } label: {
                         Image(systemName: "xmark")
                     }

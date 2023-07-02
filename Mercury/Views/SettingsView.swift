@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct AltSettingsView: View {
-    //@EnvironmentObject var user: User
+struct SettingsView: View {
     @State private var showSheet: Bool = false
-    @State private var loggedOut: Bool?
+    @EnvironmentObject var session: Session
     
     var body: some View {
         NavigationStack {
@@ -18,32 +17,10 @@ struct AltSettingsView: View {
                 VStack(alignment: .leading, spacing: 50) {
                     Text("Log in to track your favourite athletes.")
                     
-                    if loggedOut == false {
-                        Button {
-                            //Log user out
-                            Task {
-                                do {
-                                    try await AuthManager.shared.signOut()
-                                } catch {
-                                    print("unable to sign out")
-                                }
-                            }
-                            
-                            loggedOut = true
-                        } label: {
-                            Text("Log out")
-                                .frame(maxWidth: .infinity)
-                                .bold()
-                                .foregroundColor(.red)
-                        }
-                        .buttonStyle(.bordered)
-                        .controlSize(.large)
-                        //.tint(Color.red)
-                        
-                    } else {
+                    switch session.userIsLoggedOut {
+                    case false:
                         VStack {
                             Button {
-                                //user.isLoggedOut.toggle()
                                 showSheet.toggle()
                             } label: {
                                 Text("Log in")
@@ -54,23 +31,41 @@ struct AltSettingsView: View {
                             .controlSize(.large)
                             
                             Button("Sign up") {
-                                //user.showLogInSheet.toggle()
                                 showSheet.toggle()
                             }
                             .controlSize(.large)
                             //.padding()
                         }
+                    case true:
+                        Button {
+                            //Log user out
+                            Task {
+                                do {
+                                    try await AuthManager.shared.signOut()
+                                } catch {
+                                    print("error signing out")
+                                }
+                            }
+                            session.userIsLoggedOut = true
+                        } label: {
+                            Text("Log out")
+                                .frame(maxWidth: .infinity)
+                                .bold()
+                                .foregroundColor(.red)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.large)
+                        
                     }
-                    
-                    
                     Spacer()
                 }
                 .padding()
             }
+            .onAppear {
+                print(session.user_id ?? "no user")
+            }
             .navigationTitle("Profile")
-            .sheet(isPresented: $showSheet, onDismiss: {
-                loggedOut = false
-            }) {
+            .sheet(isPresented: $showSheet) {
                 LoginView()
             }
         }
@@ -78,11 +73,10 @@ struct AltSettingsView: View {
 }
 
 struct AltSettingsView_Previews: PreviewProvider {
-    //@StateObject var user = User()
     
     static var previews: some View {
         NavigationStack {
-            AltSettingsView()
+            SettingsView()
         }
     }
 }

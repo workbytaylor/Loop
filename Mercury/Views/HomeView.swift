@@ -12,7 +12,7 @@ struct HomeView: View {
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
     @StateObject private var vm = Feed()
-    @EnvironmentObject var user: User
+    @EnvironmentObject var session: Session
     
     var body: some View {
         NavigationStack {
@@ -30,7 +30,6 @@ struct HomeView: View {
                     .padding(.bottom).padding(.bottom)
                 }
             }
-            
             .task {
                 do {
                     try await vm.getStories()
@@ -40,28 +39,21 @@ struct HomeView: View {
             }
             .refreshable {
                 // might need to update this, works for now
-                //print("Refresh")
                 do {
                     try await vm.getStories()
                 } catch {
                     print(error)
                 }
             }
-            //.navigationTitle("News")
-            //.navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $user.isLoggedOut/*, onDismiss: {
+            .navigationTitle("Home")
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarHidden(true)
+            .sheet(isPresented: $session.userIsLoggedOut/*, onDismiss: {
                 user.showLogInSheet = false
             }*/) {
                 LoginView()
             }
         }
-        /*
-        .onAppear {
-            Task {
-                try await AuthManager.shared.getCurrentSession()
-            }
-        }
-         */
         .fullScreenCover(isPresented: $showStory) {
             NavigationStack {
                 StoryView(link: $selectedStory)
@@ -71,7 +63,6 @@ struct HomeView: View {
 }
 
 struct NewsView_Previews: PreviewProvider {
-    @StateObject var user = User()
     
     static var previews: some View {
         HomeView()
