@@ -48,11 +48,11 @@ struct HomeView: View {
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-            .sheet(isPresented: $session.userIsLoggedOut/*, onDismiss: {
-                user.showLogInSheet = false
-            }*/) {
+            .sheet(isPresented: $session.userIsLoggedOut) {
                 LoginView()
+                    .interactiveDismissDisabled()
             }
+            
         }
         .fullScreenCover(isPresented: $showStory) {
             NavigationStack {

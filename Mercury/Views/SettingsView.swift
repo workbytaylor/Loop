@@ -17,8 +17,7 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: 50) {
                     Text("Log in to track your favourite athletes.")
                     
-                    switch session.userIsLoggedOut {
-                    case false:
+                    if session.userIsLoggedOut == true {
                         VStack {
                             Button {
                                 showSheet.toggle()
@@ -36,7 +35,7 @@ struct SettingsView: View {
                             .controlSize(.large)
                             //.padding()
                         }
-                    case true:
+                    } else {
                         Button {
                             //Log user out
                             Task {
@@ -55,8 +54,8 @@ struct SettingsView: View {
                         }
                         .buttonStyle(.bordered)
                         .controlSize(.large)
-                        
                     }
+                    
                     Spacer()
                 }
                 .padding()
@@ -67,7 +66,9 @@ struct SettingsView: View {
             .navigationTitle("Profile")
             .sheet(isPresented: $showSheet) {
                 LoginView()
+                    .interactiveDismissDisabled()
             }
+            
         }
     }
 }
