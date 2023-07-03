@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @State private var showSheet: Bool = false
+    @State private var loginState: Bool = false
     @EnvironmentObject var session: Session
     
     var body: some View {
@@ -17,10 +18,10 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: 50) {
                     Text("Log in to track your favourite athletes.")
                     
-                    if session.userIsLoggedOut == true {
+                    if session.user_id == nil {
                         VStack {
                             Button {
-                                showSheet.toggle()
+                                showSheet = true
                             } label: {
                                 Text("Log in")
                                     .frame(maxWidth: .infinity)
@@ -30,7 +31,7 @@ struct SettingsView: View {
                             .controlSize(.large)
                             
                             Button("Sign up") {
-                                showSheet.toggle()
+                                showSheet = true
                             }
                             .controlSize(.large)
                             //.padding()
@@ -45,7 +46,7 @@ struct SettingsView: View {
                                     print("error signing out")
                                 }
                             }
-                            session.userIsLoggedOut = true
+                            //session.userIsLoggedOut = true
                         } label: {
                             Text("Log out")
                                 .frame(maxWidth: .infinity)
@@ -61,6 +62,7 @@ struct SettingsView: View {
                 .padding()
             }
             .onAppear {
+                
                 print(session.user_id ?? "no user")
             }
             .navigationTitle("Profile")

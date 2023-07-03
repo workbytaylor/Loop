@@ -37,6 +37,9 @@ struct MercuryApp: App {
             .task {
                 do {
                     try await session.getSession()
+                    if session.user_id == nil {
+                        session.showLogin = true
+                    }
                 } catch {
                     print(error)
                 }

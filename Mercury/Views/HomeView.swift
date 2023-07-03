@@ -10,6 +10,7 @@ import WebKit
 
 struct HomeView: View {
     @State private var showStory: Bool = false
+    //@State var showLogin: Bool = false
     @State private var selectedStory: String = ""
     @StateObject private var vm = Feed()
     @EnvironmentObject var session: Session
@@ -39,20 +40,15 @@ struct HomeView: View {
             }
             .refreshable {
                 // might need to update this, works for now
-                do {
-                    try await vm.getStories()
-                } catch {
-                    print(error)
-                }
+                // getStories
             }
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-            .sheet(isPresented: $session.userIsLoggedOut) {
-                LoginView()
-                    .interactiveDismissDisabled()
-            }
-            
+        }
+        .sheet(isPresented: $session.showLogin) {
+            LoginView()
+                .interactiveDismissDisabled()
         }
         .fullScreenCover(isPresented: $showStory) {
             NavigationStack {

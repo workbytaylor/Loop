@@ -26,6 +26,7 @@ struct LoginView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var session: Session
     @State var viewModel = SignInViewModel()
+    //@Binding var showLogin: Bool
     
     var body: some View {
         NavigationStack {
@@ -44,9 +45,7 @@ struct LoginView: View {
                         do {
                             try await viewModel.SignInWithApple()
                             try await session.getSession()
-                            if session.userIsLoggedOut == false {
-                                dismiss()
-                            }
+                            //showLogin = false
                         } catch {
                             print(error)
                         }
@@ -69,11 +68,14 @@ struct LoginView: View {
             .navigationTitle("Login or sign up")
             .navigationBarTitleDisplayMode(.inline)
             .presentationDragIndicator(.visible)
+            .onChange(of: session.user_id) { newValue in
+                print("user changed to \(session.user_id ?? "user is logged out")")
+            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        //session.userIsLoggedOut = false
                         dismiss()
+                        //showLogin = false
                     } label: {
                         Image(systemName: "xmark")
                     }
@@ -84,6 +86,8 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
+    //@State static var showSheet:Bool = false
+    
     static var previews: some View {
         LoginView()
     }

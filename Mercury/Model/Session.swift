@@ -11,7 +11,7 @@ import Supabase
 final class Session: ObservableObject {
     @Published var user_id: String?
     @Published var email: String?
-    @Published var userIsLoggedOut: Bool = false
+    @Published var showLogin: Bool = false
     
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
@@ -26,7 +26,7 @@ final class Session: ObservableObject {
             print(email ?? "No user email")
             
         } catch {
-            userIsLoggedOut = true
+           // showLogin = true
             print("User is logged out")
             throw error
         }
