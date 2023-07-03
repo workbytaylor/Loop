@@ -16,9 +16,7 @@ struct MercuryApp: App {
         WindowGroup {
             TabView(selection: $selection) {
                 HomeView()
-                    .environmentObject(session) // .environmentObject not shared between tabs if placed on parent group
-                    //.toolbarBackground(Color.white, for: .tabBar)
-                    .preferredColorScheme(.light)
+                    .environmentObject(session)
                     .tabItem {
                         Text("News")
                         Image(systemName: "newspaper")
@@ -27,19 +25,16 @@ struct MercuryApp: App {
                 
                 SettingsView()
                     .environmentObject(session)
-                    .preferredColorScheme(.light)
                     .tabItem {
                         Text("Log in")
                         Image(systemName: "person.crop.circle")
                     }
                     .tag(2)
             }
+            .preferredColorScheme(.light)
             .task {
                 do {
                     try await session.getSession()
-                    if session.user_id == nil {
-                        session.showLogin = true
-                    }
                 } catch {
                     print(error)
                 }

@@ -8,33 +8,25 @@
 import Foundation
 import Supabase
 
-class Feed: ObservableObject {
-    @Published var sortedStories: [Story] = []
+class Stories: ObservableObject {
+    @Published var all: [Story] = []
     
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
     @MainActor
-    func getStories() async throws {
+    func fetch() async throws {
         do {
             //get stories from supabase
             let stories: [Story] = try await client.database
                 .from("stories")
                 .select()
-                // TODO: .order ... sort stories by date ascending? descending?
+                .order(column: "date", ascending: false)
                 .execute().value as [Story]
             
-            //sort by date, newest first
-            let sortedStories = stories.sorted {
-                $0.date > $1.date
-            }
-            
-            //update list of sorted
-            self.sortedStories = sortedStories
+            self.all = stories
             
         } catch {
             throw error
         }
-        
-        
     }
 }

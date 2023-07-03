@@ -9,12 +9,13 @@ import SwiftUI
 import CoreData
 
 struct FavouritesHScrollView: View {
-    @StateObject private var vm = Athletes()
+    @StateObject private var athletes = Athletes()
+    //likely a better way
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                ForEach(vm.userFavourites) { athlete in
+                ForEach(athletes.userFavourites) { athlete in
                     NavigationLink {
                         AthleteView(athlete: athlete)
                     } label: {

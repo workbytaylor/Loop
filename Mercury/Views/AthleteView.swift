@@ -12,7 +12,7 @@ struct AthleteView: View {
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
     @State private var isFavourite: Bool = false
-    @ObservedObject private var feed = Feed()
+    @ObservedObject private var feed = Stories()
     
     var body: some View {
         VStack {
@@ -27,7 +27,7 @@ struct AthleteView: View {
             
             ScrollView {
                 Text("placeholder to test scrolling")
-                ForEach(feed.sortedStories, id: \.link) { story in
+                ForEach(feed.all, id: \.link) { story in
                     Button {
                         isPresented.toggle()
                         selectedStory = story.link

@@ -10,9 +10,8 @@ import WebKit
 
 struct HomeView: View {
     @State private var showStory: Bool = false
-    //@State var showLogin: Bool = false
     @State private var selectedStory: String = ""
-    @StateObject private var vm = Feed()
+    @StateObject private var stories = Stories()
     @EnvironmentObject var session: Session
     
     var body: some View {
@@ -20,7 +19,7 @@ struct HomeView: View {
             ScrollView {
                 FavouritesHScrollView()
                     .padding(.vertical)
-                ForEach(vm.sortedStories, id: \.link) { story in
+                ForEach(stories.all, id: \.link) { story in
                     Button {
                         showStory.toggle()
                         selectedStory = story.link
@@ -33,22 +32,17 @@ struct HomeView: View {
             }
             .task {
                 do {
-                    try await vm.getStories()
+                    try await stories.fetch()
                 } catch {
                     print(error)
                 }
             }
             .refreshable {
-                // might need to update this, works for now
-                // getStories
+                // stories.fetch()
             }
             .navigationTitle("Home")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-        }
-        .sheet(isPresented: $session.showLogin) {
-            LoginView()
-                .interactiveDismissDisabled()
         }
         .fullScreenCover(isPresented: $showStory) {
             NavigationStack {
