@@ -13,9 +13,9 @@ struct LogOutView: View {
     var body: some View {
         Button {    //Log user out
             Task {
-                do {    // order is very important: action, state change, get session
-                    try await AuthManager.shared.signOut()
+                do {    // order is very important: action, state change, get session   // changed for logout only, makes app snappier
                     session.loginStatus = .loggedOut
+                    try await AuthManager.shared.signOut()
                     try await session.getSession()
                 } catch {
                     print(error)

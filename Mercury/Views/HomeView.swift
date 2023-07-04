@@ -9,7 +9,6 @@ import SwiftUI
 import WebKit
 
 struct HomeView: View {
-    
     @Binding var showSignInSheet: Bool
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
