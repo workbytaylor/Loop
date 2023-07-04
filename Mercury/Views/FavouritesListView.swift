@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavouritesListView: View {
-    @StateObject private var vm = Athletes()
+    @EnvironmentObject var athletes: Athletes
     @State private var isPresented: Bool = false
     @State private var sort: Int = 0
     @State private var filter: Int = 0
@@ -19,7 +19,7 @@ struct FavouritesListView: View {
         //HStack {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    ForEach(vm.searchedAthletes, id: \.id) { athlete in
+                    ForEach(athletes.searchedAthletes, id: \.id) { athlete in
                         FavouritesListRowView(athlete: athlete)
                             .padding()
                     }
@@ -36,11 +36,11 @@ struct FavouritesListView: View {
             .padding(.trailing)
         */
          //}
-        .searchable(text: $vm.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
+        .searchable(text: $athletes.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .overlay {
-            if vm.searchedAthletes.isEmpty, !vm.searchText.isEmpty {
+            if athletes.searchedAthletes.isEmpty, !athletes.searchText.isEmpty {
                     VStack {
-                        Text("Can't find \(vm.searchText)?")
+                        Text("Can't find \(athletes.searchText)?")
                             .font(.title3)
                             .bold()
                         Text("Let us know so we can add them to the list.")
@@ -65,7 +65,7 @@ struct FavouritesListView: View {
         }
         .task {
             do {
-                try await vm.fetchData()
+                try await athletes.fetchData()
                 //try await athletes.getFavourites()    // why is this here?
             } catch {
                 print(error)

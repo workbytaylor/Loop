@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct MercuryApp: App {
     @StateObject var session: Session = Session()
+    @StateObject var athletes: Athletes = Athletes()
     @State private var selection: Int = 1
     @State private var showSignInSheet: Bool = false
     
@@ -31,10 +32,12 @@ struct MercuryApp: App {
                     .tag(2)
             }
             .environmentObject(session)
+            .environmentObject(athletes)
             .preferredColorScheme(.light)
             .task {
                 do {
                     try await session.getSession()
+                    session.loginStatus = .loggedIn
                 } catch {
                     showSignInSheet = true
                     print(error)
