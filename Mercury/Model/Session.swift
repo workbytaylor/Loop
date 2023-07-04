@@ -12,6 +12,12 @@ final class Session: ObservableObject {
     @Published var user_id: String?
     @Published var email: String?
     @Published var showLogin: Bool = false
+    @Published var loginStatus: loginState = .loggedOut
+    
+    enum loginState {
+        case loggedIn
+        case loggedOut
+    }
     
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
@@ -22,12 +28,15 @@ final class Session: ObservableObject {
             self.user_id = session.user.id.uuidString
             self.email = session.user.email
             
-            print(user_id ?? "No user_id")  //print user_id if logged in, otherwise "No user_id"
-            print(email ?? "No user email")
+            //print(user_id ?? "No user_id")  //print user_id if logged in, otherwise "No user_id"
+            //print(email ?? "No user email")
+            
+            print(loginStatus)
+            print(email as Any)
+            print(user_id as Any)
             
         } catch {
-           // showLogin = true
-            print("User is logged out")
+            //print("User is logged out")
             throw error
         }
     }

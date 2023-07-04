@@ -8,6 +8,15 @@
 import Foundation
 import Supabase
 
+struct Story: Identifiable, Codable {
+    let id: UUID
+    let title: String
+    let link: String
+    let displayLink: String
+    let image: String
+    let date: String  //date does not work currently
+}
+
 class Stories: ObservableObject {
     @Published var all: [Story] = []
     

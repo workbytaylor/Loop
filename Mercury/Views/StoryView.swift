@@ -20,7 +20,6 @@ struct StoryView: View {
                 ProgressView()
             }
         }
-        //.navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
@@ -31,7 +30,7 @@ struct StoryView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                ShareLink(item: URL(string: "https://www.tracksmith.com")!) {
+                ShareLink(item: URL(string: link)!) {
                     Image(systemName: "square.and.arrow.up")
                         .font(.subheadline)
                 }
@@ -44,7 +43,7 @@ struct StoryView: View {
 struct WebCoverView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            StoryView(link: .constant("https://www.tracksmith.com"))
+            StoryView(link: .constant("https://citiusmag.com/articles/jakob-ingebrigtsen-vs-yared-nuguse-set-for-rabat-diamond-league-1500m"))
         }
     }
 }

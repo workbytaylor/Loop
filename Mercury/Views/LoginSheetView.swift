@@ -1,5 +1,5 @@
 //
-//  LoginView.swift
+//  LoginSheetView.swift
 //  Mercury
 //
 //  Created by Nilakshi Roy on 2023-06-21.
@@ -22,11 +22,10 @@ class SignInViewModel: ObservableObject {
 }
 
 
-struct LoginView: View {
+struct LoginSheetView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var session: Session
     @State var viewModel = SignInViewModel()
-    //@Binding var showLogin: Bool
     
     var body: some View {
         NavigationStack {
@@ -42,10 +41,11 @@ struct LoginView: View {
                 
                 Button {
                     Task {
-                        do {
+                        do {    // order is very important: action, state change, get session
                             try await viewModel.SignInWithApple()
+                            session.loginStatus = .loggedIn
                             try await session.getSession()
-                            //showLogin = false
+                            
                         } catch {
                             print(error)
                         }
@@ -65,12 +65,9 @@ struct LoginView: View {
                 .controlSize(.large)
             }
             .padding()
-            .navigationTitle("Login or sign up")
+            .navigationTitle("Log in or sign up")
             .navigationBarTitleDisplayMode(.inline)
             .presentationDragIndicator(.visible)
-            .onChange(of: session.user_id) { newValue in
-                print("user changed to \(session.user_id ?? "user is logged out")")
-            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
@@ -85,10 +82,10 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
+struct LoginSheetView_Previews: PreviewProvider {
     //@State static var showSheet:Bool = false
     
     static var previews: some View {
-        LoginView()
+        LoginSheetView()
     }
 }

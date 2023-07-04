@@ -22,5 +22,6 @@ class AuthManager {
     
     func signOut() async throws {
         try await client.auth.signOut()
+        print("user is signed out")
     }
 }

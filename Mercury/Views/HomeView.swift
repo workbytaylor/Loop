@@ -9,6 +9,8 @@ import SwiftUI
 import WebKit
 
 struct HomeView: View {
+    
+    
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
     @StateObject private var stories = Stories()
@@ -53,7 +55,6 @@ struct HomeView: View {
 }
 
 struct NewsView_Previews: PreviewProvider {
-    
     static var previews: some View {
         HomeView()
     }

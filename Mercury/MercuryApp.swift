@@ -16,21 +16,20 @@ struct MercuryApp: App {
         WindowGroup {
             TabView(selection: $selection) {
                 HomeView()
-                    .environmentObject(session)
                     .tabItem {
                         Text("News")
                         Image(systemName: "newspaper")
                     }
                     .tag(1)
                 
-                SettingsView()
-                    .environmentObject(session)
+                ProfileView()
                     .tabItem {
-                        Text("Log in")
+                        Text(session.loginStatus == .loggedOut ? "Log in" : "Profile")
                         Image(systemName: "person.crop.circle")
                     }
                     .tag(2)
             }
+            .environmentObject(session)
             .preferredColorScheme(.light)
             .task {
                 do {
