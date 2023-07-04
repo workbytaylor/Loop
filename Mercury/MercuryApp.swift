@@ -11,11 +11,12 @@ import SwiftUI
 struct MercuryApp: App {
     @StateObject var session: Session = Session()
     @State private var selection: Int = 1
+    @State private var showSignInSheet: Bool = false
     
     var body: some Scene {
         WindowGroup {
             TabView(selection: $selection) {
-                HomeView()
+                HomeView(showSignInSheet: $showSignInSheet)
                     .tabItem {
                         Text("News")
                         Image(systemName: "newspaper")
@@ -35,6 +36,7 @@ struct MercuryApp: App {
                 do {
                     try await session.getSession()
                 } catch {
+                    showSignInSheet = true
                     print(error)
                 }
             }

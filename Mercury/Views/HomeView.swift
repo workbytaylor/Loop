@@ -10,7 +10,7 @@ import WebKit
 
 struct HomeView: View {
     
-    
+    @Binding var showSignInSheet: Bool
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
     @StateObject private var stories = Stories()
@@ -31,6 +31,10 @@ struct HomeView: View {
                     .padding(.horizontal)
                     .padding(.bottom).padding(.bottom)
                 }
+            }
+            .sheet(isPresented: $showSignInSheet) {
+                LoginSheetView()
+                    .interactiveDismissDisabled()
             }
             .task {
                 do {
@@ -56,7 +60,7 @@ struct HomeView: View {
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(showSignInSheet: .constant(false))
     }
 }
 
