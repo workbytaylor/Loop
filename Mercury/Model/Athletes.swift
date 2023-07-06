@@ -14,6 +14,7 @@ struct Athlete: Identifiable, Codable, Hashable {
     let lastName: String
     let country: String
     let gender: String
+    var isFavourite: Bool?
     
     var initials: String {
         let first = String(firstName.prefix(1))
@@ -31,9 +32,16 @@ struct Athlete: Identifiable, Codable, Hashable {
     }
 }
 
+struct Favourite: Identifiable, Codable, Hashable {
+    let id: UUID
+    let user_id: UUID
+    let athlete_id: UUID
+}
+
+
 class Athletes: ObservableObject {
     @Published var athletes: [Athlete] = []
-    @Published var userFavourites: [Athlete] = []
+    @Published var userFavourites: [Favourite] = []
     @Published var searchText: String = ""
     
     var searchedAthletes: [Athlete] {
@@ -47,9 +55,9 @@ class Athletes: ObservableObject {
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
     @MainActor
-    func fetchData() async throws {
+    func getAthletes(user_id: String?) async throws {
         do {
-            //get athlets from Supabase
+            //get athletes from Supabase
             let athletes: [Athlete] = try await client.database
                 .from("athletes")
                 .select()
@@ -61,14 +69,61 @@ class Athletes: ObservableObject {
         } catch {
             throw error
         }
+        
+        do {
+            //get user favourites
+            let favourites: [Favourite] = try await client.database
+                .from("favourites")
+                .select()
+                .eq(column: "user_id", value: user_id!) // can unwrap because this throws errors
+                .execute().value as [Favourite]
+            
+            self.userFavourites = favourites
+            
+            print(favourites)
+        } catch {
+            throw error
+        }
+        
+        //TODO: fix error
+        for var athlete in athletes {
+            if userFavourites.contains(athlete.id) {
+                athlete.isFavourite = true
+            }
+        }
+        
+        
+        
+        
+        
     }
     
+    @MainActor
+    func getFavourites(user_id: String?) async throws {
+        do {
+            let favourites: [Favourite] = try await client.database
+                .from("favourites")
+                .select()
+                .eq(column: "user_id", value: user_id!) // can unwrap because this throws errors
+                .execute().value as [Favourite]
+            
+            self.userFavourites = favourites
+            
+            print(favourites)
+            
+        } catch {
+            throw error
+        }
+    }
+    
+    
+    /*
     @MainActor
     func getFavourites() async throws {
         do {
             // get favourited athletes from supabase
             let favourites: [Athlete] = try await client.database
-                .from("userFavourites")
+                .from("favourites")
                 .select()
                 .execute().value as [Athlete]
             
@@ -80,6 +135,7 @@ class Athletes: ObservableObject {
             throw error
         }
     }
+     */
     /*
     @MainActor
     func addUserFavourite(athlete: Athlete) async throws {

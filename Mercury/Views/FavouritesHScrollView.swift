@@ -15,6 +15,7 @@ struct FavouritesHScrollView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
+                /*
                 ForEach(athletes.userFavourites) { athlete in
                     NavigationLink {
                         AthleteView(athlete: athlete)
@@ -32,13 +33,14 @@ struct FavouritesHScrollView: View {
                         }
                     }
                 }
+                */
                 FavouritesListButtonView()
             }
             .padding(.horizontal)
         }/*
         .task {
             do {
-                try await vm.getFavourites()
+                //try await vm.getFavourites()
             } catch {
                 print(error)
             }

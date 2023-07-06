@@ -36,6 +36,14 @@ struct MercuryApp: App {
             .preferredColorScheme(.light)
             .task {
                 do {
+                    try await athletes.getAthletes()
+                    try await athletes.getFavourites(user_id: session.user_id)
+                } catch {
+                    print(error)
+                }
+            }
+            .task {
+                do {
                     try await session.getSession()
                     session.loginStatus = .loggedIn
                 } catch {

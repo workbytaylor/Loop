@@ -19,7 +19,7 @@ struct FavouritesListRowView: View {
                 isFavourite.toggle()
                 //TODO: Add or remove from userFavourites table as required
             } label: {
-                Image(systemName: isFavourite == true ? "heart.fill" : "heart")
+                Image(systemName: athlete.isFavourite == true ? "heart.fill" : "heart")
                     .font(.title3)
             }
             
@@ -37,7 +37,7 @@ struct FavouritesListRowView: View {
         /*
         .task {
             do {
-                try await items.getFavourites()
+                //try await items.getFavourites()
                 //TODO: move this to listview for faster processing
                 //determines if an athlete is a favourite or not
                 if items.userFavourites.contains(where: {$0.id == athlete.id}) {
