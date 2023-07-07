@@ -72,25 +72,33 @@ class Athletes: ObservableObject {
         
         do {
             //get user favourites
-            let favourites: [Favourite] = try await client.database
+            let userFavourites: [Favourite] = try await client.database
                 .from("favourites")
                 .select()
                 .eq(column: "user_id", value: user_id!) // can unwrap because this throws errors
                 .execute().value as [Favourite]
             
-            self.userFavourites = favourites
+            self.userFavourites = userFavourites
             
-            print(favourites)
+            print(userFavourites)
+            
+            //TODO: fix error
+            for var athlete in athletes {
+                for favourite in userFavourites {
+                    if athlete.id == favourite.athlete_id {
+                        athlete.isFavourite = true
+                    }
+                }
+            }
+            
+            
+            
         } catch {
             throw error
         }
         
-        //TODO: fix error
-        for var athlete in athletes {
-            if userFavourites.contains(athlete.id) {
-                athlete.isFavourite = true
-            }
-        }
+        
+        
         
         
         
