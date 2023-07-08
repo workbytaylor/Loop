@@ -80,70 +80,32 @@ class Athletes: ObservableObject {
             
             self.userFavourites = userFavourites
             
-            print(userFavourites)
-            
-            //TODO: fix error
+            /*
             for var athlete in athletes {
                 for favourite in userFavourites {
                     if athlete.id == favourite.athlete_id {
                         athlete.isFavourite = true
+                        
+                        print(athlete)
+                        // need to update athlete in list of all athletes
+                    }
+                }
+            }
+            */
+            for (index, athlete) in athletes.enumerated() {
+                for favourite in userFavourites {
+                    if athlete.id == favourite.athlete_id {
+                        var updatedAthlete = athlete
+                        updatedAthlete.isFavourite = true
+                        self.athletes[index] = updatedAthlete
                     }
                 }
             }
             
-            
-            
-        } catch {
-            throw error
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-    }
-    
-    @MainActor
-    func getFavourites(user_id: String?) async throws {
-        do {
-            let favourites: [Favourite] = try await client.database
-                .from("favourites")
-                .select()
-                .eq(column: "user_id", value: user_id!) // can unwrap because this throws errors
-                .execute().value as [Favourite]
-            
-            self.userFavourites = favourites
-            
-            print(favourites)
-            
         } catch {
             throw error
         }
     }
-    
-    
-    /*
-    @MainActor
-    func getFavourites() async throws {
-        do {
-            // get favourited athletes from supabase
-            let favourites: [Athlete] = try await client.database
-                .from("favourites")
-                .select()
-                .execute().value as [Athlete]
-            
-            // add to list of userFavourites
-            // TODO: Add way to sort favourites so users can rearrange them
-            self.userFavourites = favourites
-            
-        } catch {
-            throw error
-        }
-    }
-     */
     /*
     @MainActor
     func addUserFavourite(athlete: Athlete) async throws {

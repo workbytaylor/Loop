@@ -11,7 +11,6 @@ import CoreData
 struct FavouritesListRowView: View {
     @State var athlete: Athlete
     @State private var isFavourite: Bool = false
-    @StateObject private var items = Athletes()
     
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
@@ -19,7 +18,7 @@ struct FavouritesListRowView: View {
                 isFavourite.toggle()
                 //TODO: Add or remove from userFavourites table as required
             } label: {
-                Image(systemName: athlete.isFavourite == true ? "heart.fill" : "heart")
+                Image(systemName: isFavourite == true ? "heart.fill" : "heart")
                     .font(.title3)
             }
             
@@ -28,26 +27,19 @@ struct FavouritesListRowView: View {
             } label: {
                 Text("\(athlete.firstName) \(athlete.lastName)")
                     .foregroundColor(.primary)
+                Text(String(athlete.isFavourite ?? false))
             }
             
             Text(athlete.country)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
-        /*
         .task {
-            do {
-                //try await items.getFavourites()
-                //TODO: move this to listview for faster processing
-                //determines if an athlete is a favourite or not
-                if items.userFavourites.contains(where: {$0.id == athlete.id}) {
-                    isFavourite = true
-                }
-            } catch {
-                print(error)
+            if athlete.isFavourite == true {
+                isFavourite = true
             }
         }
-         */
+         
     }
 }
 

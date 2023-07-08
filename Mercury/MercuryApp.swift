@@ -36,16 +36,9 @@ struct MercuryApp: App {
             .preferredColorScheme(.light)
             .task {
                 do {
-                    try await athletes.getAthletes(user_id: session.user_id)
-                    try await athletes.getFavourites(user_id: session.user_id)  // crashes because session.user_id is not yet fetched
-                } catch {
-                    print(error)
-                }
-            }
-            .task {
-                do {
                     try await session.getSession()
                     session.loginStatus = .loggedIn
+                    try await athletes.getAthletes(user_id: session.user_id)
                 } catch {
                     showSignInSheet = true
                     print(error)

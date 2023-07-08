@@ -63,16 +63,6 @@ struct FavouritesListView: View {
             SuggestionView()
                 .presentationDragIndicator(.visible)
         }
-        /*
-        .task {
-            do {
-                try await athletes.fetchData()
-                //try await athletes.getFavourites()    // why is this here?
-            } catch {
-                print(error)
-            }
-        }
-         */
         .navigationTitle("Favourites")
         .navigationBarTitleDisplayMode(.inline)
         /*
