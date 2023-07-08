@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AthleteView: View {
-    let athlete: Athlete
+    @State var athlete: Athlete
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
     @State private var isFavourite: Bool = false
@@ -53,6 +53,11 @@ struct AthleteView: View {
                 }
             }
              */
+        }
+        .task {
+            if athlete.isFavourite == true {
+                isFavourite = true
+            }
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

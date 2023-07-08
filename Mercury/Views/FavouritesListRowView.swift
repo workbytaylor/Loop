@@ -27,7 +27,6 @@ struct FavouritesListRowView: View {
             } label: {
                 Text("\(athlete.firstName) \(athlete.lastName)")
                     .foregroundColor(.primary)
-                Text(String(athlete.isFavourite ?? false))
             }
             
             Text(athlete.country)

@@ -9,8 +9,7 @@ import SwiftUI
 import CoreData
 
 struct FavouritesHScrollView: View {
-    @StateObject private var athletes = Athletes()
-    //likely a better way
+    @EnvironmentObject  var athletes: Athletes
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {

@@ -71,11 +71,11 @@ class Athletes: ObservableObject {
         }
         
         do {
-            //get user favourites
+            //get athlete_id for user favourites
             let userFavourites: [Favourite] = try await client.database
                 .from("favourites")
                 .select()
-                .eq(column: "user_id", value: user_id!) // can unwrap because this throws errors
+                .eq(column: "user_id", value: user_id!) // can unwrap because function throws errors
                 .execute().value as [Favourite]
             
             self.userFavourites = userFavourites
@@ -92,6 +92,8 @@ class Athletes: ObservableObject {
                 }
             }
             */
+            
+            // mark favourite athletes in list of all athletes
             for (index, athlete) in athletes.enumerated() {
                 for favourite in userFavourites {
                     if athlete.id == favourite.athlete_id {
@@ -101,6 +103,8 @@ class Athletes: ObservableObject {
                     }
                 }
             }
+            
+            // TODO: return list of favourite athletes
             
         } catch {
             throw error
