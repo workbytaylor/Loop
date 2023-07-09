@@ -40,16 +40,16 @@ struct Favourite: Identifiable, Codable, Hashable {
 
 
 class Athletes: ObservableObject {
-    @Published var athletes: [Athlete] = []     //TODO: Change to allAthletes
-    // TODO: Add @Published var favouriteAthletes: [Athlete] = []
+    @Published var allAthletes: [Athlete] = []     //TODO: Change to allAthletes
+    @Published var favouriteAthletes: [Athlete] = []
     @Published var userFavourites: [Favourite] = []
     @Published var searchText: String = ""
     
     var searchedAthletes: [Athlete] {
         if searchText.isEmpty {
-            return athletes
+            return allAthletes
         } else {
-            return athletes.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
+            return allAthletes.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
         }
     }
     
@@ -65,7 +65,7 @@ class Athletes: ObservableObject {
                 .order(column: "lastName", ascending: true)
                 .execute().value as [Athlete]
             
-            self.athletes = athletes
+            self.allAthletes = athletes
             
         } catch {
             throw error
@@ -81,27 +81,14 @@ class Athletes: ObservableObject {
             
             self.userFavourites = userFavourites
             
-            /*
-            for var athlete in athletes {
-                for favourite in userFavourites {
-                    if athlete.id == favourite.athlete_id {
-                        athlete.isFavourite = true
-                        
-                        print(athlete)
-                        // need to update athlete in list of all athletes
-                    }
-                }
-            }
-            */
-            
             // mark favourite athletes in list of all athletes
-            for (index, athlete) in athletes.enumerated() {
+            for (index, athlete) in allAthletes.enumerated() {
                 for favourite in userFavourites {
                     if athlete.id == favourite.athlete_id {
                         var updatedAthlete = athlete
                         updatedAthlete.isFavourite = true
-                        self.athletes[index] = updatedAthlete
-                        //TODO: self.favouriteAthletes.append(athlete)  // creates list of favourite athletes only
+                        self.allAthletes[index] = updatedAthlete
+                        self.favouriteAthletes.append(athlete)  // creates list of favourite athletes only
                     }
                 }
             }
@@ -110,25 +97,20 @@ class Athletes: ObservableObject {
             throw error
         }
     }
-    /*
+    
     @MainActor
-    func addUserFavourite(athlete: Athlete) async throws {
-        do {
-            //TODO: code to add favourite
-            // what kind of relationship am I creating between users and athletes? many to many? one to many?
-            let selectedAthlete = Athlete(id: athlete.id,
-                                        firstName: athlete.firstName,
-                                        lastName: athlete.lastName,
-                                        country: athlete.country,
-                                        gender: athlete.gender)
-            
-            let userId = Constants.testUserId
-            
-        } catch {
-            throw error
-        }
+    func addFavourite() async throws {
+        // TODO: add athlete_id and user_id to favourites table
+        // TODO: Mark athlete as favourite / refresh favourites?
+        // TODO: append athlete to favouriteAthletes
     }
-    */
+    
+    @MainActor
+    func removeFavourite() async throws {
+        // TODO: remove athlete_id and user_id from favourites table
+        // TODO: unmark athlete as favourite / refresh favourites?
+        // TODO: delete athlete from favouriteAthletes
+    }
     
 }
 

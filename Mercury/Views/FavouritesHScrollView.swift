@@ -13,8 +13,8 @@ struct FavouritesHScrollView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                /*
-                ForEach(athletes.userFavourites) { athlete in
+                
+                ForEach(athletes.favouriteAthletes) { athlete in
                     NavigationLink {
                         AthleteView(athlete: athlete)
                     } label: {
@@ -31,7 +31,7 @@ struct FavouritesHScrollView: View {
                         }
                     }
                 }
-                */
+                
                 FavouritesListButtonView()
             }
             .padding(.horizontal)
