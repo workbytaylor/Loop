@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct FavouritesHScrollView: View {
     @EnvironmentObject  var athletes: Athletes

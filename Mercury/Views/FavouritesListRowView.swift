@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct FavouritesListRowView: View {
     @State var athlete: Athlete

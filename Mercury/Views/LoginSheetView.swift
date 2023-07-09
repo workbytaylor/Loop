@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-//TODO: class LogInViewModel
-// start video at 27:07
-
 @MainActor
 class SignInViewModel: ObservableObject {
     let signInApple = SignInApple()

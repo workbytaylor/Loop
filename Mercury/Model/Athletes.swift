@@ -40,7 +40,8 @@ struct Favourite: Identifiable, Codable, Hashable {
 
 
 class Athletes: ObservableObject {
-    @Published var athletes: [Athlete] = []
+    @Published var athletes: [Athlete] = []     //TODO: Change to allAthletes
+    // TODO: Add @Published var favouriteAthletes: [Athlete] = []
     @Published var userFavourites: [Favourite] = []
     @Published var searchText: String = ""
     
@@ -100,11 +101,10 @@ class Athletes: ObservableObject {
                         var updatedAthlete = athlete
                         updatedAthlete.isFavourite = true
                         self.athletes[index] = updatedAthlete
+                        //TODO: self.favouriteAthletes.append(athlete)  // creates list of favourite athletes only
                     }
                 }
             }
-            
-            // TODO: return list of favourite athletes
             
         } catch {
             throw error
