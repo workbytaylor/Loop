@@ -25,11 +25,9 @@ final class Session: ObservableObject {
     func getSession() async throws {
         do {
             let session = try await client.auth.session
+            self.loginStatus = .loggedIn
             self.user_id = session.user.id.uuidString
             self.email = session.user.email
-            
-            //print(user_id ?? "No user_id")  //print user_id if logged in, otherwise "No user_id"
-            //print(email ?? "No user email")
             
             print(loginStatus)
             print(email as Any)

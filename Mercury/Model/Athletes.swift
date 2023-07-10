@@ -14,7 +14,7 @@ struct Athlete: Identifiable, Codable, Hashable {
     let lastName: String
     let country: String
     let gender: String
-    var isFavourite: Bool?
+    var isFavourite: Bool? = false
     
     var initials: String {
         let first = String(firstName.prefix(1))
@@ -33,7 +33,7 @@ struct Athlete: Identifiable, Codable, Hashable {
 }
 
 struct Favourite: Identifiable, Codable, Hashable {
-    let id: UUID
+    let id: UUID?
     let user_id: UUID
     let athlete_id: UUID
 }
@@ -99,19 +99,36 @@ class Athletes: ObservableObject {
     }
     
     @MainActor
-    func addFavourite(athlete: inout Athlete) async throws {
+    func addFavourite(athlete: Athlete, user_id: UUID) async throws {
         // TODO: add athlete_id and user_id to favourites table
-        athlete.isFavourite? = true
-        
-        
-        
-        // TODO: Mark athlete as favourite / refresh favourites?
-        // TODO: append athlete to favouriteAthletes
+        do {
+            let favouriteToAdd = Favourite(id: nil,
+                                           user_id: user_id,
+                                           athlete_id: athlete.id)
+            try await client.database
+                .from("favourites")
+                .insert(values: favouriteToAdd)
+                .execute()
+        } catch {
+            throw error
+        }
     }
     
     @MainActor
-    func removeFavourite() async throws {
+    func removeFavourite(athlete_id: UUID) async throws {
         // TODO: remove athlete_id and user_id from favourites table
+        do {
+            try await client.database
+                .from("favourites")
+                .delete()
+                .eq(column: "athlete_id", value: athlete_id.uuidString)
+                .execute()
+        } catch {
+            throw error
+        }
+        
+        
+        
         // TODO: unmark athlete as favourite / refresh favourites?
         // TODO: delete athlete from favouriteAthletes
     }

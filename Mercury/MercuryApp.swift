@@ -44,6 +44,7 @@ struct MercuryApp: App {
                     print(error)
                 }
             }
+            // TODO: .onchange of loginstate?????? to fetch favourites on login
         }
     }
 }

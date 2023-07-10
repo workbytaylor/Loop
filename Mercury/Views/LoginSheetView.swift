@@ -37,6 +37,7 @@ struct LoginSheetView: View {
                 }
                 
                 Button {
+                    // TODO: On login, fetch favourites, ie run the same code as on startup
                     Task {
                         do {    // order is very important: action, state change, get session
                             try await viewModel.SignInWithApple()
@@ -69,7 +70,6 @@ struct LoginSheetView: View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
                         dismiss()
-                        //showLogin = false
                     } label: {
                         Image(systemName: "xmark")
                     }
