@@ -99,8 +99,12 @@ class Athletes: ObservableObject {
     }
     
     @MainActor
-    func addFavourite() async throws {
+    func addFavourite(athlete: inout Athlete) async throws {
         // TODO: add athlete_id and user_id to favourites table
+        athlete.isFavourite? = true
+        
+        
+        
         // TODO: Mark athlete as favourite / refresh favourites?
         // TODO: append athlete to favouriteAthletes
     }

@@ -9,15 +9,20 @@ import SwiftUI
 
 struct FavouritesListRowView: View {
     @State var athlete: Athlete
-    @State private var isFavourite: Bool = false
     
     var body: some View {
         HStack(alignment: .firstTextBaseline) {
             Button {
-                isFavourite.toggle()
+                athlete.isFavourite?.toggle()
+                
+                
                 //TODO: Add or remove from userFavourites table as required
+                
+                
+                
+                
             } label: {
-                Image(systemName: isFavourite == true ? "heart.fill" : "heart")
+                Image(systemName: athlete.isFavourite == true ? "heart.fill" : "heart")
                     .font(.title3)
             }
             
@@ -32,12 +37,6 @@ struct FavouritesListRowView: View {
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
-        .task {
-            if athlete.isFavourite == true {
-                isFavourite = true
-            }
-        }
-         
     }
 }
 
