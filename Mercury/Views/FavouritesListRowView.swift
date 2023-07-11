@@ -21,6 +21,11 @@ struct FavouritesListRowView: View {
                     Task {
                         // mark not favourite
                         athlete.isFavourite = false
+                        // TODO: athlete fav status marked only in @State, which is destroyed as soon as you navigate to new sccreen. Need to update fav status in athletes for all cases.
+                        // either lookup the athlete or replace it on dismiss
+                        
+                        
+                        
                         // remove from favourites in swift
                         athletes.favouriteAthletes.removeAll { $0.id == athlete.id }
                         // remove from favourites table in supabase
@@ -65,6 +70,7 @@ struct FavouritesListRowView: View {
     }
 }
 
+
 struct FavouritesListRowView_Previews: PreviewProvider {
     static var previews: some View {
         FavouritesListRowView(athlete: Athlete(
@@ -72,9 +78,11 @@ struct FavouritesListRowView_Previews: PreviewProvider {
             firstName: "Taylor",
             lastName: "Schaefer",
             country: "Canada",
-            gender: "male"
+            gender: "male",
+            isPopular: false
         ))
         .padding()
     }
 }
+
 

@@ -14,7 +14,8 @@ struct Athlete: Identifiable, Codable, Hashable {
     let lastName: String
     let country: String
     let gender: String
-    var isFavourite: Bool? = false
+    var isFavourite: Bool? = false  // remove false?
+    let isPopular: Bool?
     
     var initials: String {
         let first = String(firstName.prefix(1))
@@ -34,7 +35,7 @@ struct Athlete: Identifiable, Codable, Hashable {
 
 struct Favourite: Identifiable, Codable, Hashable {
     let id: UUID?
-    let user_id: UUID
+    let user_id: UUID?
     let athlete_id: UUID
 }
 
@@ -47,7 +48,7 @@ class Athletes: ObservableObject {
     
     var searchedAthletes: [Athlete] {
         if searchText.isEmpty {
-            return allAthletes
+            return allAthletes.filter {$0.isPopular == true}
         } else {
             return allAthletes.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
         }

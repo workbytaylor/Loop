@@ -76,7 +76,12 @@ struct AthleteView: View {
 struct AthleteThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AthleteView(athlete: Athlete(id: UUID(), firstName: "Taylor", lastName: "Schaefer", country: "Caanda", gender: "male"))
+            AthleteView(athlete: Athlete(id: UUID(),
+                                         firstName: "Taylor",
+                                         lastName: "Schaefer",
+                                         country: "Caanda",
+                                         gender: "male",
+                                         isPopular: false))
         }
     }
 }
