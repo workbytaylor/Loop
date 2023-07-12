@@ -83,7 +83,7 @@ class Athletes: ObservableObject {
             self.userFavourites = userFavourites
             
             // mark favourite athletes in list of all athletes
-            for (index, athlete) in allAthletes.enumerated() {
+            for (index, athlete) in zip(allAthletes.indices, allAthletes) { // formerly: for (index, athlete) in allAthletes.enumerated() {
                 for favourite in userFavourites {
                     if athlete.id == favourite.athlete_id {
                         var updatedAthlete = athlete
