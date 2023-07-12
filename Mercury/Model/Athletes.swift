@@ -14,8 +14,9 @@ struct Athlete: Identifiable, Codable, Hashable {
     let lastName: String
     let country: String
     let gender: String
-    var isFavourite: Bool? = false  // remove false?
+    var isFavourite: Bool?
     let isPopular: Bool?
+    let index: Int? // find way to index all athletes for easy reference later?
     
     var initials: String {
         let first = String(firstName.prefix(1))
@@ -41,17 +42,20 @@ struct Favourite: Identifiable, Codable, Hashable {
 
 
 class Athletes: ObservableObject {
-    @Published var allAthletes: [Athlete] = []     //TODO: Change to allAthletes
-    @Published var favouriteAthletes: [Athlete] = []
+    @Published var allAthletes: [Athlete] = []
     @Published var userFavourites: [Favourite] = []
     @Published var searchText: String = ""
     
     var searchedAthletes: [Athlete] {
         if searchText.isEmpty {
-            return allAthletes.filter {$0.isPopular == true}
+            return allAthletes//.filter {$0.isPopular == true}
         } else {
             return allAthletes.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
         }
+    }
+    
+    var favouriteAthletes: [Athlete] {
+        return allAthletes.filter {$0.isFavourite == true}
     }
     
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
@@ -89,7 +93,7 @@ class Athletes: ObservableObject {
                         var updatedAthlete = athlete
                         updatedAthlete.isFavourite = true
                         self.allAthletes[index] = updatedAthlete
-                        self.favouriteAthletes.append(athlete)  // creates list of favourite athletes only
+                        //self.favouriteAthletes.append(athlete)  // creates list of favourite athletes only
                     }
                 }
             }

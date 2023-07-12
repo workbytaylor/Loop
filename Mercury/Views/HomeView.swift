@@ -34,6 +34,7 @@ struct HomeView: View {
             .sheet(isPresented: $showSignInSheet) {
                 LoginSheetView()
                     .interactiveDismissDisabled()
+                // TODO: on dismiss, run .task {} shown in MercuryApp
             }
             .task {
                 do {

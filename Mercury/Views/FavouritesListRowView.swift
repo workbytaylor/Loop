@@ -19,48 +19,19 @@ struct FavouritesListRowView: View {
                 
                 switch athlete.isFavourite {
                 case true?:
-                    Task {
-                        // mark not favourite
-                        //athlete.isFavourite = false
-                        // TODO: athlete fav status marked only in @State, which is destroyed as soon as you navigate to new sccreen. Need to update fav status in athletes for all cases.
-                        // either lookup the athlete or replace it on dismiss
-                        athletes.allAthletes[index].isFavourite = false
-                        
-                        
-                        // remove from favourites in swift
-                        athletes.favouriteAthletes.removeAll { $0.id == athlete.id }
-                        // remove from favourites table in supabase
-                        try await athletes.removeFavourite(athlete_id: athlete.id)
-                    }
+                    deleteFavourite()
                 case false?:
-                    Task {
-                        // mark favourite
-                        //athlete.isFavourite = true
-                        athletes.allAthletes[index].isFavourite = true
-                        athletes.favouriteAthletes.append(athlete)
-                        // add to favourites table
-                        try await athletes.addFavourite(athlete: athlete, user_id: UUID(uuidString: session.user_id!)!)
-                    }
-                    
-                    
+                    addFavourite()
                 case .none:
-                    Task {
-                        // mark favourite
-                        //athlete.isFavourite = true
-                        athletes.allAthletes[index].isFavourite = true
-                        athletes.favouriteAthletes.append(athlete)
-                        // add to favourites table
-                        try await athletes.addFavourite(athlete: athlete, user_id: UUID(uuidString: session.user_id!)!)
-                    }
+                    addFavourite()
                 }
-                
             } label: {
                 Image(systemName: athlete.isFavourite == true ? "heart.fill" : "heart")
                     .font(.title3)
             }
             
             NavigationLink {
-                AthleteView(athlete: athlete)
+                AthleteView(athlete: athlete, index: index)
             } label: {
                 Text("\(athlete.firstName) \(athlete.lastName)")
                     .foregroundColor(.primary)
@@ -71,6 +42,30 @@ struct FavouritesListRowView: View {
                 .foregroundStyle(.secondary)
         }
     }
+    
+    private func addFavourite() {
+        Task {
+            // mark favourite
+            athlete.isFavourite = true
+            athletes.allAthletes[index].isFavourite = true
+            
+            // add to favourites table
+            try await athletes.addFavourite(athlete: athlete, user_id: UUID(uuidString: session.user_id!)!)
+        }
+    }
+    
+    private func deleteFavourite() {
+        Task {
+            // mark not favourite
+            athlete.isFavourite = false
+            athletes.allAthletes[index].isFavourite = false
+            
+            // remove from favourites table in supabase
+            try await athletes.removeFavourite(athlete_id: athlete.id)
+        }
+    }
+    
+    
 }
 
 

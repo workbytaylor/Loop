@@ -43,7 +43,7 @@ struct LoginSheetView: View {
                             try await viewModel.SignInWithApple()
                             session.loginStatus = .loggedIn
                             try await session.getSession()
-                            
+                            dismiss()   // careful this doesn't cause errors
                         } catch {
                             print(error)
                         }
