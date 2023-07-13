@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AthleteView: View {
-    @State var athlete: Athlete
+    @State var index: Int
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
     @State private var isFavourite: Bool = false
@@ -18,13 +18,13 @@ struct AthleteView: View {
     
     var body: some View {
         VStack {
-            Text(athlete.initials)
+            Text(athletes.all[index].initials)
                 .foregroundColor(.white)
                 .font(.headline)
                 .frame(width: 50, height: 50)
                 .background(Color.gray)
                 .clipShape(Circle())
-            Text(athlete.fullName)
+            Text(athletes.all[index].fullName)
                 .font(.headline)
             
             ScrollView {
@@ -57,7 +57,7 @@ struct AthleteView: View {
              */
         }
         .task {
-            if athlete.isFavourite == true {
+            if athletes.all[index].isFavourite == true {
                 isFavourite = true
             }
         }
@@ -65,7 +65,7 @@ struct AthleteView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     
-                    switch athlete.isFavourite {
+                    switch athletes.all[index].isFavourite {
                     case true?:
                         deleteFavourite()
                     case false?:
@@ -87,23 +87,23 @@ struct AthleteView: View {
     private func addFavourite() {
         Task {
             // mark favourite
-            athlete.isFavourite = true
-            if let index = athlete.index {
-                athletes.allAthletes[index].isFavourite = true
-            }
+            athletes.all[index].isFavourite = true
+            //if let index = athlete.index {
+              //  athletes.allAthletes[index].isFavourite = true
+            //}
             
             // add to favourites table
-            try await athletes.addFavourite(athlete: athlete, user_id: UUID(uuidString: session.user_id!)!)
+            try await athletes.addFavourite(athlete: athletes.all[index], user_id: UUID(uuidString: session.user_id!)!) // pass index only? modify function in athletes? same for below?
         }
     }
     
     private func deleteFavourite() {
         Task {
             // mark not favourite
-            athlete.isFavourite = false
-            if let index = athlete.index {
-                athletes.allAthletes[index].isFavourite = false
-            }
+            athletes.all[index].isFavourite = false
+            //if let index = athlete.index {
+              //  athletes.allAthletes[index].isFavourite = false
+            //}
             
             // remove from favourites table in supabase
             try await athletes.removeFavourite(athlete_id: athlete.id)
@@ -116,7 +116,8 @@ struct AthleteView: View {
 struct AthleteThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AthleteView(athlete: Athlete(id: UUID(),
+            AthleteView(index: 0,
+                        athletes: Athlete(id: UUID(),
                                          firstName: "Taylor",
                                          lastName: "Schaefer",
                                          country: "Caanda",

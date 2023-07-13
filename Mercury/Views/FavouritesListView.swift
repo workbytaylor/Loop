@@ -10,8 +10,8 @@ import SwiftUI
 struct FavouritesListView: View {
     @EnvironmentObject var athletes: Athletes
     @State private var isPresented: Bool = false
-    @State private var sort: Int = 0
-    @State private var filter: Int = 0
+    //@State private var sort: Int = 0
+    //@State private var filter: Int = 0
     //private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
     var body: some View {
@@ -20,7 +20,7 @@ struct FavouritesListView: View {
             ScrollView {
                 LazyVStack(alignment: .leading) {
                     ForEach(athletes.searchedAthletes, id: \.id) { athlete in
-                        FavouritesListRowView(athlete: athlete)
+                        FavouritesListRowView(athleteIndex: athlete.index!) // consider changing to ??
                             .padding()
                     }
                 }

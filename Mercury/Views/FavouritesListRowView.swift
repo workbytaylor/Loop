@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct FavouritesListRowView: View {
-    @State var athlete: Athlete // remove athlete? update everywhere on edit // consider favourites only as id of each athlete - fetch each time?
+    @State var index: Int // remove athlete? update everywhere on edit // consider favourites only as id of each athlete - fetch each time?
     //@State var index: Int
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
@@ -17,7 +17,7 @@ struct FavouritesListRowView: View {
         HStack(alignment: .firstTextBaseline) {
             Button {
                 
-                switch athlete.isFavourite {
+                switch athletes.all[index].isFavourite {
                 case true?:
                     deleteFavourite()
                 case false?:
@@ -26,18 +26,18 @@ struct FavouritesListRowView: View {
                     addFavourite()
                 }
             } label: {
-                Image(systemName: athlete.isFavourite == true ? "heart.fill" : "heart")
+                Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
                     .font(.title3)
             }
             
             NavigationLink {
-                AthleteView(athlete: athlete)
+                AthleteView(index: index)
             } label: {
-                Text("\(athlete.firstName) \(athlete.lastName)")
+                Text("\(athletes.all[index].firstName) \(athletes.all[index].lastName)")
                     .foregroundColor(.primary)
             }
             
-            Text(athlete.country)
+            Text(athletes.all[index].country)
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
         }
@@ -67,8 +67,6 @@ struct FavouritesListRowView: View {
             try await athletes.removeFavourite(athlete_id: athlete.id)
         }
     }
-    
-    
 }
 
 

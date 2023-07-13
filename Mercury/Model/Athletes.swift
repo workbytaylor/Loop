@@ -16,7 +16,7 @@ struct Athlete: Identifiable, Codable, Hashable {
     let gender: String
     var isFavourite: Bool?
     let isPopular: Bool?
-    var index: Int? // find way to index all athletes for easy reference later?
+    var index: Int?
     
     var initials: String {
         let first = String(firstName.prefix(1))
@@ -42,20 +42,20 @@ struct Favourite: Identifiable, Codable, Hashable {
 
 
 class Athletes: ObservableObject {
-    @Published var allAthletes: [Athlete] = []
-    @Published var userFavourites: [Favourite] = []
+    @Published var all: [Athlete] = []
+    @Published var userFavouriteIDs: [Favourite] = []
     @Published var searchText: String = ""
     
     var searchedAthletes: [Athlete] {
         if searchText.isEmpty {
-            return allAthletes//.filter {$0.isPopular == true}
+            return all//.filter {$0.isPopular == true}
         } else {
-            return allAthletes.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
+            return all.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
         }
     }
     
     var favouriteAthletes: [Athlete] {
-        return allAthletes.filter {$0.isFavourite == true}
+        return all.filter { $0.isFavourite == true }
     }
     
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
@@ -70,7 +70,7 @@ class Athletes: ObservableObject {
                 .order(column: "lastName", ascending: true)
                 .execute().value as [Athlete]
             
-            self.allAthletes = athletes
+            self.all = athletes
             
         } catch {
             throw error
@@ -84,13 +84,13 @@ class Athletes: ObservableObject {
                 .eq(column: "user_id", value: user_id!) // can unwrap because function throws errors
                 .execute().value as [Favourite]
             
-            self.userFavourites = userFavourites
+            self.userFavouriteIDs = userFavourites
             
             // mark favourite athletes in list of all athletes
-            for (index, athlete) in zip(allAthletes.indices, allAthletes) {
+            for (index, athlete) in zip(all.indices, all) {
                 var updatedAthlete = athlete
                 updatedAthlete.index = index
-                self.allAthletes[index] = updatedAthlete
+                self.all[index] = updatedAthlete
                 
                 //print(index, athlete)
                 
@@ -98,7 +98,7 @@ class Athletes: ObservableObject {
                     if athlete.id == favourite.athlete_id {
                         var updatedAthlete = athlete
                         updatedAthlete.isFavourite = true
-                        self.allAthletes[index] = updatedAthlete                    }
+                        self.all[index] = updatedAthlete                    }
                 }
             }
             
