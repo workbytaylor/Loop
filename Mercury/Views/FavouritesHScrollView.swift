@@ -16,7 +16,7 @@ struct FavouritesHScrollView: View {
                 
                 ForEach(athletes.favouriteAthletes) { athlete in
                     NavigationLink {
-                        AthleteView(athlete: athlete, index: <#Int#>)
+                        AthleteView(athlete: athlete)
                     } label: {
                         VStack {
                             Text(athlete.initials)

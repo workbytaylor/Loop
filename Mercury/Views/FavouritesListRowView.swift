@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FavouritesListRowView: View {
     @State var athlete: Athlete // remove athlete? update everywhere on edit // consider favourites only as id of each athlete - fetch each time?
-    @State var index: Int
+    //@State var index: Int
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
     
@@ -31,7 +31,7 @@ struct FavouritesListRowView: View {
             }
             
             NavigationLink {
-                AthleteView(athlete: athlete, index: index)
+                AthleteView(athlete: athlete)
             } label: {
                 Text("\(athlete.firstName) \(athlete.lastName)")
                     .foregroundColor(.primary)
@@ -47,8 +47,9 @@ struct FavouritesListRowView: View {
         Task {
             // mark favourite
             athlete.isFavourite = true
-            athletes.allAthletes[index].isFavourite = true
-            
+            if let index = athlete.index {
+                athletes.allAthletes[index].isFavourite = true
+            }
             // add to favourites table
             try await athletes.addFavourite(athlete: athlete, user_id: UUID(uuidString: session.user_id!)!)
         }
@@ -58,7 +59,9 @@ struct FavouritesListRowView: View {
         Task {
             // mark not favourite
             athlete.isFavourite = false
-            athletes.allAthletes[index].isFavourite = false
+            if let index = athlete.index {
+                athletes.allAthletes[index].isFavourite = false
+            }
             
             // remove from favourites table in supabase
             try await athletes.removeFavourite(athlete_id: athlete.id)
@@ -77,9 +80,9 @@ struct FavouritesListRowView_Previews: PreviewProvider {
             lastName: "Schaefer",
             country: "Canada",
             gender: "male",
-            isPopular: false
-        ),
-                              index: 0)
+            isPopular: false,
+            index: nil
+        ))
         .padding()
     }
 }

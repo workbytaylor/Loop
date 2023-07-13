@@ -19,8 +19,8 @@ struct FavouritesListView: View {
         //HStack {
             ScrollView {
                 LazyVStack(alignment: .leading) {
-                    ForEach(Array(zip(athletes.searchedAthletes.indices, athletes.searchedAthletes)), id: \.1.id) { index, athlete in
-                        FavouritesListRowView(athlete: athlete, index: index)
+                    ForEach(athletes.searchedAthletes, id: \.id) { athlete in
+                        FavouritesListRowView(athlete: athlete)
                             .padding()
                     }
                 }

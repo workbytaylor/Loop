@@ -16,7 +16,7 @@ struct Athlete: Identifiable, Codable, Hashable {
     let gender: String
     var isFavourite: Bool?
     let isPopular: Bool?
-    let index: Int? // find way to index all athletes for easy reference later?
+    var index: Int? // find way to index all athletes for easy reference later?
     
     var initials: String {
         let first = String(firstName.prefix(1))
@@ -87,14 +87,18 @@ class Athletes: ObservableObject {
             self.userFavourites = userFavourites
             
             // mark favourite athletes in list of all athletes
-            for (index, athlete) in zip(allAthletes.indices, allAthletes) { // formerly: for (index, athlete) in allAthletes.enumerated() {
+            for (index, athlete) in zip(allAthletes.indices, allAthletes) {
+                var updatedAthlete = athlete
+                updatedAthlete.index = index
+                self.allAthletes[index] = updatedAthlete
+                
+                //print(index, athlete)
+                
                 for favourite in userFavourites {
                     if athlete.id == favourite.athlete_id {
                         var updatedAthlete = athlete
                         updatedAthlete.isFavourite = true
-                        self.allAthletes[index] = updatedAthlete
-                        //self.favouriteAthletes.append(athlete)  // creates list of favourite athletes only
-                    }
+                        self.allAthletes[index] = updatedAthlete                    }
                 }
             }
             

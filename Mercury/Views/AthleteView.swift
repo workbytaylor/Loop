@@ -13,7 +13,6 @@ struct AthleteView: View {
     @State private var selectedStory: String = ""
     @State private var isFavourite: Bool = false
     @ObservedObject private var feed = Stories()
-    @State var index: Int
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
     
@@ -89,7 +88,9 @@ struct AthleteView: View {
         Task {
             // mark favourite
             athlete.isFavourite = true
-            athletes.allAthletes[index].isFavourite = true
+            if let index = athlete.index {
+                athletes.allAthletes[index].isFavourite = true
+            }
             
             // add to favourites table
             try await athletes.addFavourite(athlete: athlete, user_id: UUID(uuidString: session.user_id!)!)
@@ -100,7 +101,9 @@ struct AthleteView: View {
         Task {
             // mark not favourite
             athlete.isFavourite = false
-            athletes.allAthletes[index].isFavourite = false
+            if let index = athlete.index {
+                athletes.allAthletes[index].isFavourite = false
+            }
             
             // remove from favourites table in supabase
             try await athletes.removeFavourite(athlete_id: athlete.id)
@@ -118,8 +121,8 @@ struct AthleteThumbnailView_Previews: PreviewProvider {
                                          lastName: "Schaefer",
                                          country: "Caanda",
                                          gender: "male",
-                                         isPopular: false),
-                        index: 0)
+                                         isPopular: false,
+                                         index: nil))
         }
     }
 }
