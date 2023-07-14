@@ -8,23 +8,22 @@
 import SwiftUI
 
 struct AthleteView: View {
-    @State var index: Int
+    @State var athlete: Athlete
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
-    @State private var isFavourite: Bool = false
     @ObservedObject private var feed = Stories()
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
     
     var body: some View {
         VStack {
-            Text(athletes.all[index].initials)
+            Text(athlete.initials)
                 .foregroundColor(.white)
                 .font(.headline)
                 .frame(width: 50, height: 50)
                 .background(Color.gray)
                 .clipShape(Circle())
-            Text(athletes.all[index].fullName)
+            Text(athlete.fullName)
                 .font(.headline)
             
             ScrollView {
@@ -56,29 +55,27 @@ struct AthleteView: View {
             }
              */
         }
-        .task {
-            if athletes.all[index].isFavourite == true {
-                isFavourite = true
-            }
-        }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    
-                    switch athletes.all[index].isFavourite {
-                    case true?:
-                        deleteFavourite()
-                    case false?:
-                        addFavourite()
-                    case .none:
-                        addFavourite()
+                    if let index = athlete.index {
+                        switch athletes.all[index].isFavourite {
+                        case true?:
+                            deleteFavourite()
+                        case false?:
+                            addFavourite()
+                        case .none:
+                            addFavourite()
+                        }
+                    } else {
+                        // show notification to sign up
                     }
-                    
-                    
                     //isFavourite.toggle()
                     //TODO: Add or remove from userFavourites table as required
                 } label: {
-                    Image(systemName: isFavourite == true ? "heart.fill" : "heart")
+                    if let index = athlete.index {
+                        Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
+                    }
                 }
             }
         }
@@ -86,24 +83,23 @@ struct AthleteView: View {
     
     private func addFavourite() {
         Task {
-            // mark favourite
-            athletes.all[index].isFavourite = true
-            //if let index = athlete.index {
-              //  athletes.allAthletes[index].isFavourite = true
-            //}
-            
-            // add to favourites table
-            try await athletes.addFavourite(athlete: athletes.all[index], user_id: UUID(uuidString: session.user_id!)!) // pass index only? modify function in athletes? same for below?
+            if let index = athlete.index {
+                // mark favourite
+                athletes.all[index].isFavourite = true
+                
+                // add to favourites table
+                // TODO: crashes if user not logged in?
+                try await athletes.addFavourite(athlete: index, user_id: UUID(uuidString: session.user_id!)!)
+            }
         }
     }
     
     private func deleteFavourite() {
         Task {
             // mark not favourite
-            athletes.all[index].isFavourite = false
-            //if let index = athlete.index {
-              //  athletes.allAthletes[index].isFavourite = false
-            //}
+            if let index = athlete.index {
+                athletes.all[index].isFavourite = false
+            }
             
             // remove from favourites table in supabase
             try await athletes.removeFavourite(athlete_id: athlete.id)
@@ -116,14 +112,12 @@ struct AthleteView: View {
 struct AthleteThumbnailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            AthleteView(index: 0,
-                        athletes: Athlete(id: UUID(),
+            AthleteView(athlete: Athlete(id: UUID(),
                                          firstName: "Taylor",
                                          lastName: "Schaefer",
-                                         country: "Caanda",
+                                         country: "Canada",
                                          gender: "male",
-                                         isPopular: false,
-                                         index: nil))
+                                         isPopular: true))
         }
     }
 }

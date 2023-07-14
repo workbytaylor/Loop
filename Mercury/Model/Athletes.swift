@@ -13,7 +13,7 @@ struct Athlete: Identifiable, Codable, Hashable {
     let firstName: String
     let lastName: String
     let country: String
-    let gender: String
+    let gender: String  // male, female, non-binary
     var isFavourite: Bool?
     let isPopular: Bool?
     var index: Int?
@@ -108,12 +108,12 @@ class Athletes: ObservableObject {
     }
     
     @MainActor
-    func addFavourite(athlete: Athlete, user_id: UUID) async throws {
+    func addFavourite(athlete: Int, user_id: UUID) async throws {
         // TODO: add athlete_id and user_id to favourites table
         do {
             let favouriteToAdd = Favourite(id: nil,
                                            user_id: user_id,
-                                           athlete_id: athlete.id)
+                                           athlete_id: self.all[athlete].id)
             try await client.database
                 .from("favourites")
                 .insert(values: favouriteToAdd)

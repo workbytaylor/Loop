@@ -15,12 +15,11 @@ struct FavouritesListView: View {
     //private let letters = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     
     var body: some View {
-        
         //HStack {
             ScrollView {
                 LazyVStack(alignment: .leading) {
                     ForEach(athletes.searchedAthletes, id: \.id) { athlete in
-                        FavouritesListRowView(athleteIndex: athlete.index!) // consider changing to ??
+                        FavouritesListRowView(athlete: athlete) // consider changing to ??
                             .padding()
                     }
                 }
