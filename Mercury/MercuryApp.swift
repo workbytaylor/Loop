@@ -37,10 +37,9 @@ struct MercuryApp: App {
             .task {
                 do {
                     try await session.getSession()
-                    print("successfully retrieved session")
                     session.loginStatus = .loggedIn
                     try await athletes.getAthletes(user_id: session.user_id)    // if user is loggedIn, marks favourite athletes
-                    print(athletes)
+                    //print(athletes.all)
                 } catch {
                     showSignInSheet = true
                     print(error)

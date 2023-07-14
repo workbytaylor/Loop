@@ -27,11 +27,10 @@ struct FavouritesListRowView: View {
                 }
                 
             } label: {
-                if let index = athlete.index {
-                    Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
+                //if let index = athlete.index {
+                Image(systemName: athletes.all[athlete.index!].isFavourite == true ? "heart.fill" : "heart")
                         .font(.title3)
-                }
-                    
+                //}
             }
             
             NavigationLink {

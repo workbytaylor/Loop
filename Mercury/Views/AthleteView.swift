@@ -10,24 +10,37 @@ import SwiftUI
 struct AthleteView: View {
     @State var athlete: Athlete
     @State private var isPresented: Bool = false
+    @State private var selectedPage: Page = .info
     @State private var selectedStory: String = ""
     @ObservedObject private var feed = Stories()
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
     
+    enum Page: String, CaseIterable, Identifiable {
+        var id: Self { self }
+        case stories
+        case info
+    }
+    
     var body: some View {
         VStack {
             Text(athlete.initials)
                 .foregroundColor(.white)
-                .font(.headline)
-                .frame(width: 50, height: 50)
+                .font(.largeTitle)
+                .padding()
                 .background(Color.gray)
                 .clipShape(Circle())
-            Text(athlete.fullName)
-                .font(.headline)
+            
+            Picker("Context", selection: $selectedPage) {
+                ForEach(Page.allCases) { page in
+                    Text(page.rawValue.capitalized)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding()
             
             ScrollView {
-                Text("placeholder to test scrolling")
+                // TODO: Update feed to show stories
                 ForEach(feed.all, id: \.link) { story in
                     Button {
                         isPresented.toggle()
@@ -39,22 +52,27 @@ struct AthleteView: View {
                     .padding(.bottom).padding(.bottom)
                 }
             }
-            /*
-             // get stories tagged with this athlete
-            .task {
-                do {
-                    try await feed.getStories()
-                } catch {
-                    print(error)
-                }
-            }
-            .fullScreenCover(isPresented: $isPresented) {
-                NavigationStack {
-                    WebCoverView(link: $selectedStory)
-                }
-            }
-             */
+            
+            
+            
         }
+        /*
+         // get stories tagged with this athlete
+        .task {
+            do {
+                try await feed.getStories()
+            } catch {
+                print(error)
+            }
+        }
+        .fullScreenCover(isPresented: $isPresented) {
+            NavigationStack {
+                WebCoverView(link: $selectedStory)
+            }
+        }
+         */
+        .navigationTitle(athlete.fullName)
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -63,33 +81,22 @@ struct AthleteView: View {
                         case true?:
                             deleteFavourite()
                         case false?:
-                            addFavourite()
+                            Task {
+                                try await athletes.addFavourite(athlete: index, user_id: UUID(uuidString: session.user_id!)!)
+                            }
                         case .none:
-                            addFavourite()
+                            Task {
+                                try await athletes.addFavourite(athlete: index, user_id: UUID(uuidString: session.user_id!)!)
+                            }
                         }
                     } else {
                         // show notification to sign up
                     }
-                    //isFavourite.toggle()
-                    //TODO: Add or remove from userFavourites table as required
                 } label: {
                     if let index = athlete.index {
                         Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
                     }
                 }
-            }
-        }
-    }
-    
-    private func addFavourite() {
-        Task {
-            if let index = athlete.index {
-                // mark favourite
-                athletes.all[index].isFavourite = true
-                
-                // add to favourites table
-                // TODO: crashes if user not logged in?
-                try await athletes.addFavourite(athlete: index, user_id: UUID(uuidString: session.user_id!)!)
             }
         }
     }

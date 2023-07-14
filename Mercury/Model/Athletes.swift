@@ -69,36 +69,32 @@ class Athletes: ObservableObject {
                 .select()
                 .order(column: "lastName", ascending: true)
                 .execute().value as [Athlete]
-            
             self.all = athletes
             
-        } catch {
-            throw error
-        }
-        
-        do {
+            // mark index of each athlete
+            for (index, athlete) in zip(all.indices, all) {
+                var updatedAthlete = athlete
+                updatedAthlete.index = index
+                self.all[index] = updatedAthlete
+            }
+            
             //get athlete_id for user favourites
             let userFavourites: [Favourite] = try await client.database
                 .from("favourites")
                 .select()
                 .eq(column: "user_id", value: user_id!) // can unwrap because function throws errors
                 .execute().value as [Favourite]
-            
             self.userFavouriteIDs = userFavourites
             
             // mark favourite athletes in list of all athletes
-            for (index, athlete) in zip(all.indices, all) {
-                var updatedAthlete = athlete
-                updatedAthlete.index = index
-                self.all[index] = updatedAthlete
-                
-                //print(index, athlete)
-                
+            for athlete in self.all {
                 for favourite in userFavourites {
                     if athlete.id == favourite.athlete_id {
                         var updatedAthlete = athlete
                         updatedAthlete.isFavourite = true
-                        self.all[index] = updatedAthlete                    }
+                        self.all[athlete.index!] = updatedAthlete
+                        
+                    }
                 }
             }
             
@@ -109,7 +105,9 @@ class Athletes: ObservableObject {
     
     @MainActor
     func addFavourite(athlete: Int, user_id: UUID) async throws {
-        // TODO: add athlete_id and user_id to favourites table
+        // adds athlete_id and user_id to favourites table
+        self.all[athlete].isFavourite = true
+        
         do {
             let favouriteToAdd = Favourite(id: nil,
                                            user_id: user_id,
@@ -125,7 +123,7 @@ class Athletes: ObservableObject {
     
     @MainActor
     func removeFavourite(athlete_id: UUID) async throws {
-        // TODO: remove athlete_id and user_id from favourites table
+        // removes athlete_id and user_id from favourites table
         do {
             try await client.database
                 .from("favourites")
