@@ -35,20 +35,15 @@ struct FavouritesHScrollView: View {
                 FavouritesListButtonView()
             }
             .padding(.horizontal)
-        }/*
-        .task {
-            do {
-                //try await vm.getFavourites()
-            } catch {
-                print(error)
-            }
         }
-          */
     }
 }
 
 struct FavouritesHScrollView_Previews: PreviewProvider {
+    static let athletes = Athletes()
+    
     static var previews: some View {
         FavouritesHScrollView()
+            .environmentObject(athletes)
     }
 }

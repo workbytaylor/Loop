@@ -27,10 +27,13 @@ struct FavouritesListRowView: View {
                 }
                 
             } label: {
-                //if let index = athlete.index {
-                Image(systemName: athletes.all[athlete.index!].isFavourite == true ? "heart.fill" : "heart")
+                if let index = athlete.index {
+                    Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
                         .font(.title3)
-                //}
+                } else {
+                    Image(systemName: "heart")
+                        .font(.title3)
+                }
             }
             
             NavigationLink {
@@ -74,6 +77,9 @@ struct FavouritesListRowView: View {
 
 
 struct FavouritesListRowView_Previews: PreviewProvider {
+    static let athletes = Athletes()
+    static let session = Session()
+    
     static var previews: some View {
         FavouritesListRowView(athlete: Athlete(id: UUID(),
                                                firstName: "Taylor",
@@ -82,6 +88,8 @@ struct FavouritesListRowView_Previews: PreviewProvider {
                                                gender: "male",
                                                isPopular: true))
         .padding()
+        .environmentObject(athletes)
+        .environmentObject(session)
     }
 }
 

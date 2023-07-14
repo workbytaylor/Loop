@@ -91,9 +91,12 @@ struct FavouritesListView: View {
 }
 
 struct ManageFavouritesView_Previews: PreviewProvider {
+    static let athletes = Athletes()
+    
     static var previews: some View {
         NavigationStack {
             FavouritesListView()
+                .environmentObject(athletes)
         }
     }
 }

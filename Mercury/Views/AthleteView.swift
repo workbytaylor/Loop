@@ -10,36 +10,27 @@ import SwiftUI
 struct AthleteView: View {
     @State var athlete: Athlete
     @State private var isPresented: Bool = false
-    @State private var selectedPage: Page = .info
+    //@State private var selectedPage: Page = .info
     @State private var selectedStory: String = ""
     @ObservedObject private var feed = Stories()
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
     
-    enum Page: String, CaseIterable, Identifiable {
-        var id: Self { self }
-        case stories
-        case info
-    }
-    
     var body: some View {
-        VStack {
+        ScrollView {
+            
+            
             Text(athlete.initials)
                 .foregroundColor(.white)
-                .font(.largeTitle)
+                .font(.largeTitle)  // TODO: make larger?
                 .padding()
                 .background(Color.gray)
                 .clipShape(Circle())
             
-            Picker("Context", selection: $selectedPage) {
-                ForEach(Page.allCases) { page in
-                    Text(page.rawValue.capitalized)
-                }
-            }
-            .pickerStyle(.segmented)
-            .padding()
+            Text(athlete.fullName)
+                .font(.title).bold()
             
-            ScrollView {
+            //VStack {
                 // TODO: Update feed to show stories
                 ForEach(feed.all, id: \.link) { story in
                     Button {
@@ -51,10 +42,7 @@ struct AthleteView: View {
                     .padding(.horizontal)
                     .padding(.bottom).padding(.bottom)
                 }
-            }
-            
-            
-            
+            //}
         }
         /*
          // get stories tagged with this athlete
@@ -90,7 +78,7 @@ struct AthleteView: View {
                             }
                         }
                     } else {
-                        // show notification to sign up
+                        // TODO: show notification to sign up
                     }
                 } label: {
                     if let index = athlete.index {
@@ -112,11 +100,13 @@ struct AthleteView: View {
             try await athletes.removeFavourite(athlete_id: athlete.id)
         }
     }
-    
 }
 
 
 struct AthleteThumbnailView_Previews: PreviewProvider {
+    static let athletes = Athletes()
+    static let session = Session()
+    
     static var previews: some View {
         NavigationStack {
             AthleteView(athlete: Athlete(id: UUID(),
@@ -125,6 +115,8 @@ struct AthleteThumbnailView_Previews: PreviewProvider {
                                          country: "Canada",
                                          gender: "male",
                                          isPopular: true))
+            .environmentObject(athletes)
+            .environmentObject(session)
         }
     }
 }

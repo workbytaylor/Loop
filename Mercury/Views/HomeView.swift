@@ -59,9 +59,13 @@ struct HomeView: View {
 }
 
 struct NewsView_Previews: PreviewProvider {
+    static let athletes = Athletes()
+    
     static var previews: some View {
         HomeView(showSignInSheet: .constant(false))
+            .environmentObject(athletes)
     }
+        
 }
 
 
