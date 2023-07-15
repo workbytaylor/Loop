@@ -10,57 +10,45 @@ import SwiftUI
 struct AthleteView: View {
     @State var athlete: Athlete
     @State private var isPresented: Bool = false
-    //@State private var selectedPage: Page = .info
     @State private var selectedStory: String = ""
-    @ObservedObject private var feed = Stories()
+    @EnvironmentObject var stories: Stories
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
     
     var body: some View {
         ScrollView {
-            
-            
             Text(athlete.initials)
                 .foregroundColor(.white)
                 .font(.largeTitle)  // TODO: make larger?
                 .padding()
                 .background(Color.gray)
                 .clipShape(Circle())
-            
+        
             Text(athlete.fullName)
                 .font(.title).bold()
             
-            //VStack {
-                // TODO: Update feed to show stories
-                ForEach(feed.all, id: \.link) { story in
-                    Button {
-                        isPresented.toggle()
-                        selectedStory = story.link
-                    } label: {
-                        NewsCardView(story: story)
-                    }
-                    .padding(.horizontal)
-                    .padding(.bottom).padding(.bottom)
+            // TODO: filter stories based on athlete selected
+            ForEach(stories.all, id: \.link) { story in
+                Button {
+                    isPresented.toggle()
+                    selectedStory = story.link
+                } label: {
+                    NewsCardView(story: story)
                 }
-            //}
+                .padding(.horizontal)
+                .padding(.bottom).padding(.bottom)
+            }
+            
         }
         /*
-         // get stories tagged with this athlete
-        .task {
-            do {
-                try await feed.getStories()
-            } catch {
-                print(error)
-            }
-        }
         .fullScreenCover(isPresented: $isPresented) {
             NavigationStack {
                 WebCoverView(link: $selectedStory)
             }
         }
          */
-        .navigationTitle(athlete.fullName)
-        .navigationBarTitleDisplayMode(.inline)
+        //.navigationTitle(athlete.fullName)
+        //.navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
@@ -106,6 +94,7 @@ struct AthleteView: View {
 struct AthleteThumbnailView_Previews: PreviewProvider {
     static let athletes = Athletes()
     static let session = Session()
+    static let stories = Stories()
     
     static var previews: some View {
         NavigationStack {
@@ -117,6 +106,7 @@ struct AthleteThumbnailView_Previews: PreviewProvider {
                                          isPopular: true))
             .environmentObject(athletes)
             .environmentObject(session)
+            .environmentObject(stories)
         }
     }
 }

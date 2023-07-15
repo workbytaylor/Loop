@@ -48,7 +48,7 @@ class Athletes: ObservableObject {
     
     var searchedAthletes: [Athlete] {
         if searchText.isEmpty {
-            return all//.filter {$0.isPopular == true}
+            return all.filter { $0.isPopular == true }  //show popular names to start, full list still searchable
         } else {
             return all.filter { "\($0.firstName) \($0.lastName)".localizedCaseInsensitiveContains(searchText) }
         }

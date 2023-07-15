@@ -11,6 +11,7 @@ import SwiftUI
 struct MercuryApp: App {
     @StateObject var session: Session = Session()
     @StateObject var athletes: Athletes = Athletes()
+    @StateObject var stories: Stories = Stories()
     @State private var selection: Int = 1
     @State private var showSignInSheet: Bool = false
     
@@ -33,11 +34,13 @@ struct MercuryApp: App {
             }
             .environmentObject(session)
             .environmentObject(athletes)
+            .environmentObject(stories)
             .preferredColorScheme(.light)
             .task {
                 do {
                     try await session.getSession()
                     session.loginStatus = .loggedIn
+                    try await stories.fetch()
                     try await athletes.getAthletes(user_id: session.user_id)    // if user is loggedIn, marks favourite athletes
                     //print(athletes.all)
                 } catch {

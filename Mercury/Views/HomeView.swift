@@ -12,7 +12,7 @@ struct HomeView: View {
     @Binding var showSignInSheet: Bool
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
-    @StateObject private var stories = Stories()
+    @EnvironmentObject var stories: Stories
     @EnvironmentObject var session: Session
     
     var body: some View {
@@ -36,6 +36,7 @@ struct HomeView: View {
                     .interactiveDismissDisabled()
                 // TODO: on dismiss, run .task {} shown in MercuryApp
             }
+            /*
             .task {
                 do {
                     try await stories.fetch()
@@ -43,6 +44,7 @@ struct HomeView: View {
                     print(error)
                 }
             }
+             */
             .refreshable {
                 // stories.fetch()
             }
@@ -60,10 +62,12 @@ struct HomeView: View {
 
 struct NewsView_Previews: PreviewProvider {
     static let athletes = Athletes()
+    static let stories = Stories()
     
     static var previews: some View {
         HomeView(showSignInSheet: .constant(false))
             .environmentObject(athletes)
+            .environmentObject(stories)
     }
         
 }
