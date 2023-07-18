@@ -15,6 +15,7 @@ struct Story: Identifiable, Codable {
     let displayLink: String
     let image: String
     let date: String  //date does not work currently
+    var tags: [String]?
 }
 
 class Stories: ObservableObject {
@@ -33,6 +34,7 @@ class Stories: ObservableObject {
                 .execute().value as [Story]
             
             self.all = stories
+            print(stories[1].tags)
             
         } catch {
             throw error
