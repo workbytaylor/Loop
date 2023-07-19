@@ -41,7 +41,7 @@ class Stories: ObservableObject {
         }
     }
     
-    // TODO: test this as is, declare in AthleteView
+    // TODO: test this as is, declare in AthleteView    // does not work
     // TODO: pass in all athlete fullnames and get all on start of app
     @MainActor
     func getStoriesForFavourites(fullName: String) async throws {

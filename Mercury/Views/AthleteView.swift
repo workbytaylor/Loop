@@ -28,6 +28,7 @@ struct AthleteView: View {
                 .font(.title).bold()
             
             // TODO: filter stories based on athlete selected
+            // TODO: overlay for when there are no stories
             ForEach(stories.all, id: \.link) { story in
                 Button {
                     isPresented.toggle()
@@ -40,6 +41,7 @@ struct AthleteView: View {
             }
             
         }
+        
         /*
         .fullScreenCover(isPresented: $isPresented) {
             NavigationStack {
