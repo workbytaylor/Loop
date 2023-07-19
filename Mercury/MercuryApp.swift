@@ -40,8 +40,9 @@ struct MercuryApp: App {
                 do {
                     try await session.getSession()
                     session.loginStatus = .loggedIn
-                    try await stories.fetch()
+                    try await stories.getAll()
                     try await athletes.getAthletes(user_id: session.user_id)    // if user is loggedIn, marks favourite athletes
+                    // try await stories.getStoriesForFavourites()
                     //print(athletes.all)
                 } catch {
                     showSignInSheet = true
