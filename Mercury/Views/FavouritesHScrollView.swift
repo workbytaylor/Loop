@@ -13,7 +13,6 @@ struct FavouritesHScrollView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 12) {
-                
                 ForEach(athletes.favouriteAthletes) { athlete in
                     NavigationLink {
                         AthleteView(athlete: athlete)
@@ -26,9 +25,12 @@ struct FavouritesHScrollView: View {
                                 .background(Color.gray)
                                 .clipShape(Circle())
                             Text(athlete.shortName)
+                                .lineLimit(1)
                                 .font(.caption2)
                                 .foregroundColor(.primary)
+                                
                         }
+                        .frame(width: 60)
                     }
                 }
                 
