@@ -61,7 +61,7 @@ class Athletes: ObservableObject {
     let client = SupabaseClient(supabaseURL: Constants.supabaseURL, supabaseKey: Constants.supabaseKey)
     
     @MainActor
-    func getAthletes(user_id: String?) async throws {
+    func getAthletes() async throws {
         do {
             //get athletes from Supabase
             let athletes: [Athlete] = try await client.database
@@ -78,11 +78,24 @@ class Athletes: ObservableObject {
                 self.all[index] = updatedAthlete
             }
             
+        } catch {
+            throw error
+        }
+    }
+    
+    @MainActor
+    func getFavourites(user_id: String?) async throws {
+        do {
             //get athlete_id for user favourites
+            guard let unwrapped_user_id = user_id else {
+                print("returned")
+                return
+            }
+            
             let userFavourites: [Favourite] = try await client.database
                 .from("favourites")
                 .select()
-                .eq(column: "user_id", value: user_id!) // can unwrap because function throws errors
+                .eq(column: "user_id", value: unwrapped_user_id) // can unwrap because function throws errors
                 .execute().value as [Favourite]
             self.userFavouriteIDs = userFavourites
             
@@ -97,11 +110,12 @@ class Athletes: ObservableObject {
                     }
                 }
             }
-            
         } catch {
             throw error
         }
     }
+    
+    
     
     @MainActor
     func addFavourite(athlete: Int, user_id: UUID) async throws {
@@ -133,8 +147,6 @@ class Athletes: ObservableObject {
         } catch {
             throw error
         }
-        
-        
         
         // TODO: unmark athlete as favourite / refresh favourites?
         // TODO: delete athlete from favouriteAthletes

@@ -38,18 +38,16 @@ struct MercuryApp: App {
             .preferredColorScheme(.light)
             .task {
                 do {
-                    try await session.getSession()
-                    session.loginStatus = .loggedIn
                     try await stories.getAll()
-                    try await athletes.getAthletes(user_id: session.user_id)    // if user is loggedIn, marks favourite athletes
-                    // try await stories.getStoriesForFavourites()
-                    //print(athletes.all)
+                    try await athletes.getAthletes()
+                    try await session.getSession()
+                    try await athletes.getFavourites(user_id: session.user_id)
+                    session.loginStatus = .loggedIn
                 } catch {
                     showSignInSheet = true
                     print(error)
                 }
             }
-            // TODO: .onchange of loginstate?????? to fetch favourites on login
         }
     }
 }

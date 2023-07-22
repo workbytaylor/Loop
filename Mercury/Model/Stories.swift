@@ -42,8 +42,8 @@ class Stories: ObservableObject {
         }
     }
     
-    // TODO: test this as is, declare in AthleteView    // does not work
-    // TODO: pass in all athlete fullnames and get all on start of app
+    // TODO: bug with .overlaps() in supabase
+    /*
     @MainActor
     func getStoriesForFavourites(/*fullName: String*/) async throws {
         do {
@@ -59,6 +59,6 @@ class Stories: ObservableObject {
             throw error
         }
     }
-    
+    */
     
 }

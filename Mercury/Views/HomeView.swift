@@ -12,6 +12,7 @@ struct HomeView: View {
     @Binding var showSignInSheet: Bool
     @State private var showStory: Bool = false
     @State private var selectedStory: String = ""
+    @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var stories: Stories
     @EnvironmentObject var session: Session
     
@@ -34,7 +35,26 @@ struct HomeView: View {
             .sheet(isPresented: $showSignInSheet) {
                 LoginSheetView()
                     .interactiveDismissDisabled()
-                // TODO: on dismiss, run .task {} shown in MercuryApp
+            }
+            .onChange(of: session.loginStatus) {newValue in
+                if session.loginStatus == .loggedIn {
+                    Task {
+                        do {
+                            try await athletes.getFavourites(user_id: session.user_id)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                } else {
+                    Task {
+                        do {
+                            try await athletes.getAthletes()
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
+                
             }
             /*
             .task {
@@ -58,6 +78,19 @@ struct HomeView: View {
             }
         }
     }
+    
+    
+    func sheetDismissed(user_id: String?) {
+        Task {
+            do {
+                try await athletes.getFavourites(user_id: session.user_id)
+            } catch {
+                print(error)
+            }
+        }
+    }
+    
+    
 }
 
 struct NewsView_Previews: PreviewProvider {

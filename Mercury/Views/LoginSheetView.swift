@@ -37,13 +37,12 @@ struct LoginSheetView: View {
                 }
                 
                 Button {
-                    // TODO: On login, fetch favourites, ie run the same code as on startup
                     Task {
-                        do {    // order is very important: action, state change, get session
+                        do {    //order important: action, state change, get session
                             try await viewModel.SignInWithApple()
                             session.loginStatus = .loggedIn
                             try await session.getSession()
-                            dismiss()   // careful this doesn't cause errors
+                            dismiss()
                         } catch {
                             print(error)
                         }
@@ -80,8 +79,6 @@ struct LoginSheetView: View {
 }
 
 struct LoginSheetView_Previews: PreviewProvider {
-    //@State static var showSheet:Bool = false
-    
     static var previews: some View {
         LoginSheetView()
     }

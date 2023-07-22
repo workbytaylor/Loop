@@ -20,7 +20,7 @@ struct AthleteView: View {
         ScrollView {
             Text(athlete.initials)
                 .foregroundColor(.white)
-                .font(.largeTitle)  // TODO: make larger?
+                .font(.largeTitle)
                 .padding()
                 .background(Color.gray)
                 .clipShape(Circle())
@@ -55,21 +55,17 @@ struct AthleteView: View {
         .task {
             // filter stories for athletes
             let filteredStories = stories.all.filter { story in
-                guard let tags = story.tags else {
-                    return false
-                }
-                return tags.contains(athlete.fullName)
+                return story.title.contains(athlete.fullName)
             }
             storiesForThisAthlete = filteredStories
         }
         
-        /*
         .fullScreenCover(isPresented: $isPresented) {
             NavigationStack {
-                WebCoverView(link: $selectedStory)
+                StoryView(link: $selectedStory)
             }
         }
-         */
+         
         //.navigationTitle(athlete.fullName)
         //.navigationBarTitleDisplayMode(.large)
         .toolbar {

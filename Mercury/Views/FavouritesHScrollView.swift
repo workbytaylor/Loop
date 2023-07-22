@@ -30,7 +30,7 @@ struct FavouritesHScrollView: View {
                                 .foregroundColor(.primary)
                                 
                         }
-                        .frame(width: 60)
+                        .frame(width: 50)
                     }
                 }
                 
