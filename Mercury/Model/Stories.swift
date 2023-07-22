@@ -7,6 +7,7 @@
 
 import Foundation
 import Supabase
+import PostgREST
 
 struct Story: Identifiable, Codable {
     let id: UUID
@@ -44,12 +45,12 @@ class Stories: ObservableObject {
     // TODO: test this as is, declare in AthleteView    // does not work
     // TODO: pass in all athlete fullnames and get all on start of app
     @MainActor
-    func getStoriesForFavourites(fullName: String) async throws {
+    func getStoriesForFavourites(/*fullName: String*/) async throws {
         do {
             let storiesForFavourites: [Story] = try await client.database
                 .from("stories")
                 .select()
-                .overlaps(column: "tags", value: fullName)
+                .overlaps(column: "tags", value: "Yared Nuguse")
                 .execute().value as [Story]
             
             self.forFavourites = storiesForFavourites

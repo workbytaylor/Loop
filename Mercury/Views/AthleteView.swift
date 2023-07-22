@@ -11,6 +11,7 @@ struct AthleteView: View {
     @State var athlete: Athlete
     @State private var isPresented: Bool = false
     @State private var selectedStory: String = ""
+    @State private var storiesForThisAthlete: [Story] = []
     @EnvironmentObject var stories: Stories
     @EnvironmentObject var athletes: Athletes
     @EnvironmentObject var session: Session
@@ -27,19 +28,39 @@ struct AthleteView: View {
             Text(athlete.fullName)
                 .font(.title).bold()
             
-            // TODO: filter stories based on athlete selected
-            // TODO: overlay for when there are no stories
-            ForEach(stories.all, id: \.link) { story in
-                Button {
-                    isPresented.toggle()
-                    selectedStory = story.link
-                } label: {
-                    NewsCardView(story: story)
+            if storiesForThisAthlete.isEmpty {
+                VStack {
+                    Text("No stories for \(athlete.fullName) yet.")
+                    Text("Please check again later.")
                 }
-                .padding(.horizontal)
-                .padding(.bottom).padding(.bottom)
+                .padding(.top, 50)
+                .font(.subheadline)
+                //.foregroundStyle(.secondary)
+                
+            } else {
+                // TODO: filter stories based on athlete name in story title
+                ForEach(storiesForThisAthlete, id: \.link) { story in
+                    Button {
+                        isPresented.toggle()
+                        selectedStory = story.link
+                    } label: {
+                        NewsCardView(story: story)
+                    }
+                    .padding(.horizontal)
+                    .padding(.bottom).padding(.bottom)
+                }
             }
             
+        }
+        .task {
+            // filter stories for athletes
+            let filteredStories = stories.all.filter { story in
+                guard let tags = story.tags else {
+                    return false
+                }
+                return tags.contains(athlete.fullName)
+            }
+            storiesForThisAthlete = filteredStories
         }
         
         /*

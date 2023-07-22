@@ -17,6 +17,7 @@ struct SuggestionView: View {
     
     var body: some View {
         NavigationStack {
+            // TODO: on submit, insert data to supabase
             VStack {
                 Form {
                     Section {
