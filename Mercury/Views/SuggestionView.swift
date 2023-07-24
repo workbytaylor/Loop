@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SuggestionView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var athletes: Athletes
     @State private var firstName = ""
     @State private var lastName: String = ""
     @State private var country: String = ""
@@ -29,31 +30,45 @@ struct SuggestionView: View {
                         TextField("Country", text: $country)
                     }
                     /*
-                    Section {
-                        Picker(selection: $gender, label: Text("Gender")) {
-                            Text("--").tag("")
-                            Text("Female").tag("female")
-                            Text("Male").tag("male")
-                            Text("Non-Binary").tag("non-binary")
-                        }
-                    }
-                    
-                    Section {
-                        DatePicker("Date of Birth",
-                                   selection: $dateOfBirth,
-                                   displayedComponents: [.date])
-
-                    }
-                    */
+                     Section {
+                     Picker(selection: $gender, label: Text("Gender")) {
+                     Text("--").tag("")
+                     Text("Female").tag("female")
+                     Text("Male").tag("male")
+                     Text("Non-Binary").tag("non-binary")
+                     }
+                     }
+                     
+                     Section {
+                     DatePicker("Date of Birth",
+                     selection: $dateOfBirth,
+                     displayedComponents: [.date])
+                     
+                     }
+                     */
                 }
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        // submit to supabase
+                        //TODO: insert supabase
+                        Task {
+                            do {
+                                try await athletes.submitSuggestion(firstName, lastName, country)
+                            } catch {
+                                print(error)
+                            }
+                        }
                         dismiss()
                     } label: {
-                        Image(systemName: "paperplane.circle.fill")
+                        Image(systemName: "paperplane.fill")
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark")
                     }
                 }
             }
@@ -64,9 +79,12 @@ struct SuggestionView: View {
 }
 
 struct SuggestionView_Previews: PreviewProvider {
+    static let athletes = Athletes()
+    
     static var previews: some View {
         NavigationStack {
             SuggestionView()
+                .environmentObject(athletes)
         }
     }
 }

@@ -37,6 +37,8 @@ struct FavouritesListView: View {
          //}
         .searchable(text: $athletes.searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search")
         .overlay {
+            // TODO: require users to be logged in to submit a suggestion
+            // alert
             if athletes.searchedAthletes.isEmpty, !athletes.searchText.isEmpty {
                     VStack {
                         Text("Can't find \(athletes.searchText)?")

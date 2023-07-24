@@ -40,6 +40,13 @@ struct Favourite: Identifiable, Codable, Hashable {
     let athlete_id: UUID
 }
 
+struct Suggestion: Codable, Identifiable {
+    let id: UUID
+    let firstName: String
+    let lastName: String
+    let country: String
+}
+
 
 class Athletes: ObservableObject {
     @Published var all: [Athlete] = []
@@ -115,8 +122,6 @@ class Athletes: ObservableObject {
         }
     }
     
-    
-    
     @MainActor
     func addFavourite(athlete: Int, user_id: UUID) async throws {
         // adds athlete_id and user_id to favourites table
@@ -150,6 +155,16 @@ class Athletes: ObservableObject {
         
         // TODO: unmark athlete as favourite / refresh favourites?
         // TODO: delete athlete from favouriteAthletes
+    }
+    
+    func submitSuggestion(_ first: String, _ last: String, _ country: String) async throws {
+        let suggestion = Suggestion(id: UUID(), firstName: first, lastName: last, country: country)
+        //TODO: add user_id to the table
+        
+        try await client.database
+            .from("suggested_athletes")
+            .insert(values: suggestion)
+            .execute()
     }
     
 }

@@ -38,7 +38,6 @@ struct AthleteView: View {
                 //.foregroundStyle(.secondary)
                 
             } else {
-                // TODO: filter stories based on athlete name in story title
                 ForEach(storiesForThisAthlete, id: \.link) { story in
                     Button {
                         isPresented.toggle()

@@ -56,15 +56,6 @@ struct HomeView: View {
                 }
                 
             }
-            /*
-            .task {
-                do {
-                    try await stories.fetch()
-                } catch {
-                    print(error)
-                }
-            }
-             */
             .refreshable {
                 // stories.fetch()
             }
