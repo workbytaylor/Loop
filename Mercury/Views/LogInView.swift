@@ -11,8 +11,12 @@ struct LogInView: View {
     @State private var showSheet: Bool = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 50) {
+        VStack(alignment: .leading) {
             Text("Log in to track your favourite athletes.")
+                .padding(.bottom)
+            
+            Spacer()
+                .frame(height: 30)
             
             VStack {
                 Button {
@@ -30,7 +34,6 @@ struct LogInView: View {
                     showSheet = true
                 }
                 .controlSize(.large)
-                //.padding()
             }
         }
         .sheet(isPresented: $showSheet) {

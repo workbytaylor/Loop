@@ -13,12 +13,53 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                switch session.loginStatus {
-                case .loggedOut:
-                    LogInView()
-                case .loggedIn:
-                    LogOutView()
+                VStack(alignment: .leading) {
+                    switch session.loginStatus {
+                    case .loggedOut:
+                        LogInView()
+                    case .loggedIn:
+                        LogOutView()
+                    }
                 }
+                //.padding(.vertical)
+                
+                Spacer()
+                    .frame(height: 50)
+                
+                NavigationLink {
+                    VStack(alignment: .leading) {
+                        Text("About")
+                            .font(.title2).bold()
+                        Text("Loop is a ...")
+                    }
+                } label: {
+                    VStack {
+                        HStack {
+                            Text("About")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        Divider()
+                    }
+                }
+                
+                NavigationLink {
+                    VStack(alignment: .leading) {
+                        Text("")
+                            .font(.title2).bold()
+                        Text("Loop is a ...")
+                    }
+                } label: {
+                    VStack {
+                        HStack {
+                            Text("Work with Loop")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                        }
+                        Divider()
+                    }
+                }
+                
             }
             .padding(.horizontal)
             .navigationTitle("Profile")
@@ -26,12 +67,13 @@ struct ProfileView: View {
     }
 }
 
-struct AltSettingsView_Previews: PreviewProvider {
-    @StateObject var session: Session = Session()
+struct ProfileView_Previews: PreviewProvider {
+    static let session = Session()
     
     static var previews: some View {
         NavigationStack {
             ProfileView()
+                .environmentObject(session)
         }
     }
 }

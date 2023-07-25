@@ -70,31 +70,18 @@ struct HomeView: View {
         }
     }
     
-    
-    func sheetDismissed(user_id: String?) {
-        Task {
-            do {
-                try await athletes.getFavourites(user_id: session.user_id)
-            } catch {
-                print(error)
-            }
-        }
-    }
-    
-    
 }
 
 struct NewsView_Previews: PreviewProvider {
     static let athletes = Athletes()
     static let stories = Stories()
+    static let session = Session()
     
     static var previews: some View {
         HomeView(showSignInSheet: .constant(false))
             .environmentObject(athletes)
             .environmentObject(stories)
+            .environmentObject(session)
     }
         
 }
-
-
-
