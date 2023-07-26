@@ -31,7 +31,7 @@ struct AthleteView: View {
             if storiesForThisAthlete.isEmpty {
                 VStack {
                     Text("No stories for \(athlete.fullName) yet.")
-                    Text("Please check again later.")
+                    Text("Try again later.")
                 }
                 .padding(.top, 50)
                 .font(.subheadline)
