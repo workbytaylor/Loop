@@ -21,6 +21,19 @@ struct HomeView: View {
             ScrollView {
                 FavouritesHScrollView()
                     .padding(.vertical)
+                
+                
+                
+                // TODO: Make for favourites
+                Grid(alignment: .leading) {
+                    GridRow {
+                        Text("T")
+                        Text("A")
+                        Text("Y")
+                    }
+                }
+                
+                
                 ForEach(stories.all, id: \.link) { story in
                     Button {
                         showStory.toggle()
