@@ -16,11 +16,11 @@ struct FavouritesListButtonView: View {
                 Image(systemName: "plus")
                 .foregroundColor(.white)
                 .font(.headline)
-                .frame(width: 50, height: 50)
+                .frame(width: 60, height: 60)
                 .background(Color.gray)
                 .clipShape(Circle())
             Text("Favourites")
-                .font(.caption2)
+                .font(.caption)
                 .foregroundColor(.primary)
             }
         }

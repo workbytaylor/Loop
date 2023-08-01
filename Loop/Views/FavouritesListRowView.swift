@@ -28,8 +28,14 @@ struct FavouritesListRowView: View {
                 
             } label: {
                 if let index = athlete.index {
-                    Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
-                        .font(.title3)
+                    if athletes.all[index].isFavourite == true {
+                        Image(systemName: "heart.fill")
+                            .foregroundColor(.pink)
+                            .font(.title3)
+                    } else {
+                        Image(systemName: "heart")
+                            .font(.title3)
+                    }    
                 } else {
                     Image(systemName: "heart")
                         .font(.title3)

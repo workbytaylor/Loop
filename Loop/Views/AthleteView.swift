@@ -30,8 +30,7 @@ struct AthleteView: View {
             
             if storiesForThisAthlete.isEmpty {
                 VStack {
-                    Text("No stories for \(athlete.fullName) yet.")
-                    Text("Try again later.")
+                    Text("Nothing yet, come back later!")
                 }
                 .padding(.top, 50)
                 .font(.subheadline)
@@ -88,7 +87,14 @@ struct AthleteView: View {
                     }
                 } label: {
                     if let index = athlete.index {
-                        Image(systemName: athletes.all[index].isFavourite == true ? "heart.fill" : "heart")
+                        if athletes.all[index].isFavourite == true {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.pink)
+                        } else {
+                            Image(systemName: "heart")
+                        }
+                    } else {
+                        Image(systemName: "heart")
                     }
                 }
             }
