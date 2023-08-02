@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "95C0ED9C2A1AF70B006F1703"
-               BuildableName = "Loop.app"
-               BlueprintName = "Loop"
-               ReferencedContainer = "container:Loop.xcodeproj">
+               BuildableName = "Atlas.app"
+               BlueprintName = "Atlas"
+               ReferencedContainer = "container:Atlas.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "95C0ED9C2A1AF70B006F1703"
-            BuildableName = "Loop.app"
-            BlueprintName = "Loop"
-            ReferencedContainer = "container:Loop.xcodeproj">
+            BuildableName = "Atlas.app"
+            BlueprintName = "Atlas"
+            ReferencedContainer = "container:Atlas.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "95C0ED9C2A1AF70B006F1703"
-            BuildableName = "Loop.app"
-            BlueprintName = "Loop"
-            ReferencedContainer = "container:Loop.xcodeproj">
+            BuildableName = "Atlas.app"
+            BlueprintName = "Atlas"
+            ReferencedContainer = "container:Atlas.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

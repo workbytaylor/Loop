@@ -50,7 +50,7 @@
 		95A008E42A444E6800CDEB6E /* Loop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Loop.entitlements; sourceTree = "<group>"; };
 		95A1C1522A4000F500D5D183 /* FavouritesListButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesListButtonView.swift; sourceTree = "<group>"; };
 		95BCEC7D2A4A9E5B00556B84 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
-		95C0ED9D2A1AF70B006F1703 /* Loop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Loop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		95C0ED9D2A1AF70B006F1703 /* Atlas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Atlas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95C0EDA02A1AF70B006F1703 /* LoopApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoopApp.swift; sourceTree = "<group>"; };
 		95C0EDA22A1AF70B006F1703 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		95C0EDA42A1AF70D006F1703 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		95C0ED9E2A1AF70B006F1703 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				95C0ED9D2A1AF70B006F1703 /* Loop.app */,
+				95C0ED9D2A1AF70B006F1703 /* Atlas.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,9 +167,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		95C0ED9C2A1AF70B006F1703 /* Loop */ = {
+		95C0ED9C2A1AF70B006F1703 /* Atlas */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 95C0EDAB2A1AF70D006F1703 /* Build configuration list for PBXNativeTarget "Loop" */;
+			buildConfigurationList = 95C0EDAB2A1AF70D006F1703 /* Build configuration list for PBXNativeTarget "Atlas" */;
 			buildPhases = (
 				95C0ED992A1AF70B006F1703 /* Sources */,
 				95C0ED9A2A1AF70B006F1703 /* Frameworks */,
@@ -179,12 +179,12 @@
 			);
 			dependencies = (
 			);
-			name = Loop;
+			name = Atlas;
 			packageProductDependencies = (
 				958C9DEA2A1B84AA00BCAB96 /* Supabase */,
 			);
 			productName = Mercury;
-			productReference = 95C0ED9D2A1AF70B006F1703 /* Loop.app */;
+			productReference = 95C0ED9D2A1AF70B006F1703 /* Atlas.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -202,7 +202,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 95C0ED982A1AF70B006F1703 /* Build configuration list for PBXProject "Loop" */;
+			buildConfigurationList = 95C0ED982A1AF70B006F1703 /* Build configuration list for PBXProject "Atlas" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -218,7 +218,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				95C0ED9C2A1AF70B006F1703 /* Loop */,
+				95C0ED9C2A1AF70B006F1703 /* Atlas */,
 			);
 		};
 /* End PBXProject section */
@@ -450,7 +450,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		95C0ED982A1AF70B006F1703 /* Build configuration list for PBXProject "Loop" */ = {
+		95C0ED982A1AF70B006F1703 /* Build configuration list for PBXProject "Atlas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95C0EDA92A1AF70D006F1703 /* Debug */,
@@ -459,7 +459,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		95C0EDAB2A1AF70D006F1703 /* Build configuration list for PBXNativeTarget "Loop" */ = {
+		95C0EDAB2A1AF70D006F1703 /* Build configuration list for PBXNativeTarget "Atlas" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				95C0EDAC2A1AF70D006F1703 /* Debug */,
